@@ -15,7 +15,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Create a repository from a template.
-- Clone and use a Git repository.
+- Clone and use a Git repository with GitHub Desktop.
 - Describe the purpose of the `.git` directory.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -41,7 +41,7 @@ We should get prompted to give details for what we'd like our copy of the templa
 
 GitHub will allow you to create private repositories, so only people you specify can access the code, but it's always best to keep your code public - especially if you're going to use it in a paper!
 Code that generates or analyses data is a fundamental part of your method, and if you don't include your full method in papers your work can't be reproduced, and reproducibility is key to the scientific process.
-**Always** keep your repositories public unless you've got a strong reason, like embargoes imposed by industrial partners.
+It's a good idea to keep your repositories public unless you've got a strong reason, like embargoes imposed by industrial partners.
 
 A major advantage of this is if you leave academia, or you switch institution and forget to update the email on your GitHub account before you lose your old one, your work won't be lost forever!
 
@@ -51,152 +51,103 @@ After a brief wait, GitHub will have created a **remote repository** - a copy of
 
 ## Cloning the Repository
 
-Next, we'll download a copy of the repository to our local machine,
-using the SSH key we registered earlier:
+1. In the File menu, click **Clone Repository**
+![](fig/03-create/clone-file-menu-windows.webp){alt="File menu, clone repository selected"}
 
-```bash
-$ git clone git@github.com:yourname/climate-analysis.git
-```
+2. Click the GitHub.com because this is the location of the repository you want to clone. 
+![](fig/03-create/choose-repository-location.webp){alt="Clone a repository tab"}
 
-After you enter the `git clone` command, you should see:
+3. From the list of repositories, click the repository you want to clone.  In this case **climate-analysis**.
+![](fig/03-create/clone-a-repository-list.webp){alt="Clone a repository tab with repository highlighted"}
 
-```output
-Cloning into 'climate-analysis'...
-The authenticity of host 'github.com (140.82.121.4)' can't be established.
-ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
-ECDSA key fingerprint is MD5:7b:99:81:1e:4c:91:a5:0d:5a:2e:2e:80:13:3f:24:ca.
-Are you sure you want to continue connecting (yes/no)? yes
-```
+4. To select the local directory into which you want to clone the repository, next to the "Local Path" field, click Choose... and navigate to the directory.
+![](fig/03-create/clone-choose-button.webp){alt="Clone a repository tab with choose directory button highlighted"}
 
-Then, when you're prompted, continue the connection with `yes` and it will finish downloading:
+5. At the bottom of the window, click **Clone**
 
-```bash
-remote: Enumerating objects: 4, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 4 (delta 0), reused 3 (delta 0), pack-reused 0
-Receiving objects: 100% (4/4), done.
-```
-
-Now, if we use `ls` to list the contents of the directory, we should see we have a new directory, called `climate-analysis`.
-This is a **local repository** containing the code from our **remote repository**.
-It's linked up automatically - making it easy for us to download updates to the remote repository, or to send our changes back up to it.
-
-:::::::: caution
-
-## Other Ways To Clone
-
-You can also clone a repository using **HTTPS**, like:
-
-```bash
-$ git clone https://github.com/yourname/yourrepo
-```
-However, for security reasons this is **read only**.
-You can't send updates back to GitHub for a repository cloned using **HTTPS**.
-
-If you cloned a repository using **HTTPS** and want to switch it to **SSH**, you can use:
-
-```bash
-$ git remote set-url origin git@github.com:yourname/yourrepo
-```
-
-::::::::::::::::
 
 :::::::: callout
 
 ## Creating Repositories Locally
 
-We've shown you how to create a repository on GitHub then download it via `git clone`, but you don't have to do it that way.
+We've shown you how to create a repository on GitHub and then clone it, but you don't have to do it that way.
 
-If you want, you can create a repository locally by entering any directory and using `git init`.
-This turns any directory into a **git repository**, one stored entirely locally on your computer.
-After you've used `git init` to turn a directory into a repository, you can use the other commands we introduce in this section to add files to it.
+If you already have a folder of code on your computer that you want to put under version control, you can use **File > Add Local Repository** in GitHub Desktop. If the folder isn't already a Git repository, GitHub Desktop will offer to initialise it as one for you.
 
-We still want to make sure our **local repository** is linked to a **remote repository** on GitHub though!
-To do that, you can [make an empty repository on GitHub](https://github.com/new) and name it. Once you've got that, you can then connect your **local repository** to it using `git remote add origin git@github.com:yourname/repositoryname`.
-
-`git remote add` tells your local repository to link up to a remote one, and `origin git@github.com:yourname/repositoryname` tells it that the remote is at `git@github.com:yourname/repositoryname`, and can be referred to as `origin`.
-You can link a **local repository** to many **remote repositories** if you want, but the main one is always called `origin`.
+You'll then see a **Publish repository** button in GitHub Desktop, which will create the matching **remote repository** on GitHub and link everything up in one step.
 
 ::::::::::::::::
 
-# Exploring a Repository
+## Exploring a Repository
 
-Now, let's **change to our code directory** and look at the files we just downloaded.
+Once cloning is complete, GitHub Desktop will show you your new repository.
+To see the actual files, click **Repository** then **Show in Explorer** (Windows) or **Show in Finder** (Mac).
 
-```bash
-$ cd ~/climate-analysis
-$ ls
+![](fig/03-create/show-in-explorer.png){alt="Show in Explorer option in the Repository menu"}
+
+You should see the two Python files that make up our climate analysis code:
+
 ```
-
-```output
 climate_analysis.py  temp_conversion.py
 ```
 
-These are some Python files for analysing climate data - you'll recognise them if you've done some of our earlier lessons.
 Don't worry, you don't need to know Python to follow along.
 
-You'll notice that even though this directory is a **version control repository**, nothing actually looks special about it.
-But, if we add the `-a` flag to show everything, we can see that there's a hidden directory called `.git`:
+The folder looks like any other on your computer, nothing obviously special about it.
+However, if you turn on **hidden files** in your file explorer, you'll spot a hidden folder called `.git`:
 
-```bash
-$ ls -a
-```
+:::::::: tab
 
-```output
-.  ..  climate_analysis.py  .git  temp_conversion.py
-```
+### Windows
 
-Git stores information about the project in here.
+In File Explorer, go to **View > Show > Hidden items**.
+
+### Mac
+
+In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to toggle hidden files.
+
+::::::::::::
+
+![](fig/03-create/git-folder.png){alt="The hidden .git folder"}
+
+Git stores all its information about the project in this `.git` directory.
 If we ever delete it, we will lose the project's history.
+GitHub Desktop manages this folder for you — you should never need to touch it directly.
 
 ### Check Status
 
-We can check that everything is set up correctly
-by asking Git to tell us the status of our project with the **status** command:
+Switching back to GitHub Desktop, you'll notice the **Changes** tab on the left is empty, with a message like *"No local changes"*:
 
-```bash
-$ git status
-```
+![](fig/03-create/no-changes.png){alt="GitHub Desktop showing no local changes"}
 
-```output
-# On branch main
-nothing to commit, working tree clean
-```
+This means the files on your computer currently look exactly the same as the last snapshot stored in the repository.  In other words, there's nothing new to record yet.
 
-A **branch** is an independent line of development.
-We have only one, and the default name is **main**.
-
-Our **local repository** is connected to a **remote repository** (called **origin** by default), and is currently up-to-date; we haven't made any changes to the code yet.
-
-Git works on **commits** - snapshots of the current state of the repository.
-*"nothing to commit, working tree clean"* means that the directory currently looks exactly the same as the last snapshot we took of it, with no changes or edits.
-
+You'll also notice the **current branch** is shown at the top of the window as **main**.
+A **branch** is an independent line of development; we only have one at the moment.
 
 :::::::: callout
 
-## Branch names
+## Branch Names
 
 In this workshop, we have a **default branch** called **main**.
-In older versions of Git, if you create a new repository on the command line, it'll have a default branch called **master**, and a lot of examples online will show **master** instead of **main**.
-Don't worry - branches work the same, regardless of what they're called!
+In older versions of Git, new repositories had a default branch called **master**, and you'll still see **master** used in many examples online.
+Don't worry, branches work the same regardless of what they're called!
 
 ::::::::::::::::
 
 :::::::: checklist
 
-## Checkpoint
 
 Before moving on, make sure you've:
 
-- Registered your SSH key on GitHub.
-- Cloned your repository to your local machine.
+- Created your copy of the template repository on GitHub.
+- Cloned it to your local machine using GitHub Desktop.
 
 ::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- `git clone` creates a local copy of a repository from a URL.
-- Git stores all of its repository data in the `.git` directory.
+- GitHub Desktop's **Clone** feature downloads a remote repository and links it to your local copy automatically.
+- Git stores all of its repository data in the hidden `.git` directory.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
