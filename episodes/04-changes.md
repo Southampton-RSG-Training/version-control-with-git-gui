@@ -13,365 +13,213 @@ exercises: 0
 
 ::::::::::::: objectives
 
-- Go through the modify-add-commit cycle for one or more files.
-- Describe where changes are stored at each stage in the modify-add-commit cycle.
+- Go through the modify-stage-commit cycle for one or more files.
+- Describe where changes are stored at each stage in the modify-stage-commit cycle.
 
 :::::::::::::::::::::::
 
 ## Tracking Changes
 
 We've got a repository now containing a few pre-existing files - so let's add one more.
-You might remember seeing GitHub suggest we added a README.md to let people know what our code is about, so let's do that on the command line.
-We'll use the text editor `nano`, as:
+You might remember GitHub suggesting we add a `README.md` to let people know what our code is about, so let's do that now.
 
-```bash
-$ nano README.md
+### Creating a New File
+
+Open your repository folder in your text editor.
+
+The easiest way to do this is via GitHub Desktop: go to **Repository > Open with...**.
+
+Select your preferred text editor or Integrated Development Environment (IDE) from the dropdown list.
+
+Create a new file called `README.md` and add the following:
+
 ```
-
-Then type an example description:
-
-```output
 # Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 ```
 
-We can save our file using `Control-O` (`Control` and `O` at the same time), then `Enter`, and quit out of nano using `Control-X`.
-Our description is a bit brief, but it's enough for now!
-Let's try `git status` again:
+Save the file. Our description is a bit brief, but it's enough for now!
 
-```bash
-$ git status
-```
+TODO: For learners without an IDE installed, give the option to add a txt/md file using notepad.
 
-```output
-# On branch main
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	README.md
-nothing added to commit but untracked files present (use "git add" to track)
-```
+### Untracked Changes
 
-Now, whilst our current snapshot of the repository is up-to-date, we've added a new file that we're not tracking yet.
-We can tell Git to track the file we've just created using `git add`:
+Switch back to GitHub Desktop. The **Changes** tab on the left now shows `README.md` with a small green plus sign next to it, meaning Git has spotted a new file it hasn't seen before:
 
-```bash
-$ git add README.md
-```
+TODO: ![](fig/04-changes/new-file.png){alt="Changes tab showing README.md as a new file"}
 
-and then check that the right thing happened:
+The panel on the right shows a **preview** of the file with new content highlighted in green.
 
-```bash
-$ git status
-```
-
-```output
-# On branch main
-# Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
-#
-#	new file:   README.md
-#
-```
-
-Git now knows that it's supposed to **keep track** of `README.md`, just like `climate_analysis.py` and `temp_conversion.py` but it **hasn't recorded that as a commit** yet.
-We dont have a snapshot of the repository with all the existing files *and* `README.md`.
+You'll also notice the file is already **checked** (the checkbox next to its name is ticked). Only checked files will be included in your next commit.
 
 ### Initial Commit
-To get it to do that,
-we need to run one more command:
 
-```bash
-$ git commit -m "Added a basic readme file."
+Now we're ready to commit the first snapshot of our repository to Git.
+At the bottom of the Changes panel, you'll see a **Summary** field and an optional **Description** field:
+
+TODO: ![](fig/04-changes/commit-area.png){alt="Commit message area in GitHub Desktop"}
+
+The **Summary** is your commit message, which should be short and descriptive:
+
+```
+Add a basic readme file
 ```
 
-We use the `-m` flag (for "**message**") to record a short, **descriptive comment** that will help us remember later on what we did and why.
+Good commit messages start with a brief (<50 characters) but descriptive summary of changes made.
 
-If we just run `git commit` without the `-m` option, Git will launch `nano` (or whatever other editor we configured at the start) so that we can write a longer message.
+If you want to go into more detail, use the **Description** field below.
 
-**Good commit messages** start with a brief (<50 characters) summary of changes made in the commit, **NOT "Bug Fixes"** or **"Changes"**!
+Once you've entered a summary, click **Commit to main**:
 
-If you want to go into more detail, add a blank line between the summary line and your additional notes.
+TODO: ![](fig/04-changes/commit-button.png){alt="Commit to main button"}
 
-```output
-[main fa90884] Added a basic readme file.
- 1 file changed, 3 insertions(+)
- create mode 100644 README.md
-```
+When we commit, GitHub Desktop takes everything we've **checked** and stores a permanent snapshot inside the `.git` directory.
+This snapshot is called a **revision**, and is assigned a unique short identifier (like `fa90884`).
 
-When we run `git commit`, Git takes everything we have told it to save by using `git add`
-and stores a copy permanently inside the special `.git` directory.
-This permanent copy is called a **[revision](reference.html#revision)** and its short **identifier** is `fa90884`.
-(Your revision will have different identifier.)
+After committing, the Changes tab will be empty again as there are no local changes.
 
-If we run `git status` now:
+### The Staging Area
 
-```bash
-$ git status
-```
+The checkboxes in GitHub Desktop represent Git's **staging area**.  This is a holding space where you assemble the changes you want to include in your next commit, before actually committing them.
 
-```output
-# On branch main
-# Your branch is ahead of 'origin/main' by 1 commit.
-#   (use "git push" to publish your local commits)
-#
-nothing to commit, working directory clean
-```
+- **Checking** a file adds it to the staging area (equivalent to `git add` on the command line)
+- **Clicking Commit** saves everything in the staging area as a new revision (equivalent to `git commit`)
 
-it tells us our local repository is up-to-date, although now we have edits to it that the remote version of it doesn't (we'll get to that later!).
-
-![](fig/04-changes/add.svg){width="60%" alt="Add and Commit"}
-
-Git has a special **staging** area where it keeps track of things that have been **added** to
-the current [change set](reference.html#change-set) but **not yet committed**.
-`git add` puts things in this area, and `git commit` then copies them to long-term storage (as a commit).
+![](fig/04-changes/add.svg){width="60%" alt="Stage and Commit"}
 
 :::::::: callout
 
 ## What's the Point of the Staging Area?
 
-Why do we have this two-stage process, where we **add** files to the staging area, then create a **commit** from them?
+Why do we have this two-stage process, where we **stage** changes, then **commit** them?
 
-Among other reasons, it allows you to easily bundle together a lot of changes in one go.
-If you changed the name of a variable used in multiple files (e.g. from `t` to `temperature`), you'd need to change it in all your files in one go in order for it to make sense.
-If you stored a copy of each file one-by-one you'd end up with a lot of versions of the code that didn't work - variables with different names everywhere.
-The **staging area** lets you bundle together all those small changes that don't work in isolation into one big change that's coherent.
+Among other reasons, it lets you bundle together a lot of related changes in one go.
+If you renamed a variable used across multiple files (e.g. from `t` to `temperature`), you'd need to update all those files together for the change to make sense.
+Committing file-by-file would leave you with a lot of broken intermediate versions.
+The **staging area** lets you bundle all those small changes into one coherent commit.
 
-Git does give you shortcuts to reduce **add -> commit** to a single step, but when you're starting out it's always better to make sure you know what's going in to each commit!
+GitHub Desktop checks all changed files by default — but you can uncheck individual files
+(or even individual lines, using **partial staging**) to hold them back for a separate commit.
 
 ::::::::::::::::
 
 ### Review the Log
 
-If we want to know what we've done recently,
-we can ask Git to show us the **project's history** using `git log`:
+To see what we've done recently, switch to the **History** tab:
 
-```bash
-$ git log
-```
+TODO: ![](fig/04-changes/history.png){alt="History tab showing commits"}
 
-```output
-commit fa90884ca03dcefb97e415a374ac1aacaaa94c91 (HEAD -> main)
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 16 15:22:29 2022 +0000
+The History tab lists all **commits** to the repository, most recent at the top.
+For each commit, you can see:
 
-    Added a basic readme file.
+- The **commit message** (summary)
+- The **author** and **timestamp**
+- The short **commit identifier** (e.g. `fa90884`)
+- Whether the commit has been **pushed to GitHub**.  Commits still only on your machine are shown as being ahead of `origin/main`
 
-commit 499b6d18b36a25d3f5ab9be1b708ea48fef1dd65 (origin/main, origin/HEAD)
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 16 14:19:13 2022 +0000
+Click any commit to see a diff of exactly what changed in that snapshot.
 
-    Initial commit
-```
+### Modifying a File
 
-`git log` lists all **revisions committed** to a repository in reverse chronological order (most recent at the top).
+Now suppose we modify an existing file. Open `climate_analysis.py` in your text editor and add a **docstring** at the very top of the file:
 
-The listing for each revision includes
-
-- the **revision's full identifier** (which starts with the same characters as the short identifier printed by the `git commit` command earlier),
-- the **branch** it was created on (including whether or not it's up-to-date with any **remote versions of that branch** - in this case, our last README commit hasn't been pushed to the remote repo yet),
-- the revision's **author**,
-- **when** it was created,
-- the **log message** Git was given when the revision was committed.
-
-:::::::: callout
-
-## Compatibility Notice
-
-If you don't see information on the **remote branches**, try `git log --decorate`.
-This ensures output will indicate, for each commit revision, whether it is up-to-date with its *remote* repository, if one exists.
-Older versions of git don't show this information by default.
-
-::::::::::::::::
-
-### Modifying a file
-Now suppose we modify an existing file, for example by adding a **Docstring** to the **top** of one of the files:
-
-```bash
-$ nano climate_analysis.py
-```
-
-```output
+```python
 """ Climate Analysis Tools """
 ```
 
-When we run `git status` now,
-it tells us that a file it already knows about has been modified:
+Save the file and switch back to GitHub Desktop.
+The Changes tab now shows `climate_analysis.py` with a yellow **M** badge, meaning it has been **M**odified:
 
-```bash
-$ git status
-```
-
-```output
-# On branch main
-# Your branch is ahead of 'origin/main' by 1 commit.
-#   (use "git push" to publish your local commits)
-#
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   climate_analysis.py
-#
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-The last line is the key phrase: "no changes added to **commit**".
-
-So, while we have changed this file,
-but we haven't told Git we will want to save those changes (which we do with `git add`)
-much less actually saved them (which we do with `git commit`).
-
-**It's important to remember that git only stores changes when you make a commit**
+TODO: ![](fig/04-changes/modified-file.png){alt="Changes tab showing climate_analysis.py as modified"}
 
 ### Review Changes and Commit
-It is good practice to always **review our changes** before saving them.
-We do this using `git diff`.
-This shows us the differences between the current state of the file and the most recently commited version:
 
-```bash
-$ git diff
-```
+It is good practice to always **review our changes** before committing them.
+Click on `climate_analysis.py` in the Changes panel to see its **diff** — a view of exactly what has changed.
+Additions are highlighted in **green** and deletions in **red**:
 
-```output
-diff --git a/climate_analysis.py b/climate_analysis.py
-index 277d6c7..d5b442d 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -1,3 +1,4 @@
-+""" Climate Analysis Tools """
- import sys
- import temp_conversion
- import signal
-```
+TODO: ![](fig/04-changes/diff-view.png){alt="Diff view showing the new docstring line in green"}
 
-The output is **cryptic** because it is actually a series of **commands** for tools like editors and `patch` telling them how **to reconstruct one file given the other**.
-
-The key things to note are:
-
-1. Line 1: The **files** that are being **compared** (a/ and b/ are labels, not paths).
-2. Line 2: The two **hex strings** on the second line which parts of the **hashes** of the files being compared.
-3. Line 5: The **lines** that have changed (it's complex).
-4. Below that, the changes - note the '**+**' marker which shows an addtion.
+GitHub Desktop's visual diff is much easier to read than the equivalent command-line output, making it easy to catch accidental changes before they're committed.
 
 :::::::: callout
 
 ## What About Jupyter Notebooks?
 
 Git works best with plain text files containing just code (or data).
-If you're using something like a Jupyter Notebook, which contains a mix of code, data and outputs, `git diff` can be unhelpfully messy.
+Jupyter Notebooks store code, outputs, and metadata together in a complex JSON format, which can make diffs hard to interpret — even in GitHub Desktop's visual diff view.
 
-Fortunately, though, the [nbdime](https://nbdime.readthedocs.io/en/latest/) Python package includes an add-on that provides helpful, graphical `git diff` outputs for Jupyter Notebooks.
+Fortunately, the [nbdime](https://nbdime.readthedocs.io/en/latest/) Python package provides much cleaner diff views for notebooks, and can integrate with GitHub Desktop.
 
-If you have large chunks of code in your notebooks, then once you're confident they're correct it's best to split them out into `.py` files and import them back in.
-It makes them work better with Git, and *also* makes them easy to reuse - so you don't keep copy-pasting them between files!
+If you have large chunks of code in your notebooks, once you're confident they're correct it's best to split them out into `.py` files and import them back in.
+It makes them work better with Git, and also makes them easy to reuse — so you don't keep copy-pasting them between files!
 
 ::::::::::::::::
+
+After reviewing the change, enter a commit message:
+
+```
+Add docstring
+```
+
+and click **Commit to main**.
 
 :::::::: callout
 
-## What If I've Already Added?
+## Selectively Staging Changes
 
-If you've already used `git add`, `git diff` won't show anything.
-However, if you use `git diff --staged` it'll show *added* changes.
+GitHub Desktop checks all changed files by default.
+But what if you've changed several files and only want to commit some of them?
+
+Simply **uncheck** the files you'd like to leave out — they'll keep their changes and remain in the Changes panel, ready to be committed separately later.
+
+You can even stage individual **lines** within a file: right-click any line in the diff view and select **Stage Line**.
+This is useful when you've made several unrelated tweaks to one file and want to commit them separately.
 
 ::::::::::::::::
 
-After reviewing our change, it's time to commit it:
-
-```bash
-$ git commit -m "Add Docstring"
-```
-
-```output
-# On branch main
-# Your branch is ahead of 'origin/main' by 1 commit.
-#   (use "git push" to publish your local commits)
-#
-# Changes not staged for commit:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
-#
-#	modified:   climate_analysis.py
-#
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-**Whoops**:
-Git won't commit because we didn't use `git add` first.
-Let's fix that:
-
-```bash
-$ git add climate_analysis.py
-$ git commit -m "Add Docstring"
-```
-
-```output
-[main 55d3f56] Add Docstring
- 1 file changed, 1 insertion(+)
-```
-
-Git insists that we **add** files to the set we want to commit before actually committing anything,
-because we may not want to commit **everything at once**.
-
-For example, suppose we might have **fixed a bug** in some existing code,
-but we might have added new code that's **not ready to share**.
+Git requires us to **stage** files (check them) before committing them, because we may not want to commit **everything at once**.
+For example, suppose we've **fixed a bug** in some existing code, but also written new code that's **not ready to share** yet.
+We can stage and commit just the bug fix, leaving the work-in-progress for a later commit.
 
 :::::::: challenge
 
 ## One More Change
 
 We want to remind ourselves of some changes we need to make to a file.
-Using `nano`, add a line to the end of the `climate_analysis.py` file saying something like:
+Open `climate_analysis.py` in your text editor and add a line at the end saying:
 
 ```python
 # TODO: Add rainfall processing code
 ```
 
-Then check your edits, and commit them to your repository with the message "Added rainfall processing placeholder".
-When you're done, `git status` should show `nothing to commit, working directory clean`.
+Then review your changes in GitHub Desktop's diff view, and commit them with the message "Add rainfall processing placeholder".
+
+When you're done, the Changes tab should show *"No local changes"*.
 
 ::::: solution
 
 ## Solution
 
-Edit the file using `nano`, remembering to use `Control-O` to write out, `Enter` to confirm the filename, then `Control-X` to quit:
+Open `climate_analysis.py` in your text editor, add the TODO line at the end, and save.
 
-```bash
-$ nano climate_analysis.py
+Switch to GitHub Desktop — the Changes tab will show `climate_analysis.py` as modified.
+Click on it to review the diff; you should see the new comment line highlighted in green at the bottom of the file.
+
+Make sure the file is **checked**, then enter the summary:
+
+```
+Add rainfall processing placeholder
 ```
 
-Now we've edited the file, we can check the changes:
-
-```bash
-$ git diff
-```
-
-```output
-diff --git a/climate_analysis.py b/climate_analysis.py
-index d5b442d..6f8ed8a 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -26,3 +26,5 @@ for line in climate_data:
-            kelvin = temp_conversion.fahr_to_kelvin(fahr)
-            print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code
-```
-
-Now we can add the changes to our staging area, then commit them to our repository:
-
-```bash
-$ git add climate_analysis.py
-$ git commit -m "Added rainfall processing placeholder"
-```
+Click **Commit to main**. The Changes tab should now be empty.
 
 ::::::::::::::
 
 ::::::::::::::::::
 
-Now we've got the basic loop of using Git sorted - we make changes, add them, then create a new commit with a descriptive message.
+Now we've got the basic loop of using Git sorted — we make changes, review them in the diff view, stage what we want with the checkboxes, then create a new commit with a descriptive message.
 
 :::::::: callout
 
@@ -393,7 +241,7 @@ If you store lots of different projects in one repository, it makes the history 
 You *don't* add things that are large, and where the different versions can't really be meaningfully compared:
 
 - Large data files - e.g. 10s of MB of sensor readings, survey results, observations.
-  -  These don't usually change, and if they do, you can't really compare the files *themselves*.
+  - These don't usually change, and if they do, you can't really compare the files *themselves*.
 - Large output files - e.g. 10s of MB of simulation outputs, or processed data.
   - These don't need to be stored, as you can recreate them at any time from the inputs.
   - If they're large, you can't meaningfully compare them.
@@ -410,11 +258,11 @@ We'll introduce how to *ignore files* later on.
 
 :::::::: keypoints
 
-- `git status` shows the status of a repository.
-- Files can be stored in a project’s working directory (which users see), the staging area (where the next commit is being built up) and the local repository (where commits are permanently recorded).
-- `git add` puts files in the staging area.
-- `git commit` saves the staged content as a new commit in the local repository.
+- GitHub Desktop's **Changes** tab shows new, modified, and deleted files in your repository.
+- The **checkbox** next to each file controls whether it will be included in the next commit — this is the staging area.
+- A **commit** permanently records all staged (checked) changes as a snapshot in the repository.
+- GitHub Desktop's **diff view** shows exactly what has changed in each file, with additions in green and deletions in red.
 - Write commit messages that accurately describe your changes.
-- `git log --decorate` lists the commits made to the local repository, along with whether or not they are up-to-date with any remote repository.
+- The **History** tab lists all commits made to the repository, including which have been pushed to the remote.
 
 ::::::::::::::::::
