@@ -19,13 +19,6 @@ exercises: 0
 
 :::::::::::::::::::::::
 
-:::::::: callout
-
-## Optional Episode
-
-If you don't want to do this section, [just head straight to the survey!](./99-survey.md)
-
-::::::::::::::::
 
 We've seen branches mentioned a *lot* so far - mostly `main`.
 So what are they?
@@ -81,40 +74,39 @@ These use the same conflict resolution we saw earlier — new files are added se
 
 In GitHub Desktop, look at the top of the window. You'll see the current branch displayed:
 
-![](fig/07-branches/branch-dropdown.png){alt="Branch dropdown showing main"}
+TODO: ![](fig/07-branches/branch-dropdown.png){alt="Branch dropdown showing main"}
 
 Click on it to see all available branches and create new ones:
 
-![](fig/07-branches/branch-menu.png){alt="Branch dropdown menu"}
+TODO: ![](fig/07-branches/branch-menu.png){alt="Branch dropdown menu"}
 
-Click **New Branch** to create a new branch:
+TODO: Click **New Branch** to create a new branch:
 
 ![](fig/07-branches/new-branch.png){alt="New Branch button"}
 
 A dialog will appear asking for the branch name and which branch it should come off:
 
-![](fig/07-branches/new-branch-dialog.png){alt="New Branch dialog"}
+TODO: ![](fig/07-branches/new-branch-dialog.png){alt="New Branch dialog"}
 
-Let's create a `dev` branch coming off `main`. Enter `dev` as the branch name and make sure `main` is selected as the "Create branch based on" option. Click **Create Branch**:
+Let's create a `dev` branch coming off `main`. Enter `dev` as the branch name and make sure `main` is selected as the "Create branch based on" option. Click **Create Branch**.
 
-![](fig/07-branches/create-dev.png){alt="Creating dev branch based on main"}
 
 ### Working with a `dev` branch
 
-You're now switched to the `dev` branch — you can see it displayed in the branch dropdown at the top of the window.
+You're now switched to the `dev` branch. You can see it displayed in the branch dropdown at the top of the window.
 
-Any commits we make on this branch will exist *only* on this branch — when we switch back to `main`, they won't show up!
+Any commits we make on this branch will exist *only* on this branch. When we switch back to `main`, they won't show up.
 
-Let's try it out. We'll create a new file for a rainfall conversion function.
-Open your repository in your text editor and create a new file called `rainfall_conversion.py`:
+Let's try it out. We'll create a new text file for a rainfall conversion information.
+Open your repository in your text editor and create a new file called `rainfall_conversion.txt`:
 
-```python
-def inches_to_mm(inches):
-    mm = inches * 25.4
-    return mm
+```
+Rainfall Conversion
+
+Note: mm = inches x 25.4
 ```
 
-Save the file and switch back to GitHub Desktop. You should see `rainfall_conversion.py` in the Changes tab as a new file.
+Save the file and switch back to GitHub Desktop. You should see `rainfall_conversion.txt` in the Changes tab as a new file.
 Commit it with the message:
 
 ```
@@ -123,13 +115,9 @@ Add rainfall module
 
 Now let's see what happens when we switch back to `main`. Click the branch dropdown and select `main`:
 
-![](fig/07-branches/switch-to-main.png){alt="Switching back to main branch"}}
+TODO: ![](fig/07-branches/switch-to-main.png){alt="Switching back to main branch"}}
 
-GitHub Desktop will ask you to confirm the switch:
-
-![](fig/07-branches/confirm-switch.png){alt="Confirm branch switch dialog"}}
-
-Click **Switch Branch**. Now go to your file explorer and look at your repository folder.
+Now go to your file explorer and look at your repository folder.
 The `rainfall_conversion.py` file has disappeared!
 
 It hasn't been deleted — it still exists safely in the `.git` directory, stored as part of your `dev` branch.
@@ -145,45 +133,41 @@ Make sure you're on the `dev` branch, then look at the top of GitHub Desktop.
 
 Since this is a new branch that doesn't exist on GitHub yet, you'll see a **Publish branch** button:
 
-![](fig/07-branches/publish-branch.png){alt="Publish branch button"}}
+TODO: ![](fig/07-branches/publish-branch.png){alt="Publish branch button"}}
 
-Click **Publish branch** and GitHub Desktop will upload your new branch to GitHub:
-
-![](fig/07-branches/published.png){alt="Branch published to GitHub"}}
+Click **Publish branch** and GitHub Desktop will upload your new branch to GitHub.
 
 If you visit your repository on GitHub and click the branch dropdown, you'll now see both `main` and `dev` listed:
 
-![](fig/07-branches/github-branches.png){alt="Branch dropdown on GitHub"}}
+TODO: ![](fig/07-branches/github-branches.png){alt="Branch dropdown on GitHub"}}
 
 You can switch between them on GitHub to see what each branch contains. GitHub will also suggest creating a **Pull Request** when it detects a recently-pushed branch:
 
-![](fig/07-branches/pull-request-suggestion.png){alt="Pull Request suggestion on GitHub"}}
+TODO: ![](fig/07-branches/pull-request-suggestion.png){alt="Pull Request suggestion on GitHub"}}
 
 ### Merging Branches
 
 If we're happy with the way our work on the `dev` branch has gone, and we've tested it, we can merge the content back into `main`!
 
-In GitHub Desktop, go to the **Branch** menu and select **Merge into Current Branch...**:
+First, let’s switch back to our main branch in GitHub Desktop.
 
-![](fig/07-branches/merge-menu.png){alt="Merge menu option"}}
+Then, go to the **Branch** menu and select **Choose a branch to merge into main**. A dialog will appear asking which branch you want to merge into the current one. Select **dev**:
 
-A dialog will appear asking which branch you want to merge into the current one.
-First, make sure you're on `main` by clicking the branch dropdown.
-Then go to **Branch > Merge into Current Branch...** and select `dev`:
+TODO: ![](fig/07-branches/merge-menu.png){alt="Merge menu option"}}
 
-![](fig/07-branches/merge-dialog.png){alt="Merge dialog selecting dev branch"}}
 
-Click **Create a Merge Commit** (or just **Merge** if that's the button shown).
+Click **Create a Merge Commit**.
+
 GitHub Desktop will merge the `dev` branch into `main`:
 
-![](fig/07-branches/merge-complete.png){alt="Merge complete"}}
+TODO: ![](fig/07-branches/merge-complete.png){alt="Merge complete"}}
 
-You'll see a new merge commit appear in the History tab.
-The `rainfall_conversion.py` file will now appear in your working directory on the `main` branch.
+You'll see the commit from your dev branch appear in the History tab of your main branch.
+The `rainfall_conversion.txt` file will now appear in your working directory on the `main` branch.
 
 Now push these changes to GitHub using the **Push origin** button:
 
-![](fig/07-branches/push-after-merge.png){alt="Push after merge"}}
+TODO: ![](fig/07-branches/push-after-merge.png){alt="Push after merge"}}
 
 Both branches are now up-to-date on GitHub, and your new feature has been integrated into the main version of your code!
 
@@ -210,15 +194,15 @@ You can create a Pull Request by clicking the **Pull Request** button that appea
 
 A typical workflow for developing new features looks like this:
 
-1. **Create a new branch** for your feature (e.g., `rainfall-feature`)
+1. **Create a new branch**  (e.g., `dev`)
 2. **Switch to that branch** in GitHub Desktop
-3. **Make changes and commit** them — they only affect your feature branch
+3. **Make changes and commit** them — they only affect your dev branch
 4. **Publish the branch** to GitHub to back it up
 5. **Test thoroughly** and make sure everything works
-6. **Merge back into `main`** (or `dev`) when ready
+6. **Merge back into `main`** when ready
 7. **Push the merge** to GitHub
 
-This keeps your `main` branch stable and tested, whilst allowing you to experiment freely on feature branches.
+This keeps your `main` branch stable and tested, whilst allowing you to experiment on your dev branch.
 
 :::::::: keypoints
 
