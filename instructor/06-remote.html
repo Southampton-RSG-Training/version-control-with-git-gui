@@ -254,7 +254,8 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#collaborating-on-a-remote-repository">Collaborating on a Remote Repository</a></li>
+        <ul><li><a href="#pushing-your-work-to-github">Pushing Your Work to GitHub</a></li>
+<li><a href="#collaborating-on-a-remote-repository">Collaborating on a Remote Repository</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -346,7 +347,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Remote Repositories</h1>
-        <p>Last updated on 2026-06-18 |
+        <p>Last updated on 2026-06-23 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/06-remote.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -375,19 +376,20 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Understand <code>git push</code> and <code>git pull</code>.</li>
+<ul><li>Understand how to push and pull changes to a remote repository.</li>
 <li>Encounter and resolve a conflict.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<p>We’ve learned how to use a <strong>local repository</strong> to store
-our code and view changes:</p>
+<p>We’ve learned how to use a <strong>local repository</strong> on our
+computer to store our code and view changes:</p>
 <figure><img src="../fig/06-remote/local.png" style="width:60.0%" alt="Local Repository Commands" class="figure mx-auto d-block"></figure><p>Now, however, we’d like to share the changes we’ve made to our code
 with others, as well as making sure we have an off-site backup in case
-things go wrong. We need to upload our changes in our <strong>local
-repository</strong> to a <strong>remote repository</strong>.</p>
+things go wrong. We need to upload our changes from our <strong>local
+repository</strong> to the <strong>remote repository</strong> on
+GitHub.</p>
 <div id="why-have-an-off-site-backup" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -405,64 +407,26 @@ off-site backups of as much of your work as possible!</p>
 <figure><img src="../fig/06-remote/mountbatten-fire.jpg" style="width:60.0%" alt="Mountbatten Fire" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
-<p>To do that, we’ll use the <strong>remote repository</strong> we set
-up on GitHub at the start of the workshop. It’s another repository, just
-like the <strong>local repository</strong> on our computer, that Git
-makes it easy to send and receive data from. Multiple <strong>local
-repositories</strong> can connect to the same <strong>remote
-repository</strong>, allowing you to collaborate with colleagues
-easily.</p>
-<figure><img src="../fig/06-remote/remote.svg" style="width:60.0%" alt="Remote Repositories" class="figure mx-auto d-block"></figure><p>So we’re finally going to address all those <em>“Your branch is ahead
-of ‘origin/main’ by 3 commits”</em> messages we got from
-<code>git status</code>! However, GitHub doesn’t let just anyone push to
-your repository - you need to prove you’re the owner (or have been given
-access). Fortunately, we already set up an SSH key earlier.</p>
-<p>Now we can synchronise our code to the remote repository, with
-<code>git push</code>:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> git push</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Counting objects: 11, done.
-Delta compression using up to 32 threads.
-Compressing objects: 100% (9/9), done.
-Writing objects: 100% (9/9), 1.11 KiB | 0 bytes/s, done.
-Total 9 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
-To git@github.com:smangham/climate-analysis
-   70bf8f3..501e88f  main -&gt; main</code></pre>
-</div>
-<p>And we’re done! This bit was easy as when we used
-<code>git clone</code> earlier, it set up our <strong>local
-repository</strong> to <strong>track</strong> the <strong>remote
-repository</strong>. The <code>main -&gt; main</code> line shows we’re
-sending our local branch called <code>main</code> to the remote
-repository as a branch called <code>main</code>.</p>
-<div id="what-is-a-branch-though" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="what-is-a-branch-though" class="callout-inner">
-<h3 class="callout-title">What <em>is</em> a Branch, Though?</h3>
-<div class="callout-content">
-<p>Branches allow you to have alternate versions of the code ‘branching
-off’ from another branch (e.g. <code>main</code>). You can try out new
-features in these branches without disrupting your <code>main</code>
-version of the code, then <strong>merge them in</strong> once you’ve
-finished. We have a <strong>Stretch Episode</strong> that gives you a
-brief introduction to them!</p>
-</div>
-</div>
-</div>
-<p>If we go back to the repository on GitHub, we can refresh the page
-and see our updates to the code:</p>
-<figure><img src="../fig/06-remote/github.png" alt="Updated remote repository" class="figure mx-auto d-block"></figure><p>Conveniently, the contents of <code>README.md</code> are shown on the
-main page, with formatting. <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" class="external-link">You
+<p>The <strong>remote repository</strong> on GitHub is another
+repository, just like the <strong>local repository</strong> on our
+computer, that Git makes it easy to send and receive data from. Multiple
+<strong>local repositories</strong> can connect to the same
+<strong>remote repository</strong>, allowing you to collaborate with
+colleagues easily.</p>
+<figure><img src="../fig/06-remote/remote.svg" style="width:60.0%" alt="Remote Repositories" class="figure mx-auto d-block"></figure><section><h2 class="section-heading" id="pushing-your-work-to-github">Pushing Your Work to GitHub<a class="anchor" aria-label="anchor" href="#pushing-your-work-to-github"></a></h2>
+<hr class="half-width"><p>Notice that in GitHub Desktop, the status bar at the top shows
+something like <strong>“3 commits ahead of origin”</strong>. This means
+we have made 3 commits locally that haven’t been sent up to GitHub
+yet.</p>
+<p>To synchronise our code to the remote repository, click the
+<strong>Push origin</strong> button:</p>
+<figure><img src="../fig/06-remote/push-button.png" alt="Push origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will upload your commits to GitHub. When it’s done,
+the status bar will update to show you’re <strong>“up to date with
+origin”</strong>:</p>
+<figure><img src="../fig/06-remote/up-to-date.png" alt="Status bar showing up to date with origin" class="figure mx-auto d-block"></figure><p>Now if you visit your repository on GitHub and refresh, you’ll see
+your updates:</p>
+<figure><img src="../fig/06-remote/github.png" alt="Updated remote repository" class="figure mx-auto d-block"></figure><p>Conveniently, the contents of <code>README.md</code> are displayed on
+the main page with formatting. <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-formatting-on-github/basic-writing-and-formatting-syntax" class="external-link">You
 can also add links, tables and more</a>. Your code should always have a
 descriptive <code>README.md</code> file, so anyone visiting the repo can
 easily get started with it.</p>
@@ -481,265 +445,155 @@ Altman, CC BY-SA 2.0</a></p>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="collaborating-on-a-remote-repository">Collaborating on a Remote Repository<a class="anchor" aria-label="anchor" href="#collaborating-on-a-remote-repository"></a></h2>
+</section><section><h2 class="section-heading" id="collaborating-on-a-remote-repository">Collaborating on a Remote Repository<a class="anchor" aria-label="anchor" href="#collaborating-on-a-remote-repository"></a></h2>
 <hr class="half-width"><p>Now we know how to <strong>push</strong> our work from our local
-repository to a remote one, we need to know the reverse - how to
-<strong>pull</strong> updates to the code that someone else has
-made.</p>
-<p>We want to invite other people to collaborate on our code, so we’ll
-update the <code>README.md</code> with a request for potential
-collaborators to email us at our University email address.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">nano</span> README.md</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">cat</span> README.md</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code># Climate Analysis Toolkit
+repository to GitHub, we need to know the reverse — how to
+<strong>pull</strong> updates that someone else has made.</p>
+<p>To demonstrate this, we’ll update our <code>README.md</code> to
+welcome collaborators, then simulate a colleague making changes to the
+same file.</p>
+<p>First, open <code>README.md</code> in your text editor and add a line
+about collaboration:</p>
+<pre><code># Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"Added collaboration info"</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[main 39a2c8f] Added collaboration info
- 1 file changed, 2 insertions(+)</code></pre>
-</div>
-<p>In this case, we use <code>git commit -am</code> where the
-<code>-a</code> means <strong>commit all modified files we’ve previously
-used <code>git add</code> on</strong>, and the <code>-m</code> bit means
-‘and here’s the commit message’ as usual. It’s a handy shortcut.</p>
-<p>But <strong>don’t push to GitHub</strong> just yet! We’re going to
-set up a small conflict, of the kind you might see when working with a
-remote repository. What happens if you change a file at the same time as
-one of your collaborators does, and you <em>both</em> commit those
-changes? How does GitHub know which version of the file is
-‘correct’?</p>
-<p>Pretending to be an existing collaborator, we’ll go and add those
-installation instructions by editing our <code>README.md</code> file
-directly on GitHub. This isn’t <em>common</em>, but if you want to
-quickly make some small changes to a single file it can be useful. We
-edit it as:</p>
-<figure><img src="../fig/06-remote/edit-button.png" alt="GitHub edit button" class="figure mx-auto d-block"></figure><p>And just expand it a little, making more use of GitHub’s markdown
-formatting:</p>
-<figure><img src="../fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Then commit the changes directly to our <code>main</code> branch with
-a descriptive commit message:</p>
-<figure><img src="../fig/06-remote/edit-commit.png" alt="GitHub committing edit" class="figure mx-auto d-block"></figure><figure><img src="../fig/06-remote/github-updated.png" alt="Updated remote repository" class="figure mx-auto d-block"></figure><div class="section level3">
-<h3 id="push-conflicts">Push Conflicts<a class="anchor" aria-label="anchor" href="#push-conflicts"></a></h3>
-<p>Great. Now let’s go back to the terminal and try pushing our local
-changes to the remote repository. This is going to cause problems, just
-as we expected:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">$</span> git push</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>To git@github.com:smangham/climate-analysis
- ! [rejected]        main -&gt; main (fetch first)
-error: failed to push some refs to 'git@github.com:smangham/climate-analysis'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first merge the remote changes (e.g.,
-hint: 'git pull') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
-</div>
-<p>Git helpfully tells us that actually, there are commits present in
-the <strong>remote repository</strong> that we don’t have in our
-<strong>local repository</strong>.</p>
+If you're interested in collaborating, email me at your.email@soton.ac.uk.</code></pre>
+<p>Save the file, switch to GitHub Desktop, and <strong>commit</strong>
+this change with the message:</p>
+<pre><code>Add collaboration info</code></pre>
+<p>Then <strong>push</strong> it to GitHub. So far, this is the same as
+before.</p>
+<div class="section level3">
+<h3 id="creating-a-conflict">Creating a Conflict<a class="anchor" aria-label="anchor" href="#creating-a-conflict"></a></h3>
+<p>Now we’re going to pretend a colleague has also edited the
+<code>README.md</code> file on GitHub. To do this, visit your repository
+on GitHub and click the <strong>pencil icon</strong> next to
+<code>README.md</code> to edit it directly:</p>
+<figure><img src="../fig/06-remote/edit-button.png" alt="GitHub edit button" class="figure mx-auto d-block"></figure><p>Add some installation instructions and a note about the project
+status:</p>
+<figure><img src="../fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Commit the changes with a message like “Add installation
+instructions”:</p>
+<figure><img src="../fig/06-remote/edit-commit.png" alt="GitHub committing edit" class="figure mx-auto d-block"></figure><p>Now you have a situation where: - Your <strong>local
+repository</strong> has a commit about collaboration info - Your
+<strong>remote repository</strong> has a different commit about
+installation instructions - Both edited the same file
+(<code>README.md</code>)</p>
+<p>This is a realistic scenario in collaborative work!</p>
 </div>
 <div class="section level3">
-<h3 id="merge-conflicts">Merge Conflicts<a class="anchor" aria-label="anchor" href="#merge-conflicts"></a></h3>
-<p>We’ll need to <strong>pull</strong> those commits into our local
-repository before we can push our own updates back!</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> pull</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From github.com:smangham/climate-analysis
-   501e88f..023f8f6  main       -&gt; origin/main
-Auto-merging README.md
-CONFLICT (content): Merge conflict in README.md
-Automatic merge failed; fix conflicts and then commit the result.</code></pre>
-</div>
-<div id="compatibility-notice" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="compatibility-notice" class="callout-inner">
-<h3 class="callout-title">Compatibility Notice</h3>
-<div class="callout-content">
-<p>Newer versions of git will default to attempting to merge conflicting
-‘histories’. Older versions might not - and they’ll give you a message
-like:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>hint: You have divergent branches and need to specify how to reconcile them.
-hint: You can do so by running one of the following commands sometime before
-hint: your next pull:
-hint:
-hint:   git config pull.rebase false  # merge
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-fatal: Need to specity how to reconcile divergent branches</code></pre>
-</div>
-<p>We want to default to <strong>merging</strong>. <strong>Fast
-forward</strong> and <strong>rebase</strong> are advanced options you’d
-typically only see used in large teams in industry. So as git suggests,
-we can fix it our problem with:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">$</span> git config <span class="at">--global</span> pull.rebase false</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">$</span> git pull</span></code></pre>
-</div>
-<p>Now we’ll get the same behaviour as newer versions of git.</p>
-</div>
-</div>
-</div>
-<p>We have created a conflict! Both us, and our remote collaborator,
-both edited <code>README.md</code>. Let’s take a look at the file:</p>
-<div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">cat</span> README.md</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code># Climate Analysis Toolkit
+<h3 id="pulling-and-resolving-conflicts">Pulling and Resolving Conflicts<a class="anchor" aria-label="anchor" href="#pulling-and-resolving-conflicts"></a></h3>
+<p>Switch back to GitHub Desktop. Notice the status bar now shows
+<strong>“1 commit behind origin”</strong> — there are changes on GitHub
+that you don’t have locally.</p>
+<p>Click the <strong>Pull origin</strong> button to download those
+changes:</p>
+<figure><img src="../fig/06-remote/pull-button.png" alt="Pull origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will try to automatically merge the changes, but in
+this case it detects a <strong>conflict</strong> — both you and your
+simulated colleague edited the same part of the <code>README.md</code>
+file.</p>
+<p>A notification will appear saying there are <strong>conflicts to
+resolve</strong>:</p>
+<figure><img src="../fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure mx-auto d-block"></figure><p>Click <strong>Resolve Conflicts</strong> to open GitHub Desktop’s
+visual conflict resolution tool:</p>
+<figure><img src="../fig/06-remote/conflict-tool.png" alt="Visual conflict resolution tool" class="figure mx-auto d-block"></figure><p>The conflict tool shows:</p>
+<ul><li>
+<strong>Left side</strong>: Changes from the current branch (your
+local commit)</li>
+<li>
+<strong>Right side</strong>: Changes from the branch being merged
+(the remote commit)</li>
+<li>
+<strong>Bottom</strong>: The final merged result</li>
+</ul><p>For each conflicting section, you can: - <strong>Choose
+Current</strong> to keep your local changes - <strong>Choose
+Incoming</strong> to accept the remote changes - <strong>Manually
+edit</strong> the bottom panel to combine both versions</p>
+<p>In our case, we want to <strong>keep both</strong> the collaboration
+info and the installation instructions. Click in the bottom editing
+panel and combine both texts:</p>
+<pre><code># Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
-=======
 To install a copy of the toolkit, open a terminal and run:
 
-    git clone git@github.com:smangham/climate-analysis.git
-
+    git clone git@github.com:yourname/climate-analysis.git
 
 **This code is currently in development and not all features will work**
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 493dd81b5d5b34211ccff4b5d0daf8efb3147755</code></pre>
-</div>
-<p>Git has tried to auto-merge the files, but unfortunately failed. It
-can handle most conflicts by itself, but if two commits edit the
-<em>exact same</em> part of a file it will need you to help it.</p>
-<p>We can see the two different edits we made to the end of the
-<code>README.md</code> file, in a block defined by
-<code>&lt;&lt;&lt;</code>, <code>===</code> and
-<code>&gt;&gt;&gt;</code>. The top block is labelled <code>HEAD</code>
-(the changes in our latest local commit), whilst the bottom block is
-labelled with the commit ID of the commit we made on GitHub.</p>
-<p>We can easily fix this using <code>nano</code>, by deleting all the
-markers and keeping the text we want:</p>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">nano</span> README.md</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="fu">cat</span> README.md</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code># Climate Analysis Toolkit
 
-This is a set of python scripts designed to analyse climate datafiles.
-
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
-
-To install a copy of the toolkit, open a terminal and run:
-
-   git clone git@github.com:smangham/climate-analysis.git
-
-
-**This code is currently in development and not all features will work**</code></pre>
+If you're interested in collaborating, email me at your.email@soton.ac.uk.</code></pre>
+<p>Once you’re happy with the merged content, click <strong>Abort
+Merge</strong> is replaced by a <strong>Done</strong> button. Click
+<strong>Done</strong>:</p>
+<figure><img src="../fig/06-remote/conflict-resolved.png" alt="Conflict resolved - Done button showing" class="figure mx-auto d-block"></figure><p>GitHub Desktop will now automatically create a <strong>merge
+commit</strong> that combines both sets of changes. You’ll see it in the
+History tab with a special merge commit icon.</p>
+<p>The Changes tab will now show the merged <code>README.md</code> file.
+Review it to make sure it looks right, then the merge is complete!</p>
+<p>Now you can <strong>push</strong> this merged version back to
+GitHub:</p>
+<p><img src="../fig/06-remote/push-after-merge.png" alt="Push origin button after merge" class="figure">}</p>
+<p>Click <strong>Push origin</strong> and your merged changes will be
+uploaded to GitHub:</p>
+<p><img src="../fig/06-remote/github-merged.png" alt="Merged repository on GitHub" class="figure">}</p>
 </div>
-<p>Now we’ve got a fixed and finished <code>README.md</code> file, we
-can commit our changes, and push them up to our remote repository:</p>
-<div class="codewrapper sourceCode" id="cb17">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> commit <span class="at">-am</span> <span class="st">"Fixed merge conflict"</span></span></code></pre>
-</div>
-<pre><code>[main 6f4df16] Fixed merge conflict</code></pre>
-<p>output</p>
-<div class="codewrapper sourceCode" id="cb19">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="fu">git</span> push</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Counting objects: 10, done.
-Delta compression using up to 32 threads.
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (6/6), 774 bytes | 0 bytes/s, done.
-Total 6 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
-To git@github.com:smangham/climate-analysis
-   023f8f6..09f5151  main -&gt; main</code></pre>
-</div>
-<p>Now back on GitHub we can see that our <code>README.md</code> shows
-the text from both commits, and our conflict is resolved:</p>
-<figure><img src="../fig/06-remote/conflict-resolved.png" alt="Resolved conflict on GitHub" class="figure mx-auto d-block"></figure><p>Now we can successfully collaboratively develop our research code
-with others.</p>
-<div id="conflict-mitigation" class="callout">
+<div class="section level3">
+<h3 id="why-conflicts-happen">Why Conflicts Happen<a class="anchor" aria-label="anchor" href="#why-conflicts-happen"></a></h3>
+<p>Conflicts occur when: - Two people edit the <strong>same
+part</strong> of the same file - One person deletes a file that another
+person edits - Two people add different content in the same location</p>
+<p>Git can handle most automatic merges perfectly fine. Conflicts only
+happen in the relatively rare case where Git genuinely can’t figure out
+which version is correct — in those cases, it asks a human (you) to
+decide.</p>
+<div id="reducing-conflicts-with-branches" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="conflict-mitigation" class="callout-inner">
-<h3 class="callout-title">Conflict Mitigation</h3>
+<div id="reducing-conflicts-with-branches" class="callout-inner">
+<h3 class="callout-title">Reducing Conflicts with Branches</h3>
 <div class="callout-content">
-<p>If you’ve got multiple different people working on a code at once,
-then the <strong>branches</strong> we mentioned earlier can really help
-reduce conflicts. Each collaborator can work on their own branch, and
-only merge them back in once everything is finished - dramatically
-reducing the number of conflicts!</p>
-<figure><img src="../fig/06-remote/remote.png" style="width:60.0%" alt="Remote Repository Commands" class="figure mx-auto d-block"></figure></div>
+<p>If you’re working with multiple collaborators and conflicts become
+frequent, Git <strong>branches</strong> are your solution. Each person
+can work on their own branch, and only merge back to <code>main</code>
+once their work is complete and tested. This dramatically reduces the
+chance of conflicting edits to the same file.</p>
+<p>We have a <strong>Stretch Episode</strong> that introduces branching
+in more detail!</p>
 </div>
 </div>
-<div id="keypoints1" class="callout keypoints">
+</div>
+<p>Now you can successfully collaborate with others on your research
+code. The general workflow is:</p>
+<ol style="list-style-type: decimal"><li>
+<strong>Pull</strong> at the start of your work session (get any
+changes your collaborators made)</li>
+<li>Make changes and <strong>commit</strong> them locally</li>
+<li>
+<strong>Push</strong> at the end of your session (share your
+changes)</li>
+<li>If there are conflicts, use GitHub Desktop’s visual tool to resolve
+them</li>
+<li>
+<strong>Push</strong> the resolved version to finalize the
+merge</li>
+</ol><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Git can easily synchronise your local repository with a remote
-one.</li>
-<li>GitHub needs an SSH key to allow access.</li>
-<li>Git can resolve ‘conflicting’ modifications to text files.</li>
+<ul><li>Click <strong>Push origin</strong> in GitHub Desktop to upload your
+local commits to GitHub.</li>
+<li>Click <strong>Pull origin</strong> to download commits from GitHub
+that others have made.</li>
+<li>If both you and a collaborator edit the same part of a file, GitHub
+Desktop detects a merge conflict.</li>
+<li>Use GitHub Desktop’s visual conflict resolution tool to choose which
+changes to keep, or combine both.</li>
 </ul></div>
 </div>
 </div>
@@ -808,7 +662,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/06-remote.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/06-remote.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-06-18",
+  "dateModified": "2026-06-23",
   "datePublished": "2026-06-23"
 }
 

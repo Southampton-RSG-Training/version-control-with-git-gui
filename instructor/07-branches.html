@@ -266,7 +266,7 @@
         <ul><li><a href="#why-use-branches">Why Use Branches?</a></li>
 <li><a href="#merging">Merging</a></li>
 <li><a href="#the-basics">The Basics</a></li>
-<li><a href="#merging-branches">Merging Branches</a></li>
+<li><a href="#summary-the-branching-workflow">Summary: The Branching Workflow</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -349,7 +349,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Branching</h1>
-        <p>Last updated on 2026-06-18 |
+        <p>Last updated on 2026-06-23 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/07-branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -379,7 +379,8 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul><li>Understand why you would use a branch.</li>
-<li>Understand <code>git branch</code> and <code>git merge</code>.</li>
+<li>Create and switch between branches.</li>
+<li>Merge branches together.</li>
 </ul></div>
 </div>
 </div>
@@ -416,7 +417,7 @@ the <code>main</code> branch like we’ve been doing.</p>
 <p>However, if you plan on <strong>making changes to an existing
 code</strong>, <strong>collaborating with others</strong>, or
 <strong>sharing your code or its outputs</strong>, then you’ll
-definitely want to use branches - as they make your life a lot
+definitely want to use branches — as they make your life a lot
 easier.</p>
 <div class="section level3">
 <h3 id="sharing-your-code-main-and-dev-branches">Sharing Your Code: <code>main</code> and <code>dev</code>
@@ -433,42 +434,40 @@ a backup!), and you might want to share the work-in-progress version
 with others to test.</p>
 <p>The traditional way to do this is to create a <strong>development
 branch (<code>dev</code> or <code>develop</code>) coming off the main
-branch (<code>main</code> or <code>master</code>)</strong>. The
-<strong>main branch</strong> contains tested, finished code that can be
-shared with others, whilst the <strong>development branch</strong>
-contains work-in-progress code. Typically you <strong>merge</strong>
-your development branch into your master branch when your work on it has
-been tested and is ready to share - for example, when you release a
-paper using it. Then you can continue working on your development branch
-and sharing your development code with other other members of your
-group.</p>
+branch (<code>main</code>)</strong>. The <strong>main branch</strong>
+contains tested, finished code that can be shared with others, whilst
+the <strong>development branch</strong> contains work-in-progress code.
+Typically you <strong>merge</strong> your development branch into your
+main branch when your work has been tested and is ready to share — for
+example, when you release a paper using it. Then you can continue
+working on your development branch and sharing development code with
+other members of your group.</p>
 </div>
 <div class="section level3">
 <h3 id="making-changes-to-an-existing-code-feature-branches">Making Changes to an Existing Code: Feature branches<a class="anchor" aria-label="anchor" href="#making-changes-to-an-existing-code-feature-branches"></a></h3>
 <p>Once you have a working code, particularly one that’s being shared,
 you’ll inevitably want to add new features. You could add them directly
-to your development branch - however, what happens if, mid-way through,
+to your development branch — however, what happens if, mid-way through,
 you need to pause the feature and switch to something else as you wait
 for simulations to finish, new data to arrive, or similar? Instead of
-ending up with a mess of multiple half-finished modifications, which are
-impossible to evaluate independently of the other, you can instead
-create a new <strong>feature branch coming off of your development
-branch</strong> for each new feature. You work on each new feature or
-bugfix in their own <strong>feature branch</strong>, and merge them back
-into your <strong>development branch</strong> once they’re tested and
-complete. Then, as before, once you’re ready to publish a paper using
-your new functionality you merge it all back into the <strong>main
-branch</strong>.</p>
+ending up with a mess of multiple half-finished modifications, you can
+instead create a new <strong>feature branch coming off of your
+development branch</strong> for each new feature. You work on each new
+feature or bugfix in their own <strong>feature branch</strong>, and
+merge them back into your <strong>development branch</strong> once
+they’re tested and complete. Then, as before, once you’re ready to
+publish a paper using your new functionality you merge it all back into
+the <strong>main branch</strong>.</p>
 </div>
 <div class="section level3">
 <h3 id="collaborating-with-others-feature-branches">Collaborating With Others: Feature branches<a class="anchor" aria-label="anchor" href="#collaborating-with-others-feature-branches"></a></h3>
 <p>Feature branches also make collaborating with others far easier!
 Instead of stepping on each other’s toes by making conflicting edits to
-the same files, you can simply each work on your own branch.
-<strong>GitHub</strong> offers features to help manage collaborations
-too, by limiting who can merge their work into a branch without
-approval, allowing you to set up workflows where newer team members run
-their changes past those with experience.</p>
+the same files, you can simply each work on your own branch. GitHub
+offers features to help manage collaborations too, by limiting who can
+merge their work into a branch without approval, allowing you to set up
+workflows where newer team members run their changes past those with
+experience.</p>
 </div>
 </section><section><h2 class="section-heading" id="merging">Merging<a class="anchor" aria-label="anchor" href="#merging"></a></h2>
 <hr class="half-width"><p>We’ve mentioned <strong>merges</strong> repeatedly; as Git tracks the
@@ -478,341 +477,104 @@ determine whether or not the changes made in two branches
 together two modified versions of a file where their changes don’t
 overlap, and highlight sections where they do for you to resolve,
 showing both versions of the code.</p>
-<p>These use the same conflict resolution we saw earlier - new files are
+<p>These use the same conflict resolution we saw earlier — new files are
 added seamlessly, whilst modified files use smart conflict resolution
 and might need your intervention if there’s a clash!</p>
 </section><section><h2 class="section-heading" id="the-basics">The Basics<a class="anchor" aria-label="anchor" href="#the-basics"></a></h2>
-<hr class="half-width"><p>We can use the <code>git branch</code> command to list the branches
-in our local repository, and let us know which we’re on:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> branch</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>* main</code></pre>
-</div>
-<p>At the moment, we only have one - <code>main</code> - and the
-asterisk tells us it’s the one we’re currently on.We can check this by
-creating a new branch using <code>git branch new_branch_name</code>, and
-listing them again:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">git</span> branch dev</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">git</span> branch</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>  dev
-* main</code></pre>
-</div>
-<p>Now we’ve got a <code>dev</code> branch set up!</p>
-<div class="section level3">
+<hr class="half-width"><p>In GitHub Desktop, look at the top of the window. You’ll see the
+current branch displayed:</p>
+<figure><img src="../fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure mx-auto d-block"></figure><p>Click on it to see all available branches and create new ones:</p>
+<figure><img src="../fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure mx-auto d-block"></figure><p>Click <strong>New Branch</strong> to create a new branch:</p>
+<figure><img src="../fig/07-branches/new-branch.png" alt="New Branch button" class="figure mx-auto d-block"></figure><p>A dialog will appear asking for the branch name and which branch it
+should come off:</p>
+<figure><img src="../fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure mx-auto d-block"></figure><p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
+Enter <code>dev</code> as the branch name and make sure
+<code>main</code> is selected as the “Create branch based on” option.
+Click <strong>Create Branch</strong>:</p>
+<figure><img src="../fig/07-branches/create-dev.png" alt="Creating dev branch based on main" class="figure mx-auto d-block"></figure><div class="section level3">
 <h3 id="working-with-a-dev-branch">Working with a <code>dev</code> branch<a class="anchor" aria-label="anchor" href="#working-with-a-dev-branch"></a></h3>
-<p>We’ll try a quick example of using the <code>main</code> and
-<code>dev</code> branches to have a work-in-progress version of the code
-that we only share when we’ve completed and tested it.</p>
-<p>We can switch to our new branch with:</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> switch dev</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Switched to branch 'dev'</code></pre>
-</div>
-<div id="compatibility-notice" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="compatibility-notice" class="callout-inner">
-<h3 class="callout-title">Compatibility Notice</h3>
-<div class="callout-content">
-<p>Older versions of Git don’t have <code>git switch</code> - instead,
-you have to use <code>git checkout dev</code>. As we’ve already seen,
-<code>checkout</code> has a <em>lot</em> of functions, and newer
-versions of Git simplify things by giving them new names.</p>
-</div>
-</div>
-</div>
+<p>You’re now switched to the <code>dev</code> branch — you can see it
+displayed in the branch dropdown at the top of the window.</p>
 <p>Any commits we make on this branch will exist <em>only</em> on this
-branch - when you use <code>git switch main</code> to switch back to
-your <strong>main branch</strong>, they won’t show up in your
-<code>git log</code> results!</p>
-<p>We’ll give it a try. In one of our earlier edits to
-<code>climate_analysis.py</code>, we mentioned we wanted to process
-rainfall measurements in our climate data. Let’s imagine these are
-historic values, in imperial measurements, that we’ll need to convert.
-We’ll make a new file, and write a simple function to handle it:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+branch — when we switch back to <code>main</code>, they won’t show
+up!</p>
+<p>Let’s try it out. We’ll create a new file for a rainfall conversion
+function. Open your repository in your text editor and create a new file
+called <code>rainfall_conversion.py</code>:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">nano</span> rainfall_conversion.py</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="fu">cat</span> rainfall_conversion.py</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="kw">def</span> inches_to_mm(inches):</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>    mm <span class="op">=</span> inches <span class="op">*</span> <span class="fl">25.4</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="cf">return</span> mm</span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>def inches_to_mm(inches):
-    mm = inches * 25.4
-    return mm
-</code></pre>
-</div>
-<p>Now we’ve made the file, we want to <strong>commit it</strong> to our
-<code>dev</code> branch. Make sure you’re on the <code>dev</code> branch
-with <code>git switch dev</code> if you haven’t already, and then add it
-like we added our changes before:</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">git</span> add rainfall_conversion.py</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add rainfall module"</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[dev b402781] Add rainfall module
- 1 file changed, 4 insertions(+)
- create mode 100644 rainfall_conversion.py</code></pre>
-</div>
-<p>So we’ve successfully made a new file, and committed it to our
-repository, on the <code>dev</code> branch. Let’s take a look at the
-directory now using <code>ls</code>:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">ls</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>README.md              climate_analysis.py    rainfall_conversion.py temp_conversion.py</code></pre>
-</div>
-<p>We can see that the <code>rainfall_conversion.py</code> file is all
-present and correct. But we told git that we made it on the
-<code>dev</code> branch - what happens if we switch back to
-<code>main</code> with <code>git switch</code> again?:</p>
-<div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> switch main</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Switched to branch 'main'
-Your branch is up to date with 'origin/main'.</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">ls</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>README.md           climate_analysis.py temp_conversion.py</code></pre>
-</div>
-<p>The <code>rainfall_conversion.py</code> file isn’t present, as the
-<strong>commit</strong> that created it was made on the <code>dev</code>
-branch. It still exists, and if we use <code>git switch dev</code> it’ll
-re-appear. However, whilst we’re on <code>main</code>, it’s tidied away
-into our hidden <code>.git</code> directory.</p>
-<p>This doesn’t just work on new files. If you edit an existing file on
-<code>dev</code>, then when you switch back to <code>main</code> you’ll
-see the old version.</p>
+<p>Save the file and switch back to GitHub Desktop. You should see
+<code>rainfall_conversion.py</code> in the Changes tab as a new file.
+Commit it with the message:</p>
+<pre><code>Add rainfall module</code></pre>
+<p>Now let’s see what happens when we switch back to <code>main</code>.
+Click the branch dropdown and select <code>main</code>:</p>
+<p><img src="../fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
+<p>GitHub Desktop will ask you to confirm the switch:</p>
+<p><img src="../fig/07-branches/confirm-switch.png" alt="Confirm branch switch dialog" class="figure">}</p>
+<p>Click <strong>Switch Branch</strong>. Now go to your file explorer
+and look at your repository folder. The
+<code>rainfall_conversion.py</code> file has disappeared!</p>
+<p>It hasn’t been deleted — it still exists safely in the
+<code>.git</code> directory, stored as part of your <code>dev</code>
+branch. Switch back to <code>dev</code> (click the branch dropdown and
+select <code>dev</code>), and it will reappear.</p>
+<p>This is the power of branches: you can have completely different
+versions of your code on different branches, and switch between them
+instantly. If you edit an existing file on <code>dev</code>, then when
+you switch back to <code>main</code> you’ll see the old version.</p>
 </div>
 <div class="section level3">
-<h3 id="remote-branches">Remote Branches<a class="anchor" aria-label="anchor" href="#remote-branches"></a></h3>
+<h3 id="publishing-your-branch">Publishing Your Branch<a class="anchor" aria-label="anchor" href="#publishing-your-branch"></a></h3>
 <p>Now we’ve made changes to our <code>dev</code> branch, we want to
-send them up to GitHub, to make sure that we don’t lose any of our
-development work! Let’s switch back to <code>dev</code> with
-<code>git switch</code>:</p>
-<div class="codewrapper sourceCode" id="cb17">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> switch dev</span></code></pre>
+send them up to GitHub to make sure we don’t lose our development work.
+Make sure you’re on the <code>dev</code> branch, then look at the top of
+GitHub Desktop.</p>
+<p>Since this is a new branch that doesn’t exist on GitHub yet, you’ll
+see a <strong>Publish branch</strong> button:</p>
+<p><img src="../fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
+<p>Click <strong>Publish branch</strong> and GitHub Desktop will upload
+your new branch to GitHub:</p>
+<p><img src="../fig/07-branches/published.png" alt="Branch published to GitHub" class="figure">}</p>
+<p>If you visit your repository on GitHub and click the branch dropdown,
+you’ll now see both <code>main</code> and <code>dev</code> listed:</p>
+<p><img src="../fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
+<p>You can switch between them on GitHub to see what each branch
+contains. GitHub will also suggest creating a <strong>Pull
+Request</strong> when it detects a recently-pushed branch:</p>
+<p><img src="../fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Switched to branch 'dev'</code></pre>
-</div>
-<p>And use <code>git push</code> to synchonise our branch with GitHub,
-just like we did earlier. However, this time we’ll get an error:</p>
-<div class="codewrapper sourceCode" id="cb19">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="fu">git</span> push</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>fatal: The current branch dev has no upstream branch.
-To push the current branch and set the remote as upstream, use
-
-    git push --set-upstream origin dev
-
-To have this happen automatically for branches without a tracking
-upstream, see 'push.autoSetupRemote' in 'git help config'.</code></pre>
-</div>
-<p>When we used <code>git clone</code> it linked up our
-<code>main</code> branch with the <code>main</code> branch on our GitHub
-repository automatically. Our <code>dev</code> branch is new, though,
-and git doesn’t yet know where it should be pushing it to. Fortunately,
-git has told us what we need to do to tell it (git is good about
-this!).</p>
-<p>The <code>origin</code> argument to <code>git push</code> tells it
-which remote repository we’re pushing to (we can see a list of them, and
-their web addresses, with <code>git remote -v</code>). The
-<code>dev</code> argument tells it to push the <strong>current
-branch</strong> to the remote repository as a branch called
-<code>dev</code>. The <code>--set-upstream</code> flag tells it that
-we’re setting this behaviour as the default <strong>for this
-branch</strong>.</p>
-<p>We’ll use a shortcut for <code>--set-upstream</code> -
-<code>-u</code>:</p>
-<div class="codewrapper sourceCode" id="cb21">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin dev</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 415 bytes | 415.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-remote:
-remote: Create a pull request for 'dev' on GitHub by visiting:
-remote:      https://github.com/smangham/climate-analysis/pull/new/dev
-remote:
-To github.com:smangham/climate-analysis.git
- * [new branch]      dev -&gt; dev
-branch 'dev' set up to track 'origin/dev'.</code></pre>
-</div>
-<p>Now we’ve got it up on GitHub successfully! Let’s go check on the
-site:</p>
-<figure><img src="../fig/07-branches/push-dev.png" alt="Switching branch on GitHub" class="figure mx-auto d-block"></figure><p>It defaults to showing the <code>main</code> branch, but lets us know
-there’s been a recent push to a different branch. We can check out what
-the other branch looks like by clicking on the drop-down on the left and
-selecting <code>dev</code>:</p>
-<figure><img src="../fig/07-branches/push-dev-selected.png" alt="Viewing dev branch on GitHub" class="figure mx-auto d-block"></figure><p>We can see the <code>rainfall_conversion.py</code> file has been
-uploaded! This makes it easy for us to share work-in-progress versions
-of our code that others can easily look at.</p>
-<div id="linking-remotes" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="linking-remotes" class="callout-inner">
-<h3 class="callout-title">Linking Remotes</h3>
-<div class="callout-content">
-<p>It’s always worth double-checking before you run
-<code>git push origin dev</code> for the first time - if you’re
-accidentally still on the <code>main</code> branch, you can end up
-pushing it to GitHub as a new branch called <code>dev</code>, and having
-two copies!</p>
-<p>To avoid this, we can set the ‘upstream’ for a branch when we make
-it, using:</p>
-<div class="codewrapper sourceCode" id="cb23">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">$</span> git branch <span class="at">--track</span> branchname origin/branchname</span></code></pre>
-</div>
-<p>But this functionality isn’t available on older versions of git.
-Alternatively, if your git is new enough to suggest it, you can make it
-automatically link branches to their remote equivalents with:</p>
-<div class="codewrapper sourceCode" id="cb24">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">$</span> git config <span class="at">--global</span> push.autoSetupRemote true</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="downloading-branches" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="downloading-branches" class="callout-inner">
-<h3 class="callout-title">Downloading Branches</h3>
-<div class="callout-content">
-<p>It’s easy to share a branch with a collaborator so they can test out
-a different version of the code. If they <code>clone</code> the
-repository, like we did back at the start, it defaults to
-<code>main</code> but they can download the other branches and try them
-out too, using:</p>
-<div class="codewrapper sourceCode" id="cb25">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">$</span> git clone git@github.com:yourname/climate-analysis.git</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="ex">$</span> git fetch</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="ex">$</span> git switch dev</span></code></pre>
-</div>
-<p>Where <code>git fetch</code> downloads <em>all</em> the branches on
-the remote repository, not just the <code>main</code> one.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="merging-branches">Merging Branches<a class="anchor" aria-label="anchor" href="#merging-branches"></a></h2>
-<hr class="half-width"><p>If we’re happy with the way our work on the <code>dev</code> branch
-has gone, and we’ve tested it, we can merge the content back in!</p>
-<p>Let’s switch back to our <code>main</code> branch:</p>
-<div class="codewrapper sourceCode" id="cb26">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="ex">$</span> git switch main</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Switched to branch 'main'
-Your branch is up to date with 'origin/main'.</code></pre>
-</div>
-<p>Now, to merge the changes from our <code>dev</code> branch into the
-current (<code>main</code>) branch, we just need to do:</p>
-<div class="codewrapper sourceCode" id="cb28">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="ex">$</span> git merge dev</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Updating fd30d36..b402781
-Fast-forward
- rainfall_conversion.py | 4 ++++
- 1 file changed, 4 insertions(+)
- create mode 100644 rainfall_conversion.py</code></pre>
-</div>
-<p>Now, let’s push our updated <code>main</code> branch to GitHub:</p>
-<div class="codewrapper sourceCode" id="cb30">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1" aria-label="code-block-30-1"></a><span class="ex">$</span> git push</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-To github.com:smangham/climate-analysis.git
-   fd30d36..b402781  main -&gt; main</code></pre>
-</div>
-<p>And we can see on GitHub that the two branches are up-to-date:</p>
-<figure><img src="../fig/07-branches/push-main.png" alt="Main up-to-date on GitHub" class="figure mx-auto d-block"></figure><div id="pull-requests" class="callout">
+<div class="section level3">
+<h3 id="merging-branches">Merging Branches<a class="anchor" aria-label="anchor" href="#merging-branches"></a></h3>
+<p>If we’re happy with the way our work on the <code>dev</code> branch
+has gone, and we’ve tested it, we can merge the content back into
+<code>main</code>!</p>
+<p>In GitHub Desktop, go to the <strong>Branch</strong> menu and select
+<strong>Merge into Current Branch…</strong>:</p>
+<p><img src="../fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
+<p>A dialog will appear asking which branch you want to merge into the
+current one. First, make sure you’re on <code>main</code> by clicking
+the branch dropdown. Then go to <strong>Branch &gt; Merge into Current
+Branch…</strong> and select <code>dev</code>:</p>
+<p><img src="../fig/07-branches/merge-dialog.png" alt="Merge dialog selecting dev branch" class="figure">}</p>
+<p>Click <strong>Create a Merge Commit</strong> (or just
+<strong>Merge</strong> if that’s the button shown). GitHub Desktop will
+merge the <code>dev</code> branch into <code>main</code>:</p>
+<p><img src="../fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
+<p>You’ll see a new merge commit appear in the History tab. The
+<code>rainfall_conversion.py</code> file will now appear in your working
+directory on the <code>main</code> branch.</p>
+<p>Now push these changes to GitHub using the <strong>Push
+origin</strong> button:</p>
+<p><img src="../fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
+<p>Both branches are now up-to-date on GitHub, and your new feature has
+been integrated into the main version of your code!</p>
+<div id="pull-requests" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -820,20 +582,46 @@ To github.com:smangham/climate-analysis.git
 <div id="pull-requests" class="callout-inner">
 <h3 class="callout-title">Pull Requests</h3>
 <div class="callout-content">
-<p>When we looked at GitHub earlier, we saw a banner letting us know we
-could compare our branches, make a <strong>Pull Request</strong>:</p>
-<figure><img src="../fig/07-branches/push-dev-selected.png" alt="Main up-to-date on GitHub" class="figure mx-auto d-block"></figure><p>A <strong>Pull Request</strong> is another way of merging branches,
-that works better when you’re part of a team. There’s an interface for
-discussing the changes you’ve made with your colleagues, requesting
-others peer-review your code, and it shows all your changes in
-detail:</p>
-<figure><img src="../fig/07-branches/pull-request-example.png" alt="Pull request on GitHub" class="figure mx-auto d-block"></figure><p>Then, once you’ve taken a proper look and you’re happy with your
-changes, you can merge the branches through the GitHub web interface. If
-you’re working as part of a team, it’s better to make a <strong>Pull
-Request</strong> than use than <code>git merge</code>.</p>
+<p>When we push a new branch to GitHub, GitHub suggests creating a
+<strong>Pull Request</strong> — another way of merging branches that
+works better when you’re part of a team.</p>
+<p>A <strong>Pull Request</strong> is a GitHub feature that lets your
+team: - Discuss the changes you’ve made - Request peer review of your
+code - See all your changes in detail before merging</p>
+<p>Instead of merging directly, you create a Pull Request on GitHub,
+your team reviews it, and then someone approves and merges it.</p>
+<p>If you’re working as part of a team, <strong>Pull Requests</strong>
+are better than using GitHub Desktop’s merge feature, as they provide a
+formal review process and create a record of discussions.</p>
+<p>You can create a Pull Request by clicking the <strong>Pull
+Request</strong> button that appears when you push a new branch, or by
+going to your repository on GitHub and clicking <strong>New Pull
+Request</strong>.</p>
 </div>
 </div>
 </div>
+</div>
+</section><section><h2 class="section-heading" id="summary-the-branching-workflow">Summary: The Branching Workflow<a class="anchor" aria-label="anchor" href="#summary-the-branching-workflow"></a></h2>
+<hr class="half-width"><p>A typical workflow for developing new features looks like this:</p>
+<ol style="list-style-type: decimal"><li>
+<strong>Create a new branch</strong> for your feature (e.g.,
+<code>rainfall-feature</code>)</li>
+<li>
+<strong>Switch to that branch</strong> in GitHub Desktop</li>
+<li>
+<strong>Make changes and commit</strong> them — they only affect
+your feature branch</li>
+<li>
+<strong>Publish the branch</strong> to GitHub to back it up</li>
+<li>
+<strong>Test thoroughly</strong> and make sure everything works</li>
+<li>
+<strong>Merge back into <code>main</code></strong> (or
+<code>dev</code>) when ready</li>
+<li>
+<strong>Push the merge</strong> to GitHub</li>
+</ol><p>This keeps your <code>main</code> branch stable and tested, whilst
+allowing you to experiment freely on feature branches.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -841,10 +629,17 @@ Request</strong> than use than <code>git merge</code>.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Branches are parallel versions of a repository.</li>
-<li>You can easily switch between branches, and merge their
-changes.</li>
-<li>Branches help with code sharing and collaboration.</li>
+<ul><li>Branches are parallel versions of a repository that can be merged
+together.</li>
+<li>Click the <strong>branch dropdown</strong> at the top of GitHub
+Desktop to create, switch, and view branches.</li>
+<li>
+<strong>Publish branch</strong> sends a new branch to GitHub.</li>
+<li>
+<strong>Merge into Current Branch</strong> combines changes from one
+branch into another.</li>
+<li>Branches help with code sharing, collaboration, and keeping
+<code>main</code> stable whilst developing new features.</li>
 </ul></div>
 </div>
 </div>
@@ -912,7 +707,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/07-branches.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/07-branches.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-06-18",
+  "dateModified": "2026-06-23",
   "datePublished": "2026-06-23"
 }
 

@@ -346,7 +346,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Exploring History</h1>
-        <p>Last updated on 2026-06-18 |
+        <p>Last updated on 2026-06-23 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/05-history.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -376,7 +376,7 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Identify and use Git revision numbers.</li>
+<ul><li>Navigate and understand Git revision history.</li>
 <li>Compare files with previous versions of themselves.</li>
 <li>Restore old versions of files.</li>
 </ul></div>
@@ -385,343 +385,137 @@
 </div>
 </div>
 <section><h2 class="section-heading" id="exploring-history">Exploring History<a class="anchor" aria-label="anchor" href="#exploring-history"></a></h2>
-<hr class="half-width"><p>We’ve seen that <code>git log</code> gives us some information on
-what commits were made when, but let’s look a bit deeper at the
-specifics:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">$</span> git log</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>commit f15ad111042cee7492f40ad6ff0ec18588fce753 (HEAD -&gt; main)
-Author: Sam Mangham &lt;mangham@gmail.com&gt;
-Date:   Wed Mar 30 17:15:47 2022 +0100
-
-    Add rainfall processing placeholder
-
-commit 6aeaf44173344939e9994d7ccb5512fc5b26c211
-Author: Sam Mangham &lt;mangham@gmail.com&gt;
-Date:   Wed Mar 30 17:14:14 2022 +0100
-
-    Add Docstring
-
-commit 503f02b5f51d5622121e204494dfabc9b2ae7410
-Author: Sam Mangham &lt;mangham@gmail.com&gt;
-Date:   Wed Mar 30 17:12:02 2022 +0100
-
-    Added a basic readme file
-
-commit 499b6d18b36a25d3f5ab9be1b708ea48fef1dd65 (origin/main, origin/HEAD)
-Author: Sam Mangham &lt;mangham@gmail.com&gt;
-Date:   Wed Mar 16 14:19:13 2022 +0000
-
-    Initial commit</code></pre>
-</div>
-<p>We can see commits identified by long IDs, but also
-<strong>HEAD</strong> at the top of the log. <strong>HEAD</strong> is
-the name used to refer to the <strong>most recent</strong> end of the
-chain of commits to our <strong>local repository</strong>.</p>
+<hr class="half-width"><p>We’ve seen that GitHub Desktop’s <strong>History</strong> tab shows
+us commits, but let’s look deeper at what we can do with that
+information.</p>
+<p>Switch to the <strong>History</strong> tab. You should see a list of
+all commits to your repository, with the most recent at the top:</p>
+<figure><img src="../fig/05-history/history-list.png" alt="History tab showing list of commits" class="figure mx-auto d-block"></figure><p>Each commit shows:</p>
+<ul><li>The <strong>commit message</strong> (summary)</li>
+<li>The <strong>author</strong> and <strong>timestamp</strong>
+</li>
+<li>The short <strong>commit identifier</strong>
+(e.g. <code>f15ad11</code>)</li>
+</ul><p>The commit identifier is Git’s way of uniquely identifying a snapshot
+of your code. These are important because they let you refer to specific
+versions of your code, for example, the version you used to write a
+paper last year.</p>
 <div class="section level3">
-<h3 id="relative-history">Relative History<a class="anchor" aria-label="anchor" href="#relative-history"></a></h3>
-<p>What if somehow we’ve introduced a bug, and we want to see what’s
-changed between our latest version of the code and the copy that was
-working last commit, or a few commits ago? Which lines did we edit, and
-what did we add?</p>
-<p>We can use <code>git diff</code> again to look for differences
-between files, but refer to the versions of the files <strong>as saved
-in older commits</strong> using the notation <code>HEAD~1</code>,
-<code>HEAD~2</code>, and so on to refer to the commits. We can refer to
-previous commits using the <code>~</code> notation, so
-<code>HEAD~1</code> (pronounced “head minus one”) means “the previous
-commit”, while <code>HEAD~123</code> goes back 123 commits from the
-latest one.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">$</span> git diff HEAD~1 climate_analysis.py</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>diff --git a/climate_analysis.py b/climate_analysis.py
-index d5b442d..c463f71 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -26,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code</code></pre>
-</div>
-<p>So we see the difference between the file as it is now, and as it was
-<strong>the commit before before the latest one</strong>.</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">$</span> git diff HEAD~2 climate_analysis.py</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>diff --git a/climate_analysis.py b/climate_analysis.py
-index 277d6c7..c463f71 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -1,3 +1,4 @@
-+""" Climate Analysis Tools """
- import sys
- import temp_conversion
- import signal
-@@ -25,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code</code></pre>
-</div>
-<p>And here we see the state <strong>before the last two
-commits</strong>, HEAD minus 2.</p>
+<h3 id="comparing-versions">Comparing Versions<a class="anchor" aria-label="anchor" href="#comparing-versions"></a></h3>
+<p>To see what changed in a specific commit, <strong>click on
+it</strong> in the History tab:</p>
+<p>TODO: <img src="../fig/05-history/commit-details.png" alt="Commit details showing diff" class="figure"></p>
+<p>The right panel will show a <strong>diff</strong> of that commit.
+This shows all the changes made in that snapshot. Files are listed on
+the left, and clicking on a file shows the detailed diff on the right,
+with additions in <strong>green</strong> and deletions in
+<strong>red</strong>.</p>
 </div>
 <div class="section level3">
-<h3 id="absolute-history">Absolute History<a class="anchor" aria-label="anchor" href="#absolute-history"></a></h3>
-<p>What about if we want to compare our version of the code to the
-version from last month, or from the version we used to make a paper
-last year? Calculating the number of commits just isn’t realistic -
-it’ll change all the time as we keep working on the code. Instead, we
-can refer to <strong>specific revisions</strong> using those long
-strings of digits and letters that <code>git log</code> displays.</p>
-<p>These are unique IDs for the changes, and “unique” really does mean
-unique: every change to any set of files on any machine has a unique
-40-character identifier. (A SHA-1 hash of the new, post-commit state of
-the repository).</p>
-<p>If we scroll down to the bottom of the <code>git log</code> output,
-we can see the ID for our first commit. In the example above, it’s
-<code>499b6d18b36a25d3f5ab9be1b708ea48fef1dd65</code> (but <strong>yours
-will be different!</strong>). However, 40 characters just isn’t very
-practical to type out, so you can use however much of an ID you need to
-pick out a single, unique commit. By default, Git suggests you use the
-first <strong>seven</strong> characters.</p>
-<div id="exploring-absolute-history" class="callout challenge">
+<h3 id="comparing-specific-commits">Comparing Specific Commits<a class="anchor" aria-label="anchor" href="#comparing-specific-commits"></a></h3>
+<p>What if we want to compare our current version of a file to how it
+looked several commits ago? We can do this by holding <kbd>Ctrl</kbd>
+(Windows) or <kbd>Cmd</kbd> (Mac) and selecting a range of commits in
+the History tab.</p>
+<p>The right panel will then show a diff between the commits:</p>
+<p>TODO: <img src="../fig/05-history/compare-commits.png" alt="Comparing two commits selected in History tab" class="figure"></p>
+<p>This lets us see exactly what changed between any two points in time,
+without needing to know commit IDs or count commits back from the
+present.</p>
+</div>
+<div class="section level3">
+<h3 id="reverting-changes">Reverting Changes<a class="anchor" aria-label="anchor" href="#reverting-changes"></a></h3>
+<p>All right: we can <strong>save changes</strong> to files and
+<strong>see what we’ve changed</strong>, but what if we need to
+<strong>undo</strong> changes we’ve made?</p>
+<p>Suppose we accidentally modify a file and commit it, and now we want
+to undo that commit. GitHub Desktop provides several ways to do
+this:</p>
+<p><strong>Option 1: Revert a Commit</strong></p>
+<p>If you want to <strong>undo the changes made in a specific
+commit</strong>, right-click on that commit in the History tab and
+select <strong>Revert changes in commit</strong>:</p>
+<p>TODO: <img src="../fig/05-history/revert-commit.png" alt="Right-click menu showing Revert This Commit" class="figure"></p>
+<p>This creates a <strong>new commit</strong> that undoes the changes
+from the selected commit. The old commit stays in the history (you can
+always see what you did), but its changes are reversed.</p>
+<p><strong>Option 2: Discard Changes to a File</strong></p>
+<p>If you’ve made changes to files in your working directory but
+<strong>haven’t committed them yet</strong>, switch to the
+<strong>Changes</strong> tab. Right-click on a file you want to undo and
+select <strong>Discard Changes</strong>:</p>
+<p>TODO: <img src="../fig/05-history/discard-changes.png" alt="Right-click menu showing Discard Changes" class="figure"></p>
+<p>This will restore the file to its state in the last commit, throwing
+away any edits you’ve made.</p>
+<div id="why-revert-not-delete" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<span class="callout-header">Challenge</span>
-<div id="exploring-absolute-history" class="callout-inner">
-<h3 class="callout-title">Exploring Absolute History</h3>
+<span class="callout-header">Callout</span>
+<div id="why-revert-not-delete" class="callout-inner">
+<h3 class="callout-title">Why Revert, Not Delete?</h3>
 <div class="callout-content">
-<p>Using unique commit IDs, get a summary of all the changes you’ve made
-to the <code>climate_analysis.py</code> file since the initial
+<p>You might wonder: why does reverting a commit create a <em>new</em>
+commit, rather than just deleting the old one?</p>
+<p>The answer is that your full history is important. You can always see
+what you did, when you did it, and who did it, even if you’ve since
+undone it. This makes it easy to find bugs (“When did this function
+break?”) and to understand how your code evolved.</p>
+<p>If you deleted commits from history, you’d lose this record, making
+debugging and collaboration much harder. So Git creates a new “undo”
+commit instead, keeping the full history intact.</p>
+<p>This also means you can safely experiment: if you make a commit and
+realize it was a bad idea, you can always undo it with a revert
 commit.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<p>We can use <code>git log</code> to get a list of all of our commits
-we’ve made:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">$</span> git log</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[snipped for space]
-commit 499b6d18b36a25d3f5ab9be1b708ea48fef1dd65 (origin/main, origin/HEAD)
-Author: Sam Mangham &lt;mangham@gmail.com&gt;
-Date:   Wed Mar 16 14:19:13 2022 +0000
-
-    Initial commit</code></pre>
-</div>
-<p>Then, we can take the first 7 characters of the commit ID of the
-initial commit, and use them with <code>git diff</code>:</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">$</span> git diff 499b6d1 climate_analysis.py</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>diff --git a/climate_analysis.py b/climate_analysis.py
-index 277d6c7..6f8ed8a 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -1,3 +1,4 @@
-+""" Climate Analysis Tools """
-import sys
-import temp_conversion
-import signal
-@@ -25,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Being able to reference specific commits absolutely is particularly
-handy, as it lets you <strong>exactly identify specific versions of the
-code</strong>. For example, you can identify the version of the code you
-used to write your first paper, and the different, newer version you
-used to write your second paper.</p>
-<figure><img src="../fig/05-history/diff.svg" style="width:60.0%" alt="Differencing" class="figure mx-auto d-block"></figure><div id="other-ways-to-reference-commits" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="other-ways-to-reference-commits" class="callout-inner">
-<h3 class="callout-title">Other Ways To Reference Commits</h3>
-<div class="callout-content">
-<p>Newer versions of Git have some more advanced ways of referencing
-past commits. In place of <code>HEAD~1</code> you can use
-<code>HEAD~</code> or <code>HEAD@{1}</code>, or you can even use text to
-ask more advanced questions, like
-<code>git diff HEAD@{"yesterday"}</code> or
-<code>git diff HEAD@{"3 months ago"}</code>!</p>
-<p>You can also ‘tag’ a commit with a name, using <code>git tag</code>
-to create tags with IDs and descriptions. If you’ve got a version of the
-code you’ve used in a paper, for example, tagging it is a good idea:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">$</span> git tag <span class="at">-a</span> v1.0 <span class="at">-m</span> <span class="st">"Version 1.0, used in paper Mangham2024."</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="section level3">
-<h3 id="restoring-files">Restoring Files<a class="anchor" aria-label="anchor" href="#restoring-files"></a></h3>
-<p>All right: we can <strong>save changes</strong> to files and
-<strong>see what we’ve changed</strong>, but suppose we need to
-<strong>restore</strong> older versions of things?</p>
-<p>Let’s suppose we <strong>accidentally</strong> overwrite or delete
-our file:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">$</span> rm climate_analysis.py</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">$</span> ls</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="va">README.md</span></span>
-<span><span class="va">temp_conversion.py</span></span></code></pre>
-</div>
-<p><strong>Whoops!</strong></p>
-<p><code>git status</code> now tells us that the file has been changed,
-but those changes haven’t been staged:</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">$</span> git status</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code># On branch main
-# Your branch is ahead of 'origin/main' by 3 commits.
-#   (use "git push" to publish your local commits)
-#
-# Changes not staged for commit:
-#   (use "git add/rm &lt;file&gt;..." to update what will be committed)
-#   (use "git restore &lt;file&gt;..." to discard changes in working directory)
-#
-#	deleted:    climate_analysis.py
-#
-no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
-</div>
-<p>Following the helpful hint in that output, we can put things back the
-way they were by using <code>git restore</code>:</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">$</span> git restore climate_analysis.py</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="ex">$</span> cat climate_analysis.py</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[SNIPPED - but changes rolled back]</code></pre>
-</div>
-<p>By default, <code>restore</code> replaces the file with the version
-of it in the <em>staging area</em>. If you haven’t used
-<code>git add</code>, that should be the same as the version in the last
-commit. But what if we already used <code>git add</code> on our
-incorrect version of a file, or we broke the file more than one commit
-ago?</p>
-<p>We can use <code>git checkout</code>, e.g.:</p>
-<div class="codewrapper sourceCode" id="cb18">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">$</span> git checkout <span class="op">&lt;</span>HEAD or commit ID<span class="op">&gt;</span> climate_analysis.py</span></code></pre>
-</div>
-<div id="compatibility-notice" class="callout">
+<h3 id="a-practical-example">A Practical Example<a class="anchor" aria-label="anchor" href="#a-practical-example"></a></h3>
+<p>Let’s say you accidentally delete <code>climate_analysis.py</code>.
+Here’s how to recover it:</p>
+<ol style="list-style-type: decimal"><li>Your file disappears from the folder, and the Changes tab shows it
+as <strong>deleted</strong>
+</li>
+<li>You realize this was a mistake</li>
+<li>In the Changes tab, right-click on the deleted file and select
+<strong>Discard Changes</strong>
+</li>
+<li>The file is restored to its last committed state</li>
+</ol><p>TODO: <img src="../fig/05-history/restore.svg" style="width:60.0%" alt="Restoring Files" class="figure"></p>
+<p>The fact that you can restore individual files tends to change the
+way people organize their work.</p>
+<p>Consider a situation where all your code is in one file, and you
+fixed a bug in one section but accidentally introduced one elsewhere.
+You can’t just revert that commit without un-fixing the other bug.</p>
+<p>However, if each section is in its own file, you can just revert the
+file you broke! This is one reason why splitting code into multiple
+files is good practice.</p>
+<div id="tagging-important-versions" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="compatibility-notice" class="callout-inner">
-<h3 class="callout-title">Compatibility Notice</h3>
+<div id="tagging-important-versions" class="callout-inner">
+<h3 class="callout-title">Tagging Important Versions</h3>
 <div class="callout-content">
-<p>Older versions of Git don’t include the <code>git restore</code>
-command - fortunately, it’s just a shortcut for
-<code>git checkout --</code>. If <code>git restore</code> doesn’t work,
-try <code>git checkout -- temp_conversion.py</code>.
-<code>checkout</code> has a <em>lot</em> of functions, and newer
-versions of Git simplify things by giving them new names.</p>
+<p>Sometimes you want to mark a specific commit as important, for
+example, the version of code you used to write a paper, or the first
+“released” version.</p>
+<p>You can do this with <strong>tags</strong>. Right-click on a commit
+in the History tab and select <strong>Create a Tag</strong>:</p>
+<p>TODO: <img src="../fig/05-history/create-tag.png" alt="Create a Tag option" class="figure"></p>
+<p>Give it a meaningful name like <code>v1.0</code> or
+<code>paper-2024</code>:</p>
+<p>TODO: <img src="../fig/05-history/tag-dialog.png" alt="Tag creation dialog" class="figure"></p>
+<p>Tags appear in the History tab as labels on commits, making it easy
+to jump back to important versions. Unlike branch names, tags are
+<strong>permanent markers</strong> that never change, making them ideal
+for marking specific versions.</p>
 </div>
 </div>
 </div>
-<div id="double-whoops" class="callout caution">
-<div class="callout-square">
-<i class="callout-icon" data-feather="alert-triangle"></i>
-</div>
-<span class="callout-header">Caution</span>
-<div id="double-whoops" class="callout-inner">
-<h3 class="callout-title">Double Whoops</h3>
-<div class="callout-content">
-<p>What if you accidentally did <code>git rm climate_analysis.py</code>?
-That command tells Git to <em>delete the file and remove it from the
-repository</em> - so it will record that the file has been deleted, then
-stop tracking further changes. Even if you re-make the file, it won’t be
-tracked until you use <code>git add</code> on it again.</p>
-<p>The file still exists in the <em>history</em>, though so if you want
-to undo this you can do
-<code>git checkout HEAD climate_analysis.py</code>, to get the file back
-and start tracking it again. Since you can retrieve any file that
-existed in <em>a</em> previous commit, even if you removed it from
-future ones, this makes it important <strong>not to commit files
-containing passwords or sensitive information!</strong> To avoid this,
-you can use a <a href="./08-ignore.html">.gitignore file</a> to prevent
-you adding sensitive files in the first place. You <em>can</em> fully
-delete files from a repository’s history with tools like the <a href="https://rtyley.github.io/bfg-repo-cleaner/" class="external-link">BFG</a> but it can be
-high risk.</p>
-</div>
-</div>
-</div>
-<figure><img src="../fig/05-history/restore.svg" style="width:60.0%" alt="Restoring Files" class="figure mx-auto d-block"></figure><p>The fact that files can be reverted one by one tends to change the
-way people organize their work.</p>
-<p>Consider a situation where all your code is in one file, and you
-fixed a bug in one section but accidentally introduced one
-elsewhere.</p>
-<p>You can’t just roll back to fix one bug without un-fixing the other.
-However, if each section is in its own file, you can just roll back the
-section you broke!</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -729,10 +523,18 @@ section you broke!</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>
-<code>git diff</code> displays differences between commits.</li>
+<ul><li>GitHub Desktop’s <strong>History</strong> tab shows all commits to
+your repository.</li>
+<li>Click on a commit to see its <strong>diff</strong> which shows
+exactly what changed in that snapshot.</li>
+<li>Select multiple commits to compare the differences between
+them.</li>
 <li>
-<code>git checkout</code> recovers old versions of files.</li>
+<strong>Revert This Commit</strong> creates a new commit that undoes
+a previous one, keeping the full history.</li>
+<li>
+<strong>Discard Changes</strong> (for uncommitted changes) lets you
+recover old code.</li>
 </ul></div>
 </div>
 </div>
@@ -801,7 +603,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/05-history.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/05-history.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-06-18",
+  "dateModified": "2026-06-23",
   "datePublished": "2026-06-23"
 }
 

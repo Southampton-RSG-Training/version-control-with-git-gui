@@ -436,29 +436,54 @@ repository, including which have been pushed to the remote.</li>
 </ul></section><section id="05-history"><h2 class="section-heading"><a href="05-history.html">Exploring History</a></h2>
 <hr class="half-width">
 <ul>
+<li>GitHub Desktop’s <strong>History</strong> tab shows all commits to
+your repository.</li>
+<li>Click on a commit to see its <strong>diff</strong> which shows
+exactly what changed in that snapshot.</li>
+<li>Select multiple commits to compare the differences between
+them.</li>
 <li>
-<code>git diff</code> displays differences between commits.</li>
+<strong>Revert This Commit</strong> creates a new commit that undoes
+a previous one, keeping the full history.</li>
 <li>
-<code>git checkout</code> recovers old versions of files.</li>
+<strong>Discard Changes</strong> (for uncommitted changes) lets you
+recover old code.</li>
 </ul></section><section id="06-remote"><h2 class="section-heading"><a href="06-remote.html">Remote Repositories</a></h2>
 <hr class="half-width">
 <ul>
-<li>Git can easily synchronise your local repository with a remote
-one.</li>
-<li>GitHub needs an SSH key to allow access.</li>
-<li>Git can resolve ‘conflicting’ modifications to text files.</li>
+<li>Click <strong>Push origin</strong> in GitHub Desktop to upload your
+local commits to GitHub.</li>
+<li>Click <strong>Pull origin</strong> to download commits from GitHub
+that others have made.</li>
+<li>If both you and a collaborator edit the same part of a file, GitHub
+Desktop detects a merge conflict.</li>
+<li>Use GitHub Desktop’s visual conflict resolution tool to choose which
+changes to keep, or combine both.</li>
 </ul></section><section id="07-branches"><h2 class="section-heading"><a href="07-branches.html">Branching</a></h2>
 <hr class="half-width">
 <ul>
-<li>Branches are parallel versions of a repository.</li>
-<li>You can easily switch between branches, and merge their
-changes.</li>
-<li>Branches help with code sharing and collaboration.</li>
+<li>Branches are parallel versions of a repository that can be merged
+together.</li>
+<li>Click the <strong>branch dropdown</strong> at the top of GitHub
+Desktop to create, switch, and view branches.</li>
+<li>
+<strong>Publish branch</strong> sends a new branch to GitHub.</li>
+<li>
+<strong>Merge into Current Branch</strong> combines changes from one
+branch into another.</li>
+<li>Branches help with code sharing, collaboration, and keeping
+<code>main</code> stable whilst developing new features.</li>
 </ul></section><section id="08-ignore"><h2 class="section-heading"><a href="08-ignore.html">Ignoring Things</a></h2>
 <hr class="half-width">
 <ul>
-<li>The <code>.gitignore</code> file tells Git what files to
-ignore.</li>
+<li>The <code>.gitignore</code> file tells Git which files and folders
+to ignore.</li>
+<li>GitHub Desktop automatically respects <code>.gitignore</code> and
+won’t show ignored files in the Changes tab.</li>
+<li>You should commit <code>.gitignore</code> to your repository so
+collaborators ignore the same files.</li>
+<li>Use <code>.gitkeep</code> files to preserve directory structure for
+empty folders that your code needs.</li>
 </ul></section><section id="99-survey"><h2 class="section-heading"><a href="99-survey.html">Survey</a></h2>
 <hr class="half-width"></section>
 </div>
