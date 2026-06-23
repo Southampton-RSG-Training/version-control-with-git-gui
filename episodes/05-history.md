@@ -14,7 +14,7 @@ exercises: 0
 
 ::::::::::::: objectives
 
-- Identify and use Git revision numbers.
+- Navigate and understand Git revision history.
 - Compare files with previous versions of themselves.
 - Restore old versions of files.
 
@@ -22,280 +22,130 @@ exercises: 0
 
 ## Exploring History
 
-We've seen that `git log` gives us some information on what commits were made when, but let's look a bit deeper at the specifics:
+We've seen that GitHub Desktop's **History** tab shows us commits, but let's look deeper at what we can do with that information.
 
-```bash
-$ git log
-```
+Switch to the **History** tab. You should see a list of all commits to your repository, with the most recent at the top:
 
-```output
-commit f15ad111042cee7492f40ad6ff0ec18588fce753 (HEAD -> main)
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 30 17:15:47 2022 +0100
+![](fig/05-history/history-list.png){alt="History tab showing list of commits"}
 
-    Add rainfall processing placeholder
+Each commit shows:
 
-commit 6aeaf44173344939e9994d7ccb5512fc5b26c211
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 30 17:14:14 2022 +0100
+- The **commit message** (summary)
+- The **author** and **timestamp**
+- The short **commit identifier** (e.g. `f15ad11`)
 
-    Add Docstring
+The commit identifier is Git's way of uniquely identifying a snapshot of your code.
+These are important because they let you refer to specific versions of your code, for example, the version you used to write a paper last year.
 
-commit 503f02b5f51d5622121e204494dfabc9b2ae7410
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 30 17:12:02 2022 +0100
+### Comparing Versions
 
-    Added a basic readme file
+To see what changed in a specific commit, **click on it** in the History tab:
 
-commit 499b6d18b36a25d3f5ab9be1b708ea48fef1dd65 (origin/main, origin/HEAD)
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 16 14:19:13 2022 +0000
+TODO: ![](fig/05-history/commit-details.png){alt="Commit details showing diff"}
 
-    Initial commit
-```
+The right panel will show a **diff** of that commit.  This shows all the changes made in that snapshot.
+Files are listed on the left, and clicking on a file shows the detailed diff on the right, with additions in **green** and deletions in **red**.
 
-We can see commits identified by long IDs, but also **HEAD** at the top of the log.
-**HEAD** is the name used to refer to the **most recent** end of the chain of commits to our **local repository**.
+### Comparing Specific Commits
 
-### Relative History
+What if we want to compare our current version of a file to how it looked several commits ago?
+We can do this by holding <kbd>Ctrl</kbd> (Windows) or <kbd>Cmd</kbd> (Mac) and selecting a range of commits in the History tab.
 
-What if somehow we've introduced a bug, and we want to see what's changed between our latest version of the code and the copy that was working last commit, or a few commits ago?
-Which lines did we edit, and what did we add?
+The right panel will then show a diff between the commits:
 
-We can use `git diff` again to look for differences between files, but refer to the versions of the files **as saved in older commits** using the notation `HEAD~1`, `HEAD~2`, and so on to refer to the commits.
-We can refer to previous commits using the `~` notation, so `HEAD~1` (pronounced "head minus one") means "the previous commit", while `HEAD~123` goes back 123 commits from the latest one.
+TODO: ![](fig/05-history/compare-commits.png){alt="Comparing two commits selected in History tab"}
 
-```bash
-$ git diff HEAD~1 climate_analysis.py
-```
-
-```output
-diff --git a/climate_analysis.py b/climate_analysis.py
-index d5b442d..c463f71 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -26,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code
-```
-
-So we see the difference between the file as it is now, and as it was **the commit before before the latest one**.
-
-```bash
-$ git diff HEAD~2 climate_analysis.py
-```
-
-```output
-diff --git a/climate_analysis.py b/climate_analysis.py
-index 277d6c7..c463f71 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -1,3 +1,4 @@
-+""" Climate Analysis Tools """
- import sys
- import temp_conversion
- import signal
-@@ -25,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code
-```
-
-And here we see the state **before the last two commits**, HEAD minus 2.
-
-### Absolute History
-
-What about if we want to compare our version of the code to the version from last month, or from the version we used to make a paper last year?
-Calculating the number of commits just isn't realistic - it'll change all the time as we keep working on the code.
-Instead, we can refer to **specific revisions** using those long strings of digits and letters that `git log` displays.
-
-These are unique IDs for the changes, and "unique" really does mean unique:
-every change to any set of files on any machine has a unique 40-character identifier. (A SHA-1 hash of the new, post-commit state of the repository).
-
-If we scroll down to the bottom of the `git log` output, we can see the ID for our first commit.
-In the example above, it's `499b6d18b36a25d3f5ab9be1b708ea48fef1dd65` (but **yours will be different!**).
-However, 40 characters just isn't very practical to type out, so you can use however much of an ID you need to pick out a single, unique commit.
-By default, Git suggests you use the first **seven** characters.
-
-:::::::: challenge
-
-## Exploring Absolute History
-
-Using unique commit IDs, get a summary of all the changes you've made to the `climate_analysis.py` file since the initial commit.
+This lets us see exactly what changed between any two points in time, without needing to know commit IDs or count commits back from the present.
 
 
-::::: solution
+### Reverting Changes
 
-## Solution
+All right: we can **save changes** to files and **see what we've changed**, but what if we need to **undo** changes we've made?
 
-We can use `git log` to get a list of all of our commits we've made:
+Suppose we accidentally modify a file and commit it, and now we want to undo that commit.
+GitHub Desktop provides several ways to do this:
 
-```bash
-$ git log
-```
+**Option 1: Revert a Commit**
 
-```output
-[snipped for space]
-commit 499b6d18b36a25d3f5ab9be1b708ea48fef1dd65 (origin/main, origin/HEAD)
-Author: Sam Mangham <mangham@gmail.com>
-Date:   Wed Mar 16 14:19:13 2022 +0000
+If you want to **undo the changes made in a specific commit**, right-click on that commit in the History tab and select **Revert changes in commit**:
 
-    Initial commit
-```
+TODO: ![](fig/05-history/revert-commit.png){alt="Right-click menu showing Revert This Commit"}
 
-Then, we can take the first 7 characters of the commit ID of the initial commit,
-and use them with `git diff`:
+This creates a **new commit** that undoes the changes from the selected commit.
+The old commit stays in the history (you can always see what you did), but its changes are reversed.
 
-```bash
-$ git diff 499b6d1 climate_analysis.py
-```
+**Option 2: Discard Changes to a File**
 
-```output
-diff --git a/climate_analysis.py b/climate_analysis.py
-index 277d6c7..6f8ed8a 100644
---- a/climate_analysis.py
-+++ b/climate_analysis.py
-@@ -1,3 +1,4 @@
-+""" Climate Analysis Tools """
-import sys
-import temp_conversion
-import signal
-@@ -25,3 +26,5 @@ for line in climate_data:
-             kelvin = temp_conversion.fahr_to_kelvin(fahr)
-             print(str(celsius)+", "+str(kelvin))
-+
-+# TODO: Add rainfall processing code
-```
+If you've made changes to files in your working directory but **haven't committed them yet**, switch to the **Changes** tab.
+Right-click on a file you want to undo and select **Discard Changes**:
 
-::::::::::::::
+TODO: ![](fig/05-history/discard-changes.png){alt="Right-click menu showing Discard Changes"}
 
-::::::::::::::::::
+This will restore the file to its state in the last commit, throwing away any edits you've made.
 
-Being able to reference specific commits absolutely is particularly handy,
-as it lets you **exactly identify specific versions of the code**.
-For example, you can identify the version of the code you used to write your first paper,
-and the different, newer version you used to write your second paper.
-
-![](fig/05-history/diff.svg){width="60%" alt="Differencing"}
 
 :::::::: callout
 
-## Other Ways To Reference Commits
+## Why Revert, Not Delete?
 
-Newer versions of Git have some more advanced ways of referencing past commits.
-In place of `HEAD~1` you can use `HEAD~` or `HEAD@{1}`, or you can even use text to ask more advanced questions, like `git diff HEAD@{"yesterday"}` or `git diff HEAD@{"3 months ago"}`!
+You might wonder: why does reverting a commit create a *new* commit, rather than just deleting the old one?
 
-You can also 'tag' a commit with a name, using `git tag` to create tags with IDs and descriptions.
-If you've got a version of the code you've used in a paper, for example, tagging it is a good idea:
+The answer is that your full history is important.
+You can always see what you did, when you did it, and who did it, even if you've since undone it.
+This makes it easy to find bugs ("When did this function break?") and to understand how your code evolved.
 
-```bash
-$ git tag -a v1.0 -m "Version 1.0, used in paper Mangham2024."
-```
+If you deleted commits from history, you'd lose this record, making debugging and collaboration much harder.
+So Git creates a new "undo" commit instead, keeping the full history intact.
 
-::::::::::::::::
-
-### Restoring Files
-
-All right: we can **save changes** to files and **see what we've changed**, but suppose we need to **restore** older versions of things?
-
-Let's suppose we **accidentally** overwrite or delete our file:
-
-```bash
-$ rm climate_analysis.py
-$ ls
-```
-
-```output
-README.md
-temp_conversion.py
-```
-
-**Whoops!**
-
-`git status` now tells us that the file has been changed,
-but those changes haven't been staged:
-
-```bash
-$ git status
-```
-
-```output
-# On branch main
-# Your branch is ahead of 'origin/main' by 3 commits.
-#   (use "git push" to publish your local commits)
-#
-# Changes not staged for commit:
-#   (use "git add/rm <file>..." to update what will be committed)
-#   (use "git restore <file>..." to discard changes in working directory)
-#
-#	deleted:    climate_analysis.py
-#
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-Following the helpful hint in that output, we can put things back the way they were
-by using `git restore`:
-
-```bash
-$ git restore climate_analysis.py
-$ cat climate_analysis.py
-```
-
-```output
-[SNIPPED - but changes rolled back]
-```
-
-By default, `restore` replaces the file with the version of it in the *staging area*. If you haven't used `git add`, that should be the same as the version in the last commit. But what if we already used `git add` on our incorrect version of a file, or we broke the file more than one commit ago?
-
-We can use `git checkout`, e.g.:
-
-```bash
-$ git checkout <HEAD or commit ID> climate_analysis.py
-```
-
-:::::::: callout
-
-## Compatibility Notice
-
-Older versions of Git don't include the `git restore` command - fortunately, it's just a shortcut for `git checkout --`.
-If `git restore` doesn't work, try `git checkout -- temp_conversion.py`.
-`checkout` has a *lot* of functions, and newer versions of Git simplify things by giving them new names.
+This also means you can safely experiment: if you make a commit and realize it was a bad idea, you can always undo it with a revert commit.
 
 ::::::::::::::::
 
-:::::::: caution
+### A Practical Example
 
-## Double Whoops
+Let's say you accidentally delete `climate_analysis.py`. Here's how to recover it:
 
-What if you accidentally did `git rm climate_analysis.py`?
-That command tells Git to *delete the file and remove it from the repository* - so it will record that the file has been deleted, then stop tracking further changes.
-Even if you re-make the file, it won't be tracked until you use `git add` on it again.
-
-The file still exists in the *history*, though so if you want to undo this you can do `git checkout HEAD climate_analysis.py`, to get the file back and start tracking it again.
-Since you can retrieve any file that existed in *a* previous commit, even if you removed it from future ones, this makes it important **not to commit files containing passwords or sensitive information!**
-To avoid this, you can use a [.gitignore file](./08-ignore.md) to prevent you adding sensitive files in the first place.
-You *can* fully delete files from a repository's history with tools like the [BFG](https://rtyley.github.io/bfg-repo-cleaner/) but it can be high risk.
-
-::::::::::::::::
+1. Your file disappears from the folder, and the Changes tab shows it as **deleted**
+2. You realize this was a mistake
+3. In the Changes tab, right-click on the deleted file and select **Discard Changes**
+4. The file is restored to its last committed state
 
 
-![](fig/05-history/restore.svg){width="60%" alt="Restoring Files"}
+TODO: ![](fig/05-history/restore.svg){width="60%" alt="Restoring Files"}
 
-The fact that files can be reverted one by one tends to change the way people organize their work.
+The fact that you can restore individual files tends to change the way people organize their work.
 
 Consider a situation where all your code is in one file, and you fixed a bug in one section but accidentally introduced one elsewhere.
+You can't just revert that commit without un-fixing the other bug.
 
-You can't just roll back to fix one bug without un-fixing the other.
-However, if each section is in its own file, you can just roll back the section you broke!
+However, if each section is in its own file, you can just revert the file you broke!
+This is one reason why splitting code into multiple files is good practice.
+
+:::::::: callout
+
+## Tagging Important Versions
+
+Sometimes you want to mark a specific commit as important, for example, the version of code you used to write a paper, or the first "released" version.
+
+You can do this with **tags**. Right-click on a commit in the History tab and select **Create a Tag**:
+
+TODO: ![](fig/05-history/create-tag.png){alt="Create a Tag option"}
+
+Give it a meaningful name like `v1.0` or `paper-2024`:
+
+TODO: ![](fig/05-history/tag-dialog.png){alt="Tag creation dialog"}
+
+Tags appear in the History tab as labels on commits, making it easy to jump back to important versions.
+Unlike branch names, tags are **permanent markers** that never change, making them ideal for marking specific versions.
+
+::::::::::::::::
 
 :::::::: keypoints
 
-- `git diff` displays differences between commits.
-- `git checkout` recovers old versions of files.
+- GitHub Desktop's **History** tab shows all commits to your repository.
+- Click on a commit to see its **diff** which shows exactly what changed in that snapshot.
+- Select multiple commits to compare the differences between them.
+- **Revert This Commit** creates a new commit that undoes a previous one, keeping the full history.
+- **Discard Changes** (for uncommitted changes) lets you recover old code.
 
 ::::::::::::::::::
