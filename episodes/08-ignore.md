@@ -17,48 +17,42 @@ exercises: 0
 
 :::::::::::::::::::::::
 
-:::::::: callout
 
-## Optional Episode
 
-If you don't want to do this section, [just head straight to the survey!](./99-survey.md)
-
-::::::::::::::::
-
-What if we have files that we **do not** want Git to track for us, like **backup files** created by our editor, or **intermediate** files created during data analysis?
+What if we have files that we **do not** want Git to track for us, like **backup files** or **intermediate** files created during data analysis?
 
 Let's switch to our `dev` branch and create a few dummy files to demonstrate.
-Make sure you're on the `dev` branch in GitHub Desktop, then create two new files in your repository folder:
+Make sure you're on the `dev` branch in GitHub Desktop, then create:
 
-- `example.csv` (an empty file)
-- A text file inside a new `results/` folder called `example.txt`
+- A new folder `results/` in your repository folder:
+- A text file inside the `results/` folder called `example.txt`
 
 Switch to GitHub Desktop and look at the Changes tab.
-It will show both the new `example.csv` file and the `results/` folder as untracked files:
+It will show both the new `example.txt` file and the `results/` folder as untracked files:
 
 ![](fig/08-ignore/untracked-files.png){alt="Untracked files in Changes tab"}
 
-Putting these files under version control would be a **waste of disk space**.
-What's worse, having them all listed could **distract** us from changes that actually matter.
-Let's tell Git to **ignore** them by creating a `.gitignore` file.
+We may not want to share our results data on GitHub.  Plus, having all our results files listed could **distract** us from changes that actually matter.
+Let's tell Git to **ignore** them by adding them to a `.gitignore` file.
 
 ### Creating a `.gitignore` File
 
-Open your text editor and create a new file called `.gitignore` in the root of your repository.
-(Note the dot at the beginning — this makes it a hidden file.)
+Click **Repository** then **Repository settings**.
 
-Add the following lines:
+Select **Ignored files**.
+
+
+Add the following:
 
 ```
-*.csv
 results/
 ```
 
-These patterns tell Git to **ignore** any file whose name ends in `.csv` and everything in the `results/` directory.
+These patterns tell Git to **ignore** everything in the `results/` directory.
 
 Save the file. Now switch back to GitHub Desktop and look at the Changes tab.
 
-The `example.csv` file and the `results/` folder have disappeared from the list!
+The `results/` folder has disappeared from the list!
 They still exist on your disk — Git just won't track them.
 
 The only thing GitHub Desktop now shows is the newly-created `.gitignore` file:
@@ -79,37 +73,9 @@ Click **Commit to [branch]**:
 
 ![](fig/08-ignore/commit-gitignore.png){alt="Committing .gitignore"}}
 
-The Changes tab will now be empty — there are no more untracked or modified files to commit.
+The Changes tab will now be empty showing that there are no more untracked or modified files to commit.
 
-### Benefits of `.gitignore`
-
-Using `.gitignore` helps us **avoid accidentally adding files** to the repository that we don't want.
-
-Let's see this in action. Try to add `example.csv` by checking it in the Changes tab.
-You'll notice something interesting:
-
-When you try to check a file that's ignored, GitHub Desktop will show a warning (or simply not let you check it):
-
-![](fig/08-ignore/ignored-warning.png){alt="Warning about ignored file"}}
-
-This protects you from accidentally committing files you didn't mean to track.
-
-### Viewing Ignored Files
-
-If you want to see what files are currently being ignored, you can switch to the **View** menu in GitHub Desktop and enable **Show Hidden Files**.
-Then, in your file explorer, you can see the ignored files are still there — Git just won't track them:
-
-:::::::: tab
-
-### Windows
-
-In File Explorer, go to **View > Show > Hidden items**.
-
-### Mac
-
-In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to toggle hidden files.
-
-::::::::::::
+The files are still there and you can view them in your file explorer, but they will now be ignored by Git.
 
 ### Using `.gitkeep` Files
 
@@ -127,7 +93,7 @@ To do this:
 2. Create an empty file called `.gitkeep` inside it
 3. In GitHub Desktop, this file will appear — commit it with the message "Keep results directory"
 
-Now when someone clones your repository, the `results/` directory will exist, even though you're ignoring the actual output files (`*.csv`).
+Now when someone clones your repository, the `results/` directory will exist, even though you're ignoring the actual output files.
 
 ### Common `.gitignore` Patterns
 
