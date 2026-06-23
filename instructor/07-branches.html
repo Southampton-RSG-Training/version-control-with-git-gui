@@ -386,19 +386,6 @@
 </div>
 </div>
 </div>
-<div id="optional-episode" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="optional-episode" class="callout-inner">
-<h3 class="callout-title">Optional Episode</h3>
-<div class="callout-content">
-<p>If you don’t want to do this section, <a href="./99-survey.html">just
-head straight to the survey!</a></p>
-</div>
-</div>
-</div>
 <p>We’ve seen branches mentioned a <em>lot</em> so far - mostly
 <code>main</code>. So what are they?</p>
 <p>A branch is a <strong>parallel version of a repository</strong>. It
@@ -483,42 +470,38 @@ and might need your intervention if there’s a clash!</p>
 </section><section><h2 class="section-heading" id="the-basics">The Basics<a class="anchor" aria-label="anchor" href="#the-basics"></a></h2>
 <hr class="half-width"><p>In GitHub Desktop, look at the top of the window. You’ll see the
 current branch displayed:</p>
-<figure><img src="../fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure mx-auto d-block"></figure><p>Click on it to see all available branches and create new ones:</p>
-<figure><img src="../fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure mx-auto d-block"></figure><p>Click <strong>New Branch</strong> to create a new branch:</p>
+<p>TODO: <img src="../fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure"></p>
+<p>Click on it to see all available branches and create new ones:</p>
+<p>TODO: <img src="../fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure"></p>
+<p>TODO: Click <strong>New Branch</strong> to create a new branch:</p>
 <figure><img src="../fig/07-branches/new-branch.png" alt="New Branch button" class="figure mx-auto d-block"></figure><p>A dialog will appear asking for the branch name and which branch it
 should come off:</p>
-<figure><img src="../fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure mx-auto d-block"></figure><p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
+<p>TODO: <img src="../fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure"></p>
+<p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
 Enter <code>dev</code> as the branch name and make sure
 <code>main</code> is selected as the “Create branch based on” option.
-Click <strong>Create Branch</strong>:</p>
-<figure><img src="../fig/07-branches/create-dev.png" alt="Creating dev branch based on main" class="figure mx-auto d-block"></figure><div class="section level3">
+Click <strong>Create Branch</strong>.</p>
+<div class="section level3">
 <h3 id="working-with-a-dev-branch">Working with a <code>dev</code> branch<a class="anchor" aria-label="anchor" href="#working-with-a-dev-branch"></a></h3>
-<p>You’re now switched to the <code>dev</code> branch — you can see it
+<p>You’re now switched to the <code>dev</code> branch. You can see it
 displayed in the branch dropdown at the top of the window.</p>
 <p>Any commits we make on this branch will exist <em>only</em> on this
-branch — when we switch back to <code>main</code>, they won’t show
-up!</p>
-<p>Let’s try it out. We’ll create a new file for a rainfall conversion
-function. Open your repository in your text editor and create a new file
-called <code>rainfall_conversion.py</code>:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="kw">def</span> inches_to_mm(inches):</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>    mm <span class="op">=</span> inches <span class="op">*</span> <span class="fl">25.4</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="cf">return</span> mm</span></code></pre>
-</div>
+branch. When we switch back to <code>main</code>, they won’t show
+up.</p>
+<p>Let’s try it out. We’ll create a new text file for a rainfall
+conversion information. Open your repository in your text editor and
+create a new file called <code>rainfall_conversion.txt</code>:</p>
+<pre><code>Rainfall Conversion
+
+Note: mm = inches x 25.4</code></pre>
 <p>Save the file and switch back to GitHub Desktop. You should see
-<code>rainfall_conversion.py</code> in the Changes tab as a new file.
+<code>rainfall_conversion.txt</code> in the Changes tab as a new file.
 Commit it with the message:</p>
 <pre><code>Add rainfall module</code></pre>
 <p>Now let’s see what happens when we switch back to <code>main</code>.
 Click the branch dropdown and select <code>main</code>:</p>
-<p><img src="../fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
-<p>GitHub Desktop will ask you to confirm the switch:</p>
-<p><img src="../fig/07-branches/confirm-switch.png" alt="Confirm branch switch dialog" class="figure">}</p>
-<p>Click <strong>Switch Branch</strong>. Now go to your file explorer
-and look at your repository folder. The
+<p>TODO: <img src="../fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
+<p>Now go to your file explorer and look at your repository folder. The
 <code>rainfall_conversion.py</code> file has disappeared!</p>
 <p>It hasn’t been deleted — it still exists safely in the
 <code>.git</code> directory, stored as part of your <code>dev</code>
@@ -537,41 +520,39 @@ Make sure you’re on the <code>dev</code> branch, then look at the top of
 GitHub Desktop.</p>
 <p>Since this is a new branch that doesn’t exist on GitHub yet, you’ll
 see a <strong>Publish branch</strong> button:</p>
-<p><img src="../fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
+<p>TODO: <img src="../fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
 <p>Click <strong>Publish branch</strong> and GitHub Desktop will upload
-your new branch to GitHub:</p>
-<p><img src="../fig/07-branches/published.png" alt="Branch published to GitHub" class="figure">}</p>
+your new branch to GitHub.</p>
 <p>If you visit your repository on GitHub and click the branch dropdown,
 you’ll now see both <code>main</code> and <code>dev</code> listed:</p>
-<p><img src="../fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
+<p>TODO: <img src="../fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
 <p>You can switch between them on GitHub to see what each branch
 contains. GitHub will also suggest creating a <strong>Pull
 Request</strong> when it detects a recently-pushed branch:</p>
-<p><img src="../fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
+<p>TODO: <img src="../fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
 </div>
 <div class="section level3">
 <h3 id="merging-branches">Merging Branches<a class="anchor" aria-label="anchor" href="#merging-branches"></a></h3>
 <p>If we’re happy with the way our work on the <code>dev</code> branch
 has gone, and we’ve tested it, we can merge the content back into
 <code>main</code>!</p>
-<p>In GitHub Desktop, go to the <strong>Branch</strong> menu and select
-<strong>Merge into Current Branch…</strong>:</p>
-<p><img src="../fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
-<p>A dialog will appear asking which branch you want to merge into the
-current one. First, make sure you’re on <code>main</code> by clicking
-the branch dropdown. Then go to <strong>Branch &gt; Merge into Current
-Branch…</strong> and select <code>dev</code>:</p>
-<p><img src="../fig/07-branches/merge-dialog.png" alt="Merge dialog selecting dev branch" class="figure">}</p>
-<p>Click <strong>Create a Merge Commit</strong> (or just
-<strong>Merge</strong> if that’s the button shown). GitHub Desktop will
-merge the <code>dev</code> branch into <code>main</code>:</p>
-<p><img src="../fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
-<p>You’ll see a new merge commit appear in the History tab. The
-<code>rainfall_conversion.py</code> file will now appear in your working
-directory on the <code>main</code> branch.</p>
+<p>First, let’s switch back to our main branch in GitHub Desktop.</p>
+<p>Then, go to the <strong>Branch</strong> menu and select
+<strong>Choose a branch to merge into main</strong>. A dialog will
+appear asking which branch you want to merge into the current one.
+Select <strong>dev</strong>:</p>
+<p>TODO: <img src="../fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
+<p>Click <strong>Create a Merge Commit</strong>.</p>
+<p>GitHub Desktop will merge the <code>dev</code> branch into
+<code>main</code>:</p>
+<p>TODO: <img src="../fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
+<p>You’ll see the commit from your dev branch appear in the History tab
+of your main branch. The <code>rainfall_conversion.txt</code> file will
+now appear in your working directory on the <code>main</code>
+branch.</p>
 <p>Now push these changes to GitHub using the <strong>Push
 origin</strong> button:</p>
-<p><img src="../fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
+<p>TODO: <img src="../fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
 <p>Both branches are now up-to-date on GitHub, and your new feature has
 been integrated into the main version of your code!</p>
 <div id="pull-requests" class="callout">
@@ -604,24 +585,22 @@ Request</strong>.</p>
 </section><section><h2 class="section-heading" id="summary-the-branching-workflow">Summary: The Branching Workflow<a class="anchor" aria-label="anchor" href="#summary-the-branching-workflow"></a></h2>
 <hr class="half-width"><p>A typical workflow for developing new features looks like this:</p>
 <ol style="list-style-type: decimal"><li>
-<strong>Create a new branch</strong> for your feature (e.g.,
-<code>rainfall-feature</code>)</li>
+<strong>Create a new branch</strong> (e.g., <code>dev</code>)</li>
 <li>
 <strong>Switch to that branch</strong> in GitHub Desktop</li>
 <li>
 <strong>Make changes and commit</strong> them — they only affect
-your feature branch</li>
+your dev branch</li>
 <li>
 <strong>Publish the branch</strong> to GitHub to back it up</li>
 <li>
 <strong>Test thoroughly</strong> and make sure everything works</li>
 <li>
-<strong>Merge back into <code>main</code></strong> (or
-<code>dev</code>) when ready</li>
+<strong>Merge back into <code>main</code></strong> when ready</li>
 <li>
 <strong>Push the merge</strong> to GitHub</li>
 </ol><p>This keeps your <code>main</code> branch stable and tested, whilst
-allowing you to experiment freely on feature branches.</p>
+allowing you to experiment on your dev branch.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>

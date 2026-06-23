@@ -911,11 +911,11 @@ in your file explorer, you’ll spot a hidden folder called
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>In File Explorer, go to <strong>View &gt; Show &gt; Hidden
 items</strong>.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to
 toggle hidden files.</p>
 </div>
@@ -1636,22 +1636,22 @@ colleagues easily.</p>
 <figure><img src="fig/06-remote/remote.svg" style="width:60.0%" alt="Remote Repositories" class="figure mx-auto d-block"></figure><section><h2 class="section-heading" id="pushing-your-work-to-github">Pushing Your Work to GitHub<a class="anchor" aria-label="anchor" href="#pushing-your-work-to-github"></a>
 </h2>
 <hr class="half-width">
-<p>Notice that in GitHub Desktop, the status bar at the top shows
-something like <strong>“3 commits ahead of origin”</strong>. This means
-we have made 3 commits locally that haven’t been sent up to GitHub
-yet.</p>
+<p>Notice that in GitHub Desktop, next to ‘Push Origin’ at the top of
+the screen, there’s an indication of how many commits we’ve made locally
+that haven’t yet been pushed to GitHub yet.</p>
 <p>To synchronise our code to the remote repository, click the
 <strong>Push origin</strong> button:</p>
-<figure><img src="fig/06-remote/push-button.png" alt="Push origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will upload your commits to GitHub. When it’s done,
-the status bar will update to show you’re <strong>“up to date with
-origin”</strong>:</p>
-<figure><img src="fig/06-remote/up-to-date.png" alt="Status bar showing up to date with origin" class="figure mx-auto d-block"></figure><p>Now if you visit your repository on GitHub and refresh, you’ll see
+<p>TODO: <img src="fig/06-remote/push-button.png" alt="Push origin button in GitHub Desktop" class="figure"></p>
+<p>GitHub Desktop will upload your commits to GitHub. When it’s done,
+the tab will show ‘Fetch origin’ rather than ‘Push origin’.</p>
+<p>TODO: <img src="fig/06-remote/up-to-date.png" alt="Status bar showing up to date with origin" class="figure"></p>
+<p>Now if you visit your repository on GitHub and refresh, you’ll see
 your updates:</p>
-<figure><img src="fig/06-remote/github.png" alt="Updated remote repository" class="figure mx-auto d-block"></figure><p>Conveniently, the contents of <code>README.md</code> are displayed on
-the main page with formatting. <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-formatting-on-github/basic-writing-and-formatting-syntax" class="external-link">You
-can also add links, tables and more</a>. Your code should always have a
-descriptive <code>README.md</code> file, so anyone visiting the repo can
-easily get started with it.</p>
+<p>TODO: <img src="fig/06-remote/github.png" alt="Updated remote repository" class="figure"></p>
+<p>Conveniently, the contents of <code>README.md</code> are displayed on
+the main page with formatting.</p>
+<p>Your code should always have a descriptive <code>README.md</code>
+file, so anyone visiting the repo can easily get started with it.</p>
 <div id="how-often-should-i-push" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1671,7 +1671,7 @@ Altman, CC BY-SA 2.0</a></p>
 </h2>
 <hr class="half-width">
 <p>Now we know how to <strong>push</strong> our work from our local
-repository to GitHub, we need to know the reverse — how to
+repository to GitHub, we need to know the reverse - how to
 <strong>pull</strong> updates that someone else has made.</p>
 <p>To demonstrate this, we’ll update our <code>README.md</code> to
 welcome collaborators, then simulate a colleague making changes to the
@@ -1686,15 +1686,19 @@ If you're interested in collaborating, email me at your.email@soton.ac.uk.</code
 <p>Save the file, switch to GitHub Desktop, and <strong>commit</strong>
 this change with the message:</p>
 <pre><code>Add collaboration info</code></pre>
-<p>Then <strong>push</strong> it to GitHub. So far, this is the same as
-before.</p>
+<p><strong>But don’t push to GitHub just yet!</strong> We’re going to
+set up a small conflict, of the kind you might see when working with a
+remote repository. What happens if you change a file at the same time as
+one of your collaborators does, and you both commit those changes? How
+does GitHub know which version of the file is ‘correct’?</p>
 <div class="section level3">
 <h3 id="creating-a-conflict">Creating a Conflict<a class="anchor" aria-label="anchor" href="#creating-a-conflict"></a>
 </h3>
-<p>Now we’re going to pretend a colleague has also edited the
-<code>README.md</code> file on GitHub. To do this, visit your repository
-on GitHub and click the <strong>pencil icon</strong> next to
-<code>README.md</code> to edit it directly:</p>
+<p>Pretending to be an existing collaborator, we’ll go and add those
+installation instructions by editing our README.md file directly on
+GitHub. To do this, visit your repository on GitHub and click the
+<strong>pencil icon</strong> next to <code>README.md</code> to edit it
+directly:</p>
 <figure><img src="fig/06-remote/edit-button.png" alt="GitHub edit button" class="figure mx-auto d-block"></figure><p>Add some installation instructions and a note about the project
 status:</p>
 <figure><img src="fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Commit the changes with a message like “Add installation
@@ -1707,75 +1711,77 @@ installation instructions - Both edited the same file
 <p>This is a realistic scenario in collaborative work!</p>
 </div>
 <div class="section level3">
-<h3 id="pulling-and-resolving-conflicts">Pulling and Resolving Conflicts<a class="anchor" aria-label="anchor" href="#pulling-and-resolving-conflicts"></a>
+<h3 id="push-conflicts">Push Conflicts<a class="anchor" aria-label="anchor" href="#push-conflicts"></a>
 </h3>
-<p>Switch back to GitHub Desktop. Notice the status bar now shows
-<strong>“1 commit behind origin”</strong> — there are changes on GitHub
-that you don’t have locally.</p>
-<p>Click the <strong>Pull origin</strong> button to download those
-changes:</p>
-<figure><img src="fig/06-remote/pull-button.png" alt="Pull origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will try to automatically merge the changes, but in
+<p>Great. Now let’s go back to GitHub Desktop and try pushing our local
+changes to the remote repository. This is going to cause problems, just
+as we expected:</p>
+<p>Click the <strong>Push origin</strong> button:</p>
+<p>TODO: <img src="fig/06-remote/pull-button.png" alt="Push origin button in GitHub Desktop" class="figure"></p>
+<p>GitHub Desktop will produce a warning message saying that you’re not
+able to push commits to this branch because there are commits on the
+remote that are not present on your local branch.</p>
+<p>TODO: <img src="fig/06-remote/push-origin-warning.png" alt="GitHub Desktop unable to push commits warning message" class="figure"></p>
+<p>Click ‘Fetch’ and then click ‘Pull Origin’.</p>
+<p>GitHub Desktop will try to automatically merge the changes, but in
 this case it detects a <strong>conflict</strong> — both you and your
 simulated colleague edited the same part of the <code>README.md</code>
 file.</p>
 <p>A notification will appear saying there are <strong>conflicts to
-resolve</strong>:</p>
-<figure><img src="fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure mx-auto d-block"></figure><p>Click <strong>Resolve Conflicts</strong> to open GitHub Desktop’s
-visual conflict resolution tool:</p>
-<figure><img src="fig/06-remote/conflict-tool.png" alt="Visual conflict resolution tool" class="figure mx-auto d-block"></figure><p>The conflict tool shows:</p>
-<ul>
-<li>
-<strong>Left side</strong>: Changes from the current branch (your
-local commit)</li>
-<li>
-<strong>Right side</strong>: Changes from the branch being merged
-(the remote commit)</li>
-<li>
-<strong>Bottom</strong>: The final merged result</li>
-</ul>
-<p>For each conflicting section, you can: - <strong>Choose
-Current</strong> to keep your local changes - <strong>Choose
-Incoming</strong> to accept the remote changes - <strong>Manually
-edit</strong> the bottom panel to combine both versions</p>
-<p>In our case, we want to <strong>keep both</strong> the collaboration
-info and the installation instructions. Click in the bottom editing
-panel and combine both texts:</p>
+resolve</strong>. Git has tried to auto-merge the files, but
+unfortunately failed. It can handle most conflicts by itself, but if two
+commits edit the exact same part of a file it will need you to help
+it.</p>
+<p>TODO: <img src="fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure"></p>
+<p>Click ‘Open with default program’ to open the file in your text
+editor.</p>
 <pre><code># Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
+=======
 To install a copy of the toolkit, open a terminal and run:
 
-    git clone git@github.com:yourname/climate-analysis.git
+    git clone git@github.com:smangham/climate-analysis.git
+
 
 **This code is currently in development and not all features will work**
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 493dd81b5d5b34211ccff4b5d0daf8efb3147755</code></pre>
+<p>We can see the two different edits we made to the end of the
+README.md file, in a block defined by &lt;&lt;&lt;, === and
+&gt;&gt;&gt;. The top block is labelled HEAD (the changes in our latest
+local commit), whilst the bottom block is labelled with the commit ID of
+the commit we made on GitHub.</p>
+<p>We can fix this by deleting all the markers and keeping the text we
+want:</p>
+<pre><code># Climate Analysis Toolkit
 
-If you're interested in collaborating, email me at your.email@soton.ac.uk.</code></pre>
-<p>Once you’re happy with the merged content, click <strong>Abort
-Merge</strong> is replaced by a <strong>Done</strong> button. Click
-<strong>Done</strong>:</p>
-<figure><img src="fig/06-remote/conflict-resolved.png" alt="Conflict resolved - Done button showing" class="figure mx-auto d-block"></figure><p>GitHub Desktop will now automatically create a <strong>merge
+This is a set of python scripts designed to analyse climate datafiles.
+
+If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
+
+To install a copy of the toolkit, open a terminal and run:
+
+   git clone git@github.com:smangham/climate-analysis.git
+
+
+**This code is currently in development and not all features will work**</code></pre>
+<p>Now we’ve got a fixed and finished README.md file, save the file. The
+conflict resolution window in GitHub Desktop should change to show all
+conflicts have been resolved. Click <strong>Continue merge</strong>.</p>
+<p>GitHub Desktop will now automatically create a <strong>merge
 commit</strong> that combines both sets of changes. You’ll see it in the
 History tab with a special merge commit icon.</p>
 <p>The Changes tab will now show the merged <code>README.md</code> file.
 Review it to make sure it looks right, then the merge is complete!</p>
 <p>Now you can <strong>push</strong> this merged version back to
 GitHub:</p>
-<p><img src="fig/06-remote/push-after-merge.png" alt="Push origin button after merge" class="figure">}</p>
+<p>TODO: <img src="fig/06-remote/push-after-merge.png" alt="Push origin button after merge" class="figure">}</p>
 <p>Click <strong>Push origin</strong> and your merged changes will be
 uploaded to GitHub:</p>
-<p><img src="fig/06-remote/github-merged.png" alt="Merged repository on GitHub" class="figure">}</p>
-</div>
-<div class="section level3">
-<h3 id="why-conflicts-happen">Why Conflicts Happen<a class="anchor" aria-label="anchor" href="#why-conflicts-happen"></a>
-</h3>
-<p>Conflicts occur when: - Two people edit the <strong>same
-part</strong> of the same file - One person deletes a file that another
-person edits - Two people add different content in the same location</p>
-<p>Git can handle most automatic merges perfectly fine. Conflicts only
-happen in the relatively rare case where Git genuinely can’t figure out
-which version is correct — in those cases, it asks a human (you) to
-decide.</p>
+<p>TODO: <img src="fig/06-remote/github-merged.png" alt="Merged repository on GitHub" class="figure">}</p>
 <div id="reducing-conflicts-with-branches" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1804,8 +1810,7 @@ changes your collaborators made)</li>
 <li>
 <strong>Push</strong> at the end of your session (share your
 changes)</li>
-<li>If there are conflicts, use GitHub Desktop’s visual tool to resolve
-them</li>
+<li>Resolve any conflicts.</li>
 <li>
 <strong>Push</strong> the resolved version to finalize the
 merge</li>
@@ -1824,8 +1829,8 @@ local commits to GitHub.</li>
 that others have made.</li>
 <li>If both you and a collaborator edit the same part of a file, GitHub
 Desktop detects a merge conflict.</li>
-<li>Use GitHub Desktop’s visual conflict resolution tool to choose which
-changes to keep, or combine both.</li>
+<li>You can edit the file to combine the changes and resolve the
+conflict.</li>
 </ul>
 </div>
 </div>
@@ -1867,19 +1872,6 @@ any links that you are not going to use.
 </ul>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="optional-episode" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="optional-episode" class="callout-inner">
-<h3 class="callout-title">Optional Episode</h3>
-<div class="callout-content">
-<p>If you don’t want to do this section, <a href="./99-survey.html">just
-head straight to the survey!</a></p>
 </div>
 </div>
 </div>
@@ -1976,43 +1968,39 @@ and might need your intervention if there’s a clash!</p>
 <hr class="half-width">
 <p>In GitHub Desktop, look at the top of the window. You’ll see the
 current branch displayed:</p>
-<figure><img src="fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure mx-auto d-block"></figure><p>Click on it to see all available branches and create new ones:</p>
-<figure><img src="fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure mx-auto d-block"></figure><p>Click <strong>New Branch</strong> to create a new branch:</p>
+<p>TODO: <img src="fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure"></p>
+<p>Click on it to see all available branches and create new ones:</p>
+<p>TODO: <img src="fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure"></p>
+<p>TODO: Click <strong>New Branch</strong> to create a new branch:</p>
 <figure><img src="fig/07-branches/new-branch.png" alt="New Branch button" class="figure mx-auto d-block"></figure><p>A dialog will appear asking for the branch name and which branch it
 should come off:</p>
-<figure><img src="fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure mx-auto d-block"></figure><p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
+<p>TODO: <img src="fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure"></p>
+<p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
 Enter <code>dev</code> as the branch name and make sure
 <code>main</code> is selected as the “Create branch based on” option.
-Click <strong>Create Branch</strong>:</p>
-<figure><img src="fig/07-branches/create-dev.png" alt="Creating dev branch based on main" class="figure mx-auto d-block"></figure><div class="section level3">
+Click <strong>Create Branch</strong>.</p>
+<div class="section level3">
 <h3 id="working-with-a-dev-branch">Working with a <code>dev</code> branch<a class="anchor" aria-label="anchor" href="#working-with-a-dev-branch"></a>
 </h3>
-<p>You’re now switched to the <code>dev</code> branch — you can see it
+<p>You’re now switched to the <code>dev</code> branch. You can see it
 displayed in the branch dropdown at the top of the window.</p>
 <p>Any commits we make on this branch will exist <em>only</em> on this
-branch — when we switch back to <code>main</code>, they won’t show
-up!</p>
-<p>Let’s try it out. We’ll create a new file for a rainfall conversion
-function. Open your repository in your text editor and create a new file
-called <code>rainfall_conversion.py</code>:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="kw">def</span> inches_to_mm(inches):</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>    mm <span class="op">=</span> inches <span class="op">*</span> <span class="fl">25.4</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="cf">return</span> mm</span></code></pre>
-</div>
+branch. When we switch back to <code>main</code>, they won’t show
+up.</p>
+<p>Let’s try it out. We’ll create a new text file for a rainfall
+conversion information. Open your repository in your text editor and
+create a new file called <code>rainfall_conversion.txt</code>:</p>
+<pre><code>Rainfall Conversion
+
+Note: mm = inches x 25.4</code></pre>
 <p>Save the file and switch back to GitHub Desktop. You should see
-<code>rainfall_conversion.py</code> in the Changes tab as a new file.
+<code>rainfall_conversion.txt</code> in the Changes tab as a new file.
 Commit it with the message:</p>
 <pre><code>Add rainfall module</code></pre>
 <p>Now let’s see what happens when we switch back to <code>main</code>.
 Click the branch dropdown and select <code>main</code>:</p>
-<p><img src="fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
-<p>GitHub Desktop will ask you to confirm the switch:</p>
-<p><img src="fig/07-branches/confirm-switch.png" alt="Confirm branch switch dialog" class="figure">}</p>
-<p>Click <strong>Switch Branch</strong>. Now go to your file explorer
-and look at your repository folder. The
+<p>TODO: <img src="fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
+<p>Now go to your file explorer and look at your repository folder. The
 <code>rainfall_conversion.py</code> file has disappeared!</p>
 <p>It hasn’t been deleted — it still exists safely in the
 <code>.git</code> directory, stored as part of your <code>dev</code>
@@ -2032,17 +2020,16 @@ Make sure you’re on the <code>dev</code> branch, then look at the top of
 GitHub Desktop.</p>
 <p>Since this is a new branch that doesn’t exist on GitHub yet, you’ll
 see a <strong>Publish branch</strong> button:</p>
-<p><img src="fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
+<p>TODO: <img src="fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
 <p>Click <strong>Publish branch</strong> and GitHub Desktop will upload
-your new branch to GitHub:</p>
-<p><img src="fig/07-branches/published.png" alt="Branch published to GitHub" class="figure">}</p>
+your new branch to GitHub.</p>
 <p>If you visit your repository on GitHub and click the branch dropdown,
 you’ll now see both <code>main</code> and <code>dev</code> listed:</p>
-<p><img src="fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
+<p>TODO: <img src="fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
 <p>You can switch between them on GitHub to see what each branch
 contains. GitHub will also suggest creating a <strong>Pull
 Request</strong> when it detects a recently-pushed branch:</p>
-<p><img src="fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
+<p>TODO: <img src="fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
 </div>
 <div class="section level3">
 <h3 id="merging-branches">Merging Branches<a class="anchor" aria-label="anchor" href="#merging-branches"></a>
@@ -2050,24 +2037,23 @@ Request</strong> when it detects a recently-pushed branch:</p>
 <p>If we’re happy with the way our work on the <code>dev</code> branch
 has gone, and we’ve tested it, we can merge the content back into
 <code>main</code>!</p>
-<p>In GitHub Desktop, go to the <strong>Branch</strong> menu and select
-<strong>Merge into Current Branch…</strong>:</p>
-<p><img src="fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
-<p>A dialog will appear asking which branch you want to merge into the
-current one. First, make sure you’re on <code>main</code> by clicking
-the branch dropdown. Then go to <strong>Branch &gt; Merge into Current
-Branch…</strong> and select <code>dev</code>:</p>
-<p><img src="fig/07-branches/merge-dialog.png" alt="Merge dialog selecting dev branch" class="figure">}</p>
-<p>Click <strong>Create a Merge Commit</strong> (or just
-<strong>Merge</strong> if that’s the button shown). GitHub Desktop will
-merge the <code>dev</code> branch into <code>main</code>:</p>
-<p><img src="fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
-<p>You’ll see a new merge commit appear in the History tab. The
-<code>rainfall_conversion.py</code> file will now appear in your working
-directory on the <code>main</code> branch.</p>
+<p>First, let’s switch back to our main branch in GitHub Desktop.</p>
+<p>Then, go to the <strong>Branch</strong> menu and select
+<strong>Choose a branch to merge into main</strong>. A dialog will
+appear asking which branch you want to merge into the current one.
+Select <strong>dev</strong>:</p>
+<p>TODO: <img src="fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
+<p>Click <strong>Create a Merge Commit</strong>.</p>
+<p>GitHub Desktop will merge the <code>dev</code> branch into
+<code>main</code>:</p>
+<p>TODO: <img src="fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
+<p>You’ll see the commit from your dev branch appear in the History tab
+of your main branch. The <code>rainfall_conversion.txt</code> file will
+now appear in your working directory on the <code>main</code>
+branch.</p>
 <p>Now push these changes to GitHub using the <strong>Push
 origin</strong> button:</p>
-<p><img src="fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
+<p>TODO: <img src="fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
 <p>Both branches are now up-to-date on GitHub, and your new feature has
 been integrated into the main version of your code!</p>
 <div id="pull-requests" class="callout">
@@ -2103,25 +2089,23 @@ Request</strong>.</p>
 <p>A typical workflow for developing new features looks like this:</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>Create a new branch</strong> for your feature (e.g.,
-<code>rainfall-feature</code>)</li>
+<strong>Create a new branch</strong> (e.g., <code>dev</code>)</li>
 <li>
 <strong>Switch to that branch</strong> in GitHub Desktop</li>
 <li>
 <strong>Make changes and commit</strong> them — they only affect
-your feature branch</li>
+your dev branch</li>
 <li>
 <strong>Publish the branch</strong> to GitHub to back it up</li>
 <li>
 <strong>Test thoroughly</strong> and make sure everything works</li>
 <li>
-<strong>Merge back into <code>main</code></strong> (or
-<code>dev</code>) when ready</li>
+<strong>Merge back into <code>main</code></strong> when ready</li>
 <li>
 <strong>Push the merge</strong> to GitHub</li>
 </ol>
 <p>This keeps your <code>main</code> branch stable and tested, whilst
-allowing you to experiment freely on feature branches.</p>
+allowing you to experiment on your dev branch.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
