@@ -148,12 +148,12 @@ GitHub Desktop's visual diff is much easier to read than the equivalent command-
 ## What About Jupyter Notebooks?
 
 Git works best with plain text files containing just code (or data).
-Jupyter Notebooks store code, outputs, and metadata together in a complex JSON format, which can make diffs hard to interpret — even in GitHub Desktop's visual diff view.
+Jupyter Notebooks store code, outputs, and metadata together in a complex JSON format, which can make diffs hard to interpret, even in GitHub Desktop's visual diff view.
 
 Fortunately, the [nbdime](https://nbdime.readthedocs.io/en/latest/) Python package provides much cleaner diff views for notebooks, and can integrate with GitHub Desktop.
 
 If you have large chunks of code in your notebooks, once you're confident they're correct it's best to split them out into `.py` files and import them back in.
-It makes them work better with Git, and also makes them easy to reuse — so you don't keep copy-pasting them between files!
+It makes them work better with Git, and also makes them easy to reuse.
 
 ::::::::::::::::
 
@@ -172,7 +172,7 @@ and click **Commit to main**.
 GitHub Desktop checks all changed files by default.
 But what if you've changed several files and only want to commit some of them?
 
-Simply **uncheck** the files you'd like to leave out — they'll keep their changes and remain in the Changes panel, ready to be committed separately later.
+Simply **uncheck** the files you'd like to leave out, they'll keep their changes and remain in the Changes panel, ready to be committed separately later.
 
 You can even stage individual **lines** within a file: right-click any line in the diff view and select **Stage Line**.
 This is useful when you've made several unrelated tweaks to one file and want to commit them separately.
@@ -219,7 +219,7 @@ Click **Commit to main**. The Changes tab should now be empty.
 
 ::::::::::::::::::
 
-Now we've got the basic loop of using Git sorted — we make changes, review them in the diff view, stage what we want with the checkboxes, then create a new commit with a descriptive message.
+Now we've got the basic loop of using Git sorted.  We make changes, review them in the diff view, stage what we want with the checkboxes, then create a new commit with a descriptive message.
 
 :::::::: callout
 

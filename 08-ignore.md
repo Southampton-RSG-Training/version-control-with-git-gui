@@ -7,7 +7,7 @@ exercises: 0
 
 ::::::::::::: questions
 
-- How can I tell Git to ignore files I don’t want to track?
+- How can I tell Git to ignore files I don't want to track?
 
 :::::::::::::::::::::::
 
@@ -26,120 +26,156 @@ If you don't want to do this section, [just head straight to the survey!](./99-s
 ::::::::::::::::
 
 What if we have files that we **do not** want Git to track for us, like **backup files** created by our editor, or **intermediate** files created during data analysis?
-Let's switch to our dev branch, and create a few dummy files:
 
-```bash
-$ git switch dev
-$ mkdir results
-$ touch example.csv results/example.txt
-```
+Let's switch to our `dev` branch and create a few dummy files to demonstrate.
+Make sure you're on the `dev` branch in GitHub Desktop, then create two new files in your repository folder:
 
-and see what Git says:
+- `example.csv` (an empty file)
+- A text file inside a new `results/` folder called `example.txt`
 
-```bash
-$ git status
-```
+Switch to GitHub Desktop and look at the Changes tab.
+It will show both the new `example.csv` file and the `results/` folder as untracked files:
 
-```output
-# On branch dev
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	example.csv
-#	results/
-nothing added to commit but untracked files present (use "git add" to track)
-```
+![](fig/08-ignore/untracked-files.png){alt="Untracked files in Changes tab"}
 
 Putting these files under version control would be a **waste of disk space**.
-What's worse, having them all listed could **distract** us from changes that actually matter, so let's tell Git to **ignore** them.
+What's worse, having them all listed could **distract** us from changes that actually matter.
+Let's tell Git to **ignore** them by creating a `.gitignore` file.
 
-We do this by creating a file in the root directory of our project called `.gitignore`.
+### Creating a `.gitignore` File
 
-```bash
-$ nano .gitignore
-$ cat .gitignore
+Open your text editor and create a new file called `.gitignore` in the root of your repository.
+(Note the dot at the beginning — this makes it a hidden file.)
+
+Add the following lines:
+
 ```
-
-```output
 *.csv
 results/
 ```
 
-These patterns tell Git to **ignore** any file whose name ends in **`.csv`** and everything in the **`results`** directory.
-(If any of these files were **already** being tracked, Git would **continue** to track them.)
+These patterns tell Git to **ignore** any file whose name ends in `.csv` and everything in the `results/` directory.
 
-Once we have created this file, the output of `git status` is much cleaner:
+Save the file. Now switch back to GitHub Desktop and look at the Changes tab.
 
-```bash
-$ git status
+The `example.csv` file and the `results/` folder have disappeared from the list!
+They still exist on your disk — Git just won't track them.
+
+The only thing GitHub Desktop now shows is the newly-created `.gitignore` file:
+
+![](fig/08-ignore/gitignore-added.png){alt="Only .gitignore shown in Changes tab"}}
+
+### Committing `.gitignore`
+
+You might think we wouldn't want to track `.gitignore` itself, but everyone we're **sharing** our repository with will probably **want to ignore the same** things that we're ignoring.
+
+So let's add and commit it. Make sure `.gitignore` is **checked** in the Changes tab, then enter a commit message:
+
+```
+Add gitignore file
 ```
 
-```output
-# On branch dev
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#	.gitignore
-nothing added to commit but untracked files present (use "git add" to track)
+Click **Commit to [branch]**:
+
+![](fig/08-ignore/commit-gitignore.png){alt="Committing .gitignore"}}
+
+The Changes tab will now be empty — there are no more untracked or modified files to commit.
+
+### Benefits of `.gitignore`
+
+Using `.gitignore` helps us **avoid accidentally adding files** to the repository that we don't want.
+
+Let's see this in action. Try to add `example.csv` by checking it in the Changes tab.
+You'll notice something interesting:
+
+When you try to check a file that's ignored, GitHub Desktop will show a warning (or simply not let you check it):
+
+![](fig/08-ignore/ignored-warning.png){alt="Warning about ignored file"}}
+
+This protects you from accidentally committing files you didn't mean to track.
+
+### Viewing Ignored Files
+
+If you want to see what files are currently being ignored, you can switch to the **View** menu in GitHub Desktop and enable **Show Hidden Files**.
+Then, in your file explorer, you can see the ignored files are still there — Git just won't track them:
+
+:::::::: tab
+
+### Windows
+
+In File Explorer, go to **View > Show > Hidden items**.
+
+### Mac
+
+In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to toggle hidden files.
+
+::::::::::::
+
+### Using `.gitkeep` Files
+
+One interesting edge case: you can't add empty directories to a repository — directories need to have files in them.
+
+But what if your code expects a `results/` directory to exist for writing output to?
+Users would run your code and it would error because the directory doesn't exist.
+
+You can solve this by creating an empty `.gitkeep` file inside the directory.
+Although `.gitkeep` is a hidden file (starts with a dot), it will ensure the directory structure is preserved in your repository.
+
+To do this:
+
+1. Create the `results/` directory if it doesn't exist
+2. Create an empty file called `.gitkeep` inside it
+3. In GitHub Desktop, this file will appear — commit it with the message "Keep results directory"
+
+Now when someone clones your repository, the `results/` directory will exist, even though you're ignoring the actual output files (`*.csv`).
+
+### Common `.gitignore` Patterns
+
+Here are some common patterns you might want in a `.gitignore`:
+
+```
+# Python
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Data files (keep code, not data)
+*.csv
+*.xlsx
+data/
+results/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
 ```
 
-The only thing Git notices now is the newly-created `.gitignore` file.
-You might think we wouldn't want to track it, but everyone we're **sharing** our repository with will probably **want to ignore the same** things that we're ignoring.
-Let's add and commit `.gitignore`:
+Most platforms have pre-made `.gitignore` files for common languages and tools.
+When you create a new repository on GitHub, it offers to generate one for you!
 
-```bash
-$ git add .gitignore
-$ git commit -m "Add the ignore file"
-$ git status
-```
+:::::::: callout
 
-```output
-# On branch dev
-nothing to commit, working directory clean
-```
+## `.gitignore` Templates
 
-As a bonus, using `.gitignore` helps us **avoid accidentally adding files** to the repository that we don't want.
+GitHub has a collection of `.gitignore` templates for different programming languages and frameworks.
+You can find them at [github.com/github/gitignore](https://github.com/github/gitignore).
 
-```bash
-$ git add example.csv
-```
+If you're starting a Python project, for example, you might copy the [Python.gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore) template and use it as your starting point.
 
-```output
-The following paths are ignored by one of your .gitignore files:
-examples.csv
-Use -f if you really want to add them.
-fatal: no files added
-```
-
-If we really want to override our ignore settings,
-we can use `git add -f` to force Git to add something.
-We can also always see the status of ignored files if we want:
-
-```bash
-$ git status --ignored
-```
-
-```output
-# On branch dev
-# Ignored files:
-#  (use "git add -f <file>..." to include in what will be committed)
-#
-#        example.csv
-#        results/example.txt
-
-nothing to commit, working directory clean
-```
-
-Force adding can be useful for adding a `.gitkeep` file.
-You can't add empty directories to a repository - they have to have some files within them.
-But if your code expects there to be a `results/` directory to output to, for example, this can be a problem.
-Users will run your code, and have it error out at a missing directory and have to create it themselves.
-
-Instead, we can create an empty `.gitkeep` file using `touch` in the `results/` directory, and force-add it.
-As it starts with a `.`, it's a special file and won't appear in `ls` (only `ls -a`), but it will ensure that the directory structure is kept as part of your repository.
+::::::::::::
 
 :::::::: keypoints
 
-- The `.gitignore` file tells Git what files to ignore.
+- The `.gitignore` file tells Git which files and folders to ignore.
+- GitHub Desktop automatically respects `.gitignore` and won't show ignored files in the Changes tab.
+- You should commit `.gitignore` to your repository so collaborators ignore the same files.
+- Use `.gitkeep` files to preserve directory structure for empty folders that your code needs.
 
 ::::::::::::::::::

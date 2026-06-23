@@ -13,16 +13,16 @@ exercises: 0
 
 ::::::::::::: objectives
 
-- Understand `git push` and `git pull`.
+- Understand how to push and pull changes to a remote repository.
 - Encounter and resolve a conflict.
 
 :::::::::::::::::::::::
 
-We've learned how to use a **local repository** to store our code and view changes:
+We've learned how to use a **local repository** on our computer to store our code and view changes:
 
 ![](fig/06-remote/local.png){width="60%" alt="Local Repository Commands"}
 
-Now, however, we'd like to share the changes we've made to our code with others, as well as making sure we have an off-site backup in case things go wrong. We need to upload our changes in our **local repository** to a **remote repository**.
+Now, however, we'd like to share the changes we've made to our code with others, as well as making sure we have an off-site backup in case things go wrong. We need to upload our changes from our **local repository** to the **remote repository** on GitHub.
 
 :::::::: callout
 
@@ -30,56 +30,36 @@ Now, however, we'd like to share the changes we've made to our code with others,
 
 You might wonder why having an off-site backup (i.e. a copy not stored at your University) is so important.
 In 2005, [a fire destroyed a building at the University of Southampton](https://news.bbc.co.uk/1/hi/england/hampshire/4390048.stm).
-Some people's *entire PhD projects* were wiped out in the blaze. To ensure your PhD only involves a normal level of suffering, please make sure you have off-site backups of as much of your work as possible!
+Some people's *entire PhD projects* were wiped out in the blaze.
+To ensure your PhD only involves a normal level of suffering, please make sure you have off-site backups of as much of your work as possible!
 
 ![](fig/06-remote/mountbatten-fire.jpg){width="60%" alt="Mountbatten Fire"}
 
 ::::::::::::::::
 
-To do that, we'll use the **remote repository** we set up on GitHub at the start of the workshop.
-It's another repository, just like the **local repository** on our computer, that Git makes it easy to send and receive data from.
+The **remote repository** on GitHub is another repository, just like the **local repository** on our computer, that Git makes it easy to send and receive data from.
 Multiple **local repositories** can connect to the same **remote repository**, allowing you to collaborate with colleagues easily.
 
 ![](fig/06-remote/remote.svg){width="60%" alt="Remote Repositories"}
 
-So we're finally going to address all those *"Your branch is ahead of 'origin/main' by 3 commits"* messages we got from `git status`!
-However, GitHub doesn't let just anyone push to your repository - you need to prove you're the owner (or have been given access).
-Fortunately, we already set up an SSH key earlier.
+## Pushing Your Work to GitHub
 
-Now we can synchronise our code to the remote repository, with `git push`:
+Notice that in GitHub Desktop, the status bar at the top shows something like **"3 commits ahead of origin"**. This means we have made 3 commits locally that haven't been sent up to GitHub yet.
 
-```bash
-$ git push
-```
+To synchronise our code to the remote repository, click the **Push origin** button:
 
-```output
-Counting objects: 11, done.
-Delta compression using up to 32 threads.
-Compressing objects: 100% (9/9), done.
-Writing objects: 100% (9/9), 1.11 KiB | 0 bytes/s, done.
-Total 9 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
-To git@github.com:smangham/climate-analysis
-   70bf8f3..501e88f  main -> main
-```
+![](fig/06-remote/push-button.png){alt="Push origin button in GitHub Desktop"}
 
-And we're done! This bit was easy as when we used `git clone` earlier, it set up our **local repository** to **track** the **remote repository**. The `main -> main` line shows we're sending our local branch called `main` to the remote repository as a branch called `main`.
+GitHub Desktop will upload your commits to GitHub. When it's done, the status bar will update to show you're **"up to date with origin"**:
 
-:::::::: callout
+![](fig/06-remote/up-to-date.png){alt="Status bar showing up to date with origin"}
 
-## What *is* a Branch, Though?
-Branches allow you to have alternate versions of the code 'branching off' from another branch (e.g. `main`).
-You can try out new features in these branches without disrupting your `main` version of the code, then **merge them in** once you've finished.
-We have a **Stretch Episode** that gives you a brief introduction to them!
-
-::::::::::::::::
-
-If we go back to the repository on GitHub, we can refresh the page and see our updates to the code:
+Now if you visit your repository on GitHub and refresh, you'll see your updates:
 
 ![](fig/06-remote/github.png){alt="Updated remote repository"}
 
-Conveniently, the contents of `README.md` are shown on the main page, with formatting.
-[You can also add links, tables and more](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Conveniently, the contents of `README.md` are displayed on the main page with formatting.
+[You can also add links, tables and more](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-formatting-on-github/basic-writing-and-formatting-syntax).
 Your code should always have a descriptive `README.md` file, so anyone visiting the repo can easily get started with it.
 
 :::::::: callout
@@ -95,227 +75,147 @@ Every day. You can never predict when your hard disk will fail or your building 
 
 ## Collaborating on a Remote Repository
 
-Now we know how to **push** our work from our local repository to a remote one, we need to know the reverse - how to **pull** updates to the code that someone else has made.
+Now we know how to **push** our work from our local repository to GitHub, we need to know the reverse — how to **pull** updates that someone else has made.
 
-We want to invite other people to collaborate on our code, so we'll update the `README.md` with a request for potential collaborators to email us at our University email address.
+To demonstrate this, we'll update our `README.md` to welcome collaborators, then simulate a colleague making changes to the same file.
 
-```bash
-nano README.md
-cat README.md
+First, open `README.md` in your text editor and add a line about collaboration:
+
 ```
-
-```output
 # Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
+If you're interested in collaborating, email me at your.email@soton.ac.uk.
 ```
 
-```bash
-git commit -am "Added collaboration info"
+Save the file, switch to GitHub Desktop, and **commit** this change with the message:
+
+```
+Add collaboration info
 ```
 
-```output
-[main 39a2c8f] Added collaboration info
- 1 file changed, 2 insertions(+)
-```
+Then **push** it to GitHub. So far, this is the same as before.
 
-In this case, we use `git commit -am` where the `-a` means **commit all modified files we've previously used `git add` on**, and the `-m` bit means 'and here's the commit message' as usual. It's a handy shortcut.
+### Creating a Conflict
 
-But **don't push to GitHub** just yet!
-We're going to set up a small conflict, of the kind you might see when working with a remote repository.
-What happens if you change a file at the same time as one of your collaborators does, and you *both* commit those changes? How does GitHub know which version of the file is 'correct'?
-
-Pretending to be an existing collaborator, we'll go and add those installation instructions by editing our `README.md` file directly on GitHub.
-This isn't *common*, but if you want to quickly make some small changes to a single file it can be useful.
-We edit it as:
+Now we're going to pretend a colleague has also edited the `README.md` file on GitHub.
+To do this, visit your repository on GitHub and click the **pencil icon** next to `README.md` to edit it directly:
 
 ![](fig/06-remote/edit-button.png){alt="GitHub edit button"}
 
-And just expand it a little, making more use of GitHub's markdown formatting:
+Add some installation instructions and a note about the project status:
 
 ![](fig/06-remote/edit-readme.png){alt="GitHub editing Readme"}
 
-Then commit the changes directly to our `main` branch with a descriptive commit message:
+Commit the changes with a message like "Add installation instructions":
 
 ![](fig/06-remote/edit-commit.png){alt="GitHub committing edit"}
 
-![](fig/06-remote/github-updated.png){alt="Updated remote repository"}
+Now you have a situation where:
+- Your **local repository** has a commit about collaboration info
+- Your **remote repository** has a different commit about installation instructions
+- Both edited the same file (`README.md`)
 
-### Push Conflicts
+This is a realistic scenario in collaborative work!
 
-Great. Now let's go back to the terminal and try pushing our local changes to the remote repository. This is going to cause problems, just as we expected:
+### Pulling and Resolving Conflicts
 
-```bash
-$ git push
+Switch back to GitHub Desktop. Notice the status bar now shows **"1 commit behind origin"** — there are changes on GitHub that you don't have locally.
+
+Click the **Pull origin** button to download those changes:
+
+![](fig/06-remote/pull-button.png){alt="Pull origin button in GitHub Desktop"}
+
+GitHub Desktop will try to automatically merge the changes, but in this case it detects a **conflict** — both you and your simulated colleague edited the same part of the `README.md` file.
+
+A notification will appear saying there are **conflicts to resolve**:
+
+![](fig/06-remote/conflict-notification.png){alt="Notification of merge conflict"}
+
+Click **Resolve Conflicts** to open GitHub Desktop's visual conflict resolution tool:
+
+![](fig/06-remote/conflict-tool.png){alt="Visual conflict resolution tool"}
+
+The conflict tool shows:
+
+- **Left side**: Changes from the current branch (your local commit)
+- **Right side**: Changes from the branch being merged (the remote commit)
+- **Bottom**: The final merged result
+
+For each conflicting section, you can:
+- **Choose Current** to keep your local changes
+- **Choose Incoming** to accept the remote changes
+- **Manually edit** the bottom panel to combine both versions
+
+In our case, we want to **keep both** the collaboration info and the installation instructions. 
+Click in the bottom editing panel and combine both texts:
+
 ```
-
-```output
-To git@github.com:smangham/climate-analysis
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'git@github.com:smangham/climate-analysis'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first merge the remote changes (e.g.,
-hint: 'git pull') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-```
-
-Git helpfully tells us that actually, there are commits present in the **remote repository** that we don't have in our **local repository**.
-
-### Merge Conflicts
-
-We'll need to **pull** those commits into our local repository before we can push our own updates back!
-
-```bash
-git pull
-```
-
-```output
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), done.
-From github.com:smangham/climate-analysis
-   501e88f..023f8f6  main       -> origin/main
-Auto-merging README.md
-CONFLICT (content): Merge conflict in README.md
-Automatic merge failed; fix conflicts and then commit the result.
-```
-
-:::::::: callout
-
-## Compatibility Notice
-
-Newer versions of git will default to attempting to merge conflicting 'histories'.
-Older versions might not - and they'll give you a message like:
-
-```output
-hint: You have divergent branches and need to specify how to reconcile them.
-hint: You can do so by running one of the following commands sometime before
-hint: your next pull:
-hint:
-hint:   git config pull.rebase false  # merge
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint:
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-fatal: Need to specity how to reconcile divergent branches
-```
-
-We want to default to **merging**.
-**Fast forward** and **rebase** are advanced options you'd typically only see used in large teams in industry.
-So as git suggests, we can fix it our problem with:
-
-```bash
-$ git config --global pull.rebase false
-$ git pull
-```
-
-Now we'll get the same behaviour as newer versions of git.
-
-::::::::::::::::
-
-We have created a conflict! Both us, and our remote collaborator, both edited `README.md`.
-Let's take a look at the file:
-
-```bash
-cat README.md
-```
-
-```output
 # Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-<<<<<<< HEAD
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
-=======
 To install a copy of the toolkit, open a terminal and run:
 
-    git clone git@github.com:smangham/climate-analysis.git
-
-
-**This code is currently in development and not all features will work**
->>>>>>> 493dd81b5d5b34211ccff4b5d0daf8efb3147755
-```
-
-Git has tried to auto-merge the files, but unfortunately failed. It can handle most conflicts by itself, but if two commits edit the *exact same* part of a file it will need you to help it.
-
-We can see the two different edits we made to the end of the `README.md` file, in a block defined by `<<<`, `===` and `>>>`. The top block is labelled `HEAD` (the changes in our latest local commit), whilst the bottom block is labelled with the commit ID of the commit we made on GitHub.
-
-We can easily fix this using `nano`, by deleting all the markers and keeping the text we want:
-
-```bash
-nano README.md
-cat README.md
-```
-
-```output
-# Climate Analysis Toolkit
-
-This is a set of python scripts designed to analyse climate datafiles.
-
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
-
-To install a copy of the toolkit, open a terminal and run:
-
-   git clone git@github.com:smangham/climate-analysis.git
-
+    git clone git@github.com:yourname/climate-analysis.git
 
 **This code is currently in development and not all features will work**
+
+If you're interested in collaborating, email me at your.email@soton.ac.uk.
 ```
 
-Now we've got a fixed and finished `README.md` file, we can commit our changes, and push them up to our remote repository:
+Once you're happy with the merged content, click **Abort Merge** is replaced by a **Done** button. Click **Done**:
 
-```bash
-git commit -am "Fixed merge conflict"
-```
+![](fig/06-remote/conflict-resolved.png){alt="Conflict resolved - Done button showing"}
 
-```
-[main 6f4df16] Fixed merge conflict
-```
-output
+GitHub Desktop will now automatically create a **merge commit** that combines both sets of changes.
+You'll see it in the History tab with a special merge commit icon.
 
-```bash
-git push
-```
+The Changes tab will now show the merged `README.md` file. Review it to make sure it looks right, then the merge is complete!
 
-```output
-Counting objects: 10, done.
-Delta compression using up to 32 threads.
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (6/6), 774 bytes | 0 bytes/s, done.
-Total 6 (delta 2), reused 0 (delta 0)
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
-To git@github.com:smangham/climate-analysis
-   023f8f6..09f5151  main -> main
-```
+Now you can **push** this merged version back to GitHub:
 
-Now back on GitHub we can see that our `README.md` shows the text from both commits, and our conflict is resolved:
+![](fig/06-remote/push-after-merge.png){alt="Push origin button after merge"}}
 
-![](fig/06-remote/conflict-resolved.png){alt="Resolved conflict on GitHub"}
+Click **Push origin** and your merged changes will be uploaded to GitHub:
 
-Now we can successfully collaboratively develop our research code with others.
+![](fig/06-remote/github-merged.png){alt="Merged repository on GitHub"}}
+
+### Why Conflicts Happen
+
+Conflicts occur when:
+- Two people edit the **same part** of the same file
+- One person deletes a file that another person edits
+- Two people add different content in the same location
+
+Git can handle most automatic merges perfectly fine. Conflicts only happen in the relatively rare case where Git genuinely can't figure out which version is correct — in those cases, it asks a human (you) to decide.
 
 :::::::: callout
-## Conflict Mitigation
-If you've got multiple different people working on a code at once, then the **branches** we mentioned earlier can really help reduce conflicts.
-Each collaborator can work on their own branch, and only merge them back in once everything is finished - dramatically reducing the number of conflicts!
 
-![](fig/06-remote/remote.png){width="60%" alt="Remote Repository Commands"}
+## Reducing Conflicts with Branches
+
+If you're working with multiple collaborators and conflicts become frequent, Git **branches** are your solution.
+Each person can work on their own branch, and only merge back to `main` once their work is complete and tested.
+This dramatically reduces the chance of conflicting edits to the same file.
+
+We have a **Stretch Episode** that introduces branching in more detail!
 
 ::::::::::::::::
+
+Now you can successfully collaborate with others on your research code. The general workflow is:
+
+1. **Pull** at the start of your work session (get any changes your collaborators made)
+2. Make changes and **commit** them locally
+3. **Push** at the end of your session (share your changes)
+4. If there are conflicts, use GitHub Desktop's visual tool to resolve them
+5. **Push** the resolved version to finalize the merge
 
 :::::::: keypoints
 
-- Git can easily synchronise your local repository with a remote one.
-- GitHub needs an SSH key to allow access.
-- Git can resolve 'conflicting' modifications to text files.
+- Click **Push origin** in GitHub Desktop to upload your local commits to GitHub.
+- Click **Pull origin** to download commits from GitHub that others have made.
+- If both you and a collaborator edit the same part of a file, GitHub Desktop detects a merge conflict.
+- Use GitHub Desktop's visual conflict resolution tool to choose which changes to keep, or combine both.
 
 ::::::::::::::::::
