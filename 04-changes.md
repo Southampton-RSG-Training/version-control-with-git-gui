@@ -23,13 +23,37 @@ exercises: 0
 We've got a repository now containing a few pre-existing files - so let's add one more.
 You might remember GitHub suggesting we add a `README.md` to let people know what our code is about, so let's do that now.
 
-### Creating a New File
+### Creating a New File#
 
-Open your repository folder in your text editor.
+Navigate to the climate-analysis folder in your file explorer.
 
-The easiest way to do this is via GitHub Desktop: go to **Repository > Open with...**.
+Create a new text file in this folder.  (Note: this should be a plain text file, not a microsoft word document)
+
+![](fig/04-create/create-txt-file.png){alt="Creating a new text file from the file explorer"}
+
+Name this new text file `README`.
+
+Open the text file using notepad or another text editor and add the following text:
+
+```
+Climate Analysis Toolkit
+
+This is a set of python scripts designed to analyse climate datafiles.
+```
+
+
+::: callout
+
+## Formatting a README using markdown
+
+If you work within an Integrated Development Environment (IDE), you can open your climate-analysis folder in the IDE and edit files there. 
+Go to **Repository > Open with...**.
 
 Select your preferred text editor or Integrated Development Environment (IDE) from the dropdown list.
+
+Often README files are created using markdown, a way of formatting text.  
+
+The option to create a new markdown file will likely be available in your IDE.
 
 Create a new file called `README.md` and add the following:
 
@@ -39,15 +63,16 @@ Create a new file called `README.md` and add the following:
 This is a set of python scripts designed to analyse climate datafiles.
 ```
 
-Save the file. Our description is a bit brief, but it's enough for now!
+As a # is the heading symbol in markdown, 'Climate Analysis Toolkit' should be rendered as a title.
 
-TODO: For learners without an IDE installed, give the option to add a txt/md file using notepad.
+:::
+
 
 ### Untracked Changes
 
-Switch back to GitHub Desktop. The **Changes** tab on the left now shows `README.md` with a small green plus sign next to it, meaning Git has spotted a new file it hasn't seen before:
+Switch back to GitHub Desktop. The **Changes** tab on the left now shows `README.txt` with a small green plus sign next to it, meaning Git has spotted a new file it hasn't seen before:
 
-TODO: ![](fig/04-changes/new-file.png){alt="Changes tab showing README.md as a new file"}
+![](fig/04-changes/new-file.png){alt="Changes tab showing README.txt as a new file"}
 
 The panel on the right shows a **preview** of the file with new content highlighted in green.
 
@@ -58,12 +83,12 @@ You'll also notice the file is already **checked** (the checkbox next to its nam
 Now we're ready to commit the first snapshot of our repository to Git.
 At the bottom of the Changes panel, you'll see a **Summary** field and an optional **Description** field:
 
-TODO: ![](fig/04-changes/commit-area.png){alt="Commit message area in GitHub Desktop"}
+![](fig/04-changes/commit-area.png){alt="Commit message area in GitHub Desktop"}
 
 The **Summary** is your commit message, which should be short and descriptive:
 
 ```
-Add a basic readme file
+Add a readme file
 ```
 
 Good commit messages start with a brief (<50 characters) but descriptive summary of changes made.
@@ -72,7 +97,7 @@ If you want to go into more detail, use the **Description** field below.
 
 Once you've entered a summary, click **Commit to main**:
 
-TODO: ![](fig/04-changes/commit-button.png){alt="Commit to main button"}
+![](fig/04-changes/commit-button.png){alt="Commit to main button"}
 
 When we commit, GitHub Desktop takes everything we've **checked** and stores a permanent snapshot inside the `.git` directory.
 This snapshot is called a **revision**, and is assigned a unique short identifier (like `fa90884`).
@@ -85,6 +110,7 @@ The checkboxes in GitHub Desktop represent Git's **staging area**.  This is a ho
 
 - **Checking** a file adds it to the staging area (equivalent to `git add` on the command line)
 - **Clicking Commit** saves everything in the staging area as a new revision (equivalent to `git commit`)
+
 
 ![](fig/04-changes/add.svg){width="60%" alt="Stage and Commit"}
 
@@ -122,16 +148,20 @@ Click any commit to see a diff of exactly what changed in that snapshot.
 
 ### Modifying a File
 
-Now suppose we modify an existing file. Open `climate_analysis.py` in your text editor and add a **docstring** at the very top of the file:
+Now suppose we modify an existing file. 
+
+Open `climate_analysis.py` in your text editor - right click on `climate-analysis.py` in your file explorer and select Edit in notepad (or open with your preferred text editor or IDE).
+
+Add a **docstring** at the very top of the file:
 
 ```python
 """ Climate Analysis Tools """
 ```
 
 Save the file and switch back to GitHub Desktop.
-The Changes tab now shows `climate_analysis.py` with a yellow **M** badge, meaning it has been **M**odified:
+The Changes tab now shows `climate_analysis.py` with a yellow dot next to it, meaning it has been modified:
 
-TODO: ![](fig/04-changes/modified-file.png){alt="Changes tab showing climate_analysis.py as modified"}
+![](fig/04-changes/modified-file.png){alt="Changes tab showing climate_analysis.py as modified"}
 
 ### Review Changes and Commit
 
@@ -139,7 +169,7 @@ It is good practice to always **review our changes** before committing them.
 Click on `climate_analysis.py` in the Changes panel to see its **diff** — a view of exactly what has changed.
 Additions are highlighted in **green** and deletions in **red**:
 
-TODO: ![](fig/04-changes/diff-view.png){alt="Diff view showing the new docstring line in green"}
+![](fig/04-changes/diff-view.png){alt="Diff view showing the new docstring line in green"}
 
 GitHub Desktop's visual diff is much easier to read than the equivalent command-line output, making it easy to catch accidental changes before they're committed.
 
@@ -163,21 +193,8 @@ After reviewing the change, enter a commit message:
 Add docstring
 ```
 
-and click **Commit to main**.
+and click **Commit 1 file to main**.
 
-:::::::: callout
-
-## Selectively Staging Changes
-
-GitHub Desktop checks all changed files by default.
-But what if you've changed several files and only want to commit some of them?
-
-Simply **uncheck** the files you'd like to leave out, they'll keep their changes and remain in the Changes panel, ready to be committed separately later.
-
-You can even stage individual **lines** within a file: right-click any line in the diff view and select **Stage Line**.
-This is useful when you've made several unrelated tweaks to one file and want to commit them separately.
-
-::::::::::::::::
 
 Git requires us to **stage** files (check them) before committing them, because we may not want to commit **everything at once**.
 For example, suppose we've **fixed a bug** in some existing code, but also written new code that's **not ready to share** yet.
@@ -231,9 +248,9 @@ Then, you add things like:
 
 - Your code.
 - Configuration files for other software.
-- Documentation, diagrams, or LaTeX manuscripts.
-- For software, commonly-used, small-ish (megabytes) data files - e.g. lookup tables of atomic weights.
-- For projects or papers, possibly the output files from software you've run - e.g. the results of an analysis.
+- Documentation, diagrams, or manuscripts.
+- For software, commonly-used, small-ish (megabytes) data files but only if it is acceptable for the data to be shared publicly. 
+- For projects or papers, possibly the output files from software you've run
 
 Repositories shouldn't really be bigger than **1GB**.
 If you store lots of different projects in one repository, it makes the history much less useful.
