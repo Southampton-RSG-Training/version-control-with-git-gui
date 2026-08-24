@@ -55,9 +55,13 @@ Then, in the **Options** window, on the **Accounts** pane, click "Sign into GitH
 ![](fig/02-setup/windows-sign-in-github.webp){alt="GitHub Desktop Git configuration screen"}
 
 Once signed in, GitHub Desktop will ask you to **configure Git**.
-It pre-fills your **name** and **email address** from your GitHub account.  These are what Git uses to record who made each change.
+It pre-fills your **name** and **email address** from your GitHub account.  These are what Git uses to record who made each change. Click on 'Git' in the left bar to edit this configuration.
 
-Check the details are correct, then click **Finish**. 
+![](fig/02-setup/git-config.png){alt="Git config options menu"}
+
+
+
+Check the details are correct, then click **Save**. 
 
 :::::::: callout
 

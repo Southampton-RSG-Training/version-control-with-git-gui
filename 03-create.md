@@ -27,7 +27,7 @@ Now let's create a new repository for us to work on.
 
 For convenience, we're going to work with some pre-existing template code that's already stored in a repository. The first thing we need to do is create our own copy of that template, which we can do on [GitHub](https://github.com).
 
-[Go to our template repository](https://github.com/Southampton-RSG-Training/git-novice-template) and select **Use this template**:
+[Go to our template repository](https://github.com/Southampton-RSG-Training/git-novice-template) and select **Use this template** then **Create a new repository**:
 
 ![](fig/03-create/template-copy.png){alt="Use Template"}
 
