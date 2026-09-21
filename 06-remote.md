@@ -48,19 +48,19 @@ Notice that in GitHub Desktop, next to 'Push Origin' at the top of the screen, t
 
 To synchronise our code to the remote repository, click the **Push origin** button:
 
-TODO: ![](fig/06-remote/push-button.png){alt="Push origin button in GitHub Desktop"}
+![](fig/06-remote/push-button.png){alt="Push origin button in GitHub Desktop"}
 
 GitHub Desktop will upload your commits to GitHub. When it's done, the tab will show 'Fetch origin' rather than 'Push origin'.
 
-TODO: ![](fig/06-remote/up-to-date.png){alt="Status bar showing up to date with origin"}
+![](fig/06-remote/up-to-date.png){alt="Status bar showing up to date with origin"}
 
 Now if you visit your repository on GitHub and refresh, you'll see your updates:
 
-TODO: ![](fig/06-remote/github.png){alt="Updated remote repository"}
+![](fig/06-remote/updated-github-repo.png){alt="Updated remote repository"}
 
-Conveniently, the contents of `README.md` are displayed on the main page with formatting.
+Conveniently, the contents of `README.txt` are displayed on the main page.  If you use markdown to format your README file, this will also be rendered. 
 
-Your code should always have a descriptive `README.md` file, so anyone visiting the repo can easily get started with it.
+Your code should always have a descriptive `README` file, so anyone visiting the repo can easily get started with it.
 
 :::::::: callout
 
@@ -77,12 +77,12 @@ Every day. You can never predict when your hard disk will fail or your building 
 
 Now we know how to **push** our work from our local repository to GitHub, we need to know the reverse - how to **pull** updates that someone else has made.
 
-To demonstrate this, we'll update our `README.md` to welcome collaborators, then simulate a colleague making changes to the same file.
+To demonstrate this, we'll update our `README` to welcome collaborators, then simulate a colleague making changes to the same file.
 
-First, open `README.md` in your text editor and add a line about collaboration:
+First, open `README` in your text editor and add a line about collaboration:
 
 ```
-# Climate Analysis Toolkit
+Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
@@ -106,9 +106,15 @@ To do this, visit your repository on GitHub and click the **pencil icon** next t
 
 Add some installation instructions and a note about the project status:
 
+```
+To install a copy of this toolkit, clone this repository.
+
+This code is currently in development and not all features will work.
+```
+
 ![](fig/06-remote/edit-readme.png){alt="GitHub editing Readme"}
 
-Commit the changes with a message like "Add installation instructions":
+Click the green 'Commit changes...' button and commit the changes with a message like "Add installation instructions":
 
 ![](fig/06-remote/edit-commit.png){alt="GitHub committing edit"}
 
@@ -125,19 +131,21 @@ Great. Now let’s go back to GitHub Desktop and try pushing our local changes t
 
 Click the **Push origin** button:
 
-TODO: ![](fig/06-remote/pull-button.png){alt="Push origin button in GitHub Desktop"}
+![](fig/06-remote/pull-button.png){alt="Push origin button in GitHub Desktop"}
 
 GitHub Desktop will produce a warning message saying that you're not able to push commits to this branch because there are commits on the remote that are not present on your local branch.
 
-TODO: ![](fig/06-remote/push-origin-warning.png){alt="GitHub Desktop unable to push commits warning message"}
+![](fig/06-remote/push-origin-warning.png){alt="GitHub Desktop unable to push commits warning message"}
 
 Click 'Fetch' and then click 'Pull Origin'.
 
-GitHub Desktop will try to automatically merge the changes, but in this case it detects a **conflict** — both you and your simulated colleague edited the same part of the `README.md` file.
+![](fig/06-remote/pull-origin.png){alt="Pull origin button showing changes to be pushed and pulled"}
+
+GitHub Desktop will try to automatically merge the changes, but in this case it detects a **conflict** — both you and your simulated colleague edited the same part of the `README` file.
 
 A notification will appear saying there are **conflicts to resolve**. Git has tried to auto-merge the files, but unfortunately failed. It can handle most conflicts by itself, but if two commits edit the exact same part of a file it will need you to help it.
 
-TODO: ![](fig/06-remote/conflict-notification.png){alt="Notification of merge conflict"}
+![](fig/06-remote/conflict-notification.png){alt="Notification of merge conflict"}
 
 Click 'Open with default program' to open the file in your text editor.
 
@@ -164,34 +172,33 @@ We can see the two different edits we made to the end of the README.md file, in 
 We can fix this by deleting all the markers and keeping the text we want:
 
 ```
-# Climate Analysis Toolkit
+Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
+If you're interested in collaborating, email me at example.email@soton.ac.uk.
 
-To install a copy of the toolkit, open a terminal and run:
+To install a copy of this toolkit, clone this repository.
 
-   git clone git@github.com:smangham/climate-analysis.git
-
-
-**This code is currently in development and not all features will work**
+This code is currently in development and not all features will work.
 ```
 
-Now we’ve got a fixed and finished README.md file, save the file.  The conflict resolution window in GitHub Desktop should change to show all conflicts have been resolved.  Click **Continue merge**.
+Now we’ve got a fixed and finished `README` file, save the file.  The conflict resolution window in GitHub Desktop should change to show all conflicts have been resolved.  Click **Continue merge**.
+
+![](fig/06-remote/resolved-conflicts.png){alt="Notification shoing conflicts have been resolved"}
 
 GitHub Desktop will now automatically create a **merge commit** that combines both sets of changes.
 You'll see it in the History tab with a special merge commit icon.
 
-The Changes tab will now show the merged `README.md` file. Review it to make sure it looks right, then the merge is complete!
+The Changes tab will now show the merged `README` file. Review it to make sure it looks right, then the merge is complete!
 
 Now you can **push** this merged version back to GitHub:
 
-TODO: ![](fig/06-remote/push-after-merge.png){alt="Push origin button after merge"}}
+![](fig/06-remote/push-after-merge.png){alt="Push origin button after merge"}
 
 Click **Push origin** and your merged changes will be uploaded to GitHub:
 
-TODO: ![](fig/06-remote/github-merged.png){alt="Merged repository on GitHub"}}
+![](fig/06-remote/github-merged.png){alt="Merged repository on GitHub"}
 
 
 
