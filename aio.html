@@ -911,11 +911,11 @@ in your file explorer, you’ll spot a hidden folder called
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>In File Explorer, go to <strong>View &gt; Show &gt; Hidden
 items</strong>.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to
 toggle hidden files.</p>
 </div>
@@ -1580,7 +1580,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-06-remote"><p>Content from <a href="06-remote.html">Remote Repositories</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-09-21 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/06-remote.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1651,17 +1651,15 @@ the screen, there’s an indication of how many commits we’ve made locally
 that haven’t yet been pushed to GitHub yet.</p>
 <p>To synchronise our code to the remote repository, click the
 <strong>Push origin</strong> button:</p>
-<p>TODO: <img src="fig/06-remote/push-button.png" alt="Push origin button in GitHub Desktop" class="figure"></p>
-<p>GitHub Desktop will upload your commits to GitHub. When it’s done,
+<figure><img src="fig/06-remote/push-button.png" alt="Push origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will upload your commits to GitHub. When it’s done,
 the tab will show ‘Fetch origin’ rather than ‘Push origin’.</p>
-<p>TODO: <img src="fig/06-remote/up-to-date.png" alt="Status bar showing up to date with origin" class="figure"></p>
-<p>Now if you visit your repository on GitHub and refresh, you’ll see
+<figure><img src="fig/06-remote/up-to-date.png" alt="Status bar showing up to date with origin" class="figure mx-auto d-block"></figure><p>Now if you visit your repository on GitHub and refresh, you’ll see
 your updates:</p>
-<p>TODO: <img src="fig/06-remote/github.png" alt="Updated remote repository" class="figure"></p>
-<p>Conveniently, the contents of <code>README.md</code> are displayed on
-the main page with formatting.</p>
-<p>Your code should always have a descriptive <code>README.md</code>
-file, so anyone visiting the repo can easily get started with it.</p>
+<figure><img src="fig/06-remote/updated-github-repo.png" alt="Updated remote repository" class="figure mx-auto d-block"></figure><p>Conveniently, the contents of <code>README.txt</code> are displayed
+on the main page. If you use markdown to format your README file, this
+will also be rendered.</p>
+<p>Your code should always have a descriptive <code>README</code> file,
+so anyone visiting the repo can easily get started with it.</p>
 <div id="how-often-should-i-push" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1683,12 +1681,12 @@ Altman, CC BY-SA 2.0</a></p>
 <p>Now we know how to <strong>push</strong> our work from our local
 repository to GitHub, we need to know the reverse - how to
 <strong>pull</strong> updates that someone else has made.</p>
-<p>To demonstrate this, we’ll update our <code>README.md</code> to
-welcome collaborators, then simulate a colleague making changes to the
-same file.</p>
-<p>First, open <code>README.md</code> in your text editor and add a line
+<p>To demonstrate this, we’ll update our <code>README</code> to welcome
+collaborators, then simulate a colleague making changes to the same
+file.</p>
+<p>First, open <code>README</code> in your text editor and add a line
 about collaboration:</p>
-<pre><code># Climate Analysis Toolkit
+<pre><code>Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
@@ -1711,8 +1709,11 @@ GitHub. To do this, visit your repository on GitHub and click the
 directly:</p>
 <figure><img src="fig/06-remote/edit-button.png" alt="GitHub edit button" class="figure mx-auto d-block"></figure><p>Add some installation instructions and a note about the project
 status:</p>
-<figure><img src="fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Commit the changes with a message like “Add installation
-instructions”:</p>
+<pre><code>To install a copy of this toolkit, clone this repository.
+
+This code is currently in development and not all features will work.</code></pre>
+<figure><img src="fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Click the green ‘Commit changes…’ button and commit the changes with
+a message like “Add installation instructions”:</p>
 <figure><img src="fig/06-remote/edit-commit.png" alt="GitHub committing edit" class="figure mx-auto d-block"></figure><p>Now you have a situation where: - Your <strong>local
 repository</strong> has a commit about collaboration info - Your
 <strong>remote repository</strong> has a different commit about
@@ -1727,23 +1728,20 @@ installation instructions - Both edited the same file
 changes to the remote repository. This is going to cause problems, just
 as we expected:</p>
 <p>Click the <strong>Push origin</strong> button:</p>
-<p>TODO: <img src="fig/06-remote/pull-button.png" alt="Push origin button in GitHub Desktop" class="figure"></p>
-<p>GitHub Desktop will produce a warning message saying that you’re not
+<figure><img src="fig/06-remote/pull-button.png" alt="Push origin button in GitHub Desktop" class="figure mx-auto d-block"></figure><p>GitHub Desktop will produce a warning message saying that you’re not
 able to push commits to this branch because there are commits on the
 remote that are not present on your local branch.</p>
-<p>TODO: <img src="fig/06-remote/push-origin-warning.png" alt="GitHub Desktop unable to push commits warning message" class="figure"></p>
-<p>Click ‘Fetch’ and then click ‘Pull Origin’.</p>
-<p>GitHub Desktop will try to automatically merge the changes, but in
+<figure><img src="fig/06-remote/push-origin-warning.png" alt="GitHub Desktop unable to push commits warning message" class="figure mx-auto d-block"></figure><p>Click ‘Fetch’ and then click ‘Pull Origin’.</p>
+<figure><img src="fig/06-remote/pull-origin.png" alt="Pull origin button showing changes to be pushed and pulled" class="figure mx-auto d-block"></figure><p>GitHub Desktop will try to automatically merge the changes, but in
 this case it detects a <strong>conflict</strong> — both you and your
-simulated colleague edited the same part of the <code>README.md</code>
+simulated colleague edited the same part of the <code>README</code>
 file.</p>
 <p>A notification will appear saying there are <strong>conflicts to
 resolve</strong>. Git has tried to auto-merge the files, but
 unfortunately failed. It can handle most conflicts by itself, but if two
 commits edit the exact same part of a file it will need you to help
 it.</p>
-<p>TODO: <img src="fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure"></p>
-<p>Click ‘Open with default program’ to open the file in your text
+<figure><img src="fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure mx-auto d-block"></figure><p>Click ‘Open with default program’ to open the file in your text
 editor.</p>
 <pre><code># Climate Analysis Toolkit
 
@@ -1766,33 +1764,29 @@ local commit), whilst the bottom block is labelled with the commit ID of
 the commit we made on GitHub.</p>
 <p>We can fix this by deleting all the markers and keeping the text we
 want:</p>
-<pre><code># Climate Analysis Toolkit
+<pre><code>Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
-If you're interested in collaborating, email me at s.w.mangham@soton.ac.uk.
+If you're interested in collaborating, email me at example.email@soton.ac.uk.
 
-To install a copy of the toolkit, open a terminal and run:
+To install a copy of this toolkit, clone this repository.
 
-   git clone git@github.com:smangham/climate-analysis.git
-
-
-**This code is currently in development and not all features will work**</code></pre>
-<p>Now we’ve got a fixed and finished README.md file, save the file. The
-conflict resolution window in GitHub Desktop should change to show all
-conflicts have been resolved. Click <strong>Continue merge</strong>.</p>
-<p>GitHub Desktop will now automatically create a <strong>merge
+This code is currently in development and not all features will work.</code></pre>
+<p>Now we’ve got a fixed and finished <code>README</code> file, save the
+file. The conflict resolution window in GitHub Desktop should change to
+show all conflicts have been resolved. Click <strong>Continue
+merge</strong>.</p>
+<figure><img src="fig/06-remote/resolved-conflicts.png" alt="Notification shoing conflicts have been resolved" class="figure mx-auto d-block"></figure><p>GitHub Desktop will now automatically create a <strong>merge
 commit</strong> that combines both sets of changes. You’ll see it in the
 History tab with a special merge commit icon.</p>
-<p>The Changes tab will now show the merged <code>README.md</code> file.
+<p>The Changes tab will now show the merged <code>README</code> file.
 Review it to make sure it looks right, then the merge is complete!</p>
 <p>Now you can <strong>push</strong> this merged version back to
 GitHub:</p>
-<p>TODO: <img src="fig/06-remote/push-after-merge.png" alt="Push origin button after merge" class="figure">}</p>
-<p>Click <strong>Push origin</strong> and your merged changes will be
+<figure><img src="fig/06-remote/push-after-merge.png" alt="Push origin button after merge" class="figure mx-auto d-block"></figure><p>Click <strong>Push origin</strong> and your merged changes will be
 uploaded to GitHub:</p>
-<p>TODO: <img src="fig/06-remote/github-merged.png" alt="Merged repository on GitHub" class="figure">}</p>
-<div id="reducing-conflicts-with-branches" class="callout">
+<figure><img src="fig/06-remote/github-merged.png" alt="Merged repository on GitHub" class="figure mx-auto d-block"></figure><div id="reducing-conflicts-with-branches" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
