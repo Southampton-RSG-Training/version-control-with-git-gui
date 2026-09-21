@@ -349,7 +349,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Branching</h1>
-        <p>Last updated on 2026-06-23 |
+        <p>Last updated on 2026-09-21 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/07-branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -445,21 +445,18 @@ merge them back into your <strong>development branch</strong> once
 they’re tested and complete. Then, as before, once you’re ready to
 publish a paper using your new functionality you merge it all back into
 the <strong>main branch</strong>.</p>
-</div>
-<div class="section level3">
-<h3 id="collaborating-with-others-feature-branches">Collaborating With Others: Feature branches<a class="anchor" aria-label="anchor" href="#collaborating-with-others-feature-branches"></a></h3>
-<p>Feature branches also make collaborating with others far easier!
-Instead of stepping on each other’s toes by making conflicting edits to
-the same files, you can simply each work on your own branch. GitHub
-offers features to help manage collaborations too, by limiting who can
-merge their work into a branch without approval, allowing you to set up
-workflows where newer team members run their changes past those with
-experience.</p>
+<p>Feature branches also make <strong>collaborating with others</strong>
+far easier! Instead of stepping on each other’s toes by making
+conflicting edits to the same files, you can each work on your own
+branch. GitHub offers features to help manage collaborations too, by
+limiting who can merge their work into a branch without approval,
+allowing you to set up workflows where newer team members run their
+changes past those with experience.</p>
 </div>
 </section><section><h2 class="section-heading" id="merging">Merging<a class="anchor" aria-label="anchor" href="#merging"></a></h2>
-<hr class="half-width"><p>We’ve mentioned <strong>merges</strong> repeatedly; as Git tracks the
-<em>changes</em> made to each file in each commit, it can easily
-determine whether or not the changes made in two branches
+<hr class="half-width"><p>We’ve mentioned <strong>merges</strong> before; as Git tracks the
+<em>changes</em> made to each file in each commit, it can determine
+whether or not the changes made in two branches
 <strong>conflict</strong> with each other. It can intelligently merge
 together two modified versions of a file where their changes don’t
 overlap, and highlight sections where they do for you to resolve,
@@ -470,14 +467,11 @@ and might need your intervention if there’s a clash!</p>
 </section><section><h2 class="section-heading" id="the-basics">The Basics<a class="anchor" aria-label="anchor" href="#the-basics"></a></h2>
 <hr class="half-width"><p>In GitHub Desktop, look at the top of the window. You’ll see the
 current branch displayed:</p>
-<p>TODO: <img src="../fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure"></p>
 <p>Click on it to see all available branches and create new ones:</p>
-<p>TODO: <img src="../fig/07-branches/branch-menu.png" alt="Branch dropdown menu" class="figure"></p>
-<p>TODO: Click <strong>New Branch</strong> to create a new branch:</p>
-<figure><img src="../fig/07-branches/new-branch.png" alt="New Branch button" class="figure mx-auto d-block"></figure><p>A dialog will appear asking for the branch name and which branch it
+<figure><img src="../fig/07-branches/branch-dropdown.png" alt="Branch dropdown showing main" class="figure mx-auto d-block"></figure><p>Click <strong>New Branch</strong> to create a new branch.</p>
+<p>A dialog will appear asking for the branch name and which branch it
 should come off:</p>
-<p>TODO: <img src="../fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure"></p>
-<p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
+<figure><img src="../fig/07-branches/new-branch-dialog.png" alt="New Branch dialog" class="figure mx-auto d-block"></figure><p>Let’s create a <code>dev</code> branch coming off <code>main</code>.
 Enter <code>dev</code> as the branch name and make sure
 <code>main</code> is selected as the “Create branch based on” option.
 Click <strong>Create Branch</strong>.</p>
@@ -488,7 +482,7 @@ displayed in the branch dropdown at the top of the window.</p>
 <p>Any commits we make on this branch will exist <em>only</em> on this
 branch. When we switch back to <code>main</code>, they won’t show
 up.</p>
-<p>Let’s try it out. We’ll create a new text file for a rainfall
+<p>Let’s try it out. We’ll create a new text file for rainfall
 conversion information. Open your repository in your text editor and
 create a new file called <code>rainfall_conversion.txt</code>:</p>
 <pre><code>Rainfall Conversion
@@ -497,12 +491,12 @@ Note: mm = inches x 25.4</code></pre>
 <p>Save the file and switch back to GitHub Desktop. You should see
 <code>rainfall_conversion.txt</code> in the Changes tab as a new file.
 Commit it with the message:</p>
-<pre><code>Add rainfall module</code></pre>
+<pre><code>Add rainfall conversion info</code></pre>
 <p>Now let’s see what happens when we switch back to <code>main</code>.
 Click the branch dropdown and select <code>main</code>:</p>
-<p>TODO: <img src="../fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
+<p><img src="../fig/07-branches/switch-to-main.png" alt="Switching back to main branch" class="figure">}</p>
 <p>Now go to your file explorer and look at your repository folder. The
-<code>rainfall_conversion.py</code> file has disappeared!</p>
+<code>rainfall_conversion.txt</code> file has disappeared!</p>
 <p>It hasn’t been deleted — it still exists safely in the
 <code>.git</code> directory, stored as part of your <code>dev</code>
 branch. Switch back to <code>dev</code> (click the branch dropdown and
@@ -520,17 +514,14 @@ Make sure you’re on the <code>dev</code> branch, then look at the top of
 GitHub Desktop.</p>
 <p>Since this is a new branch that doesn’t exist on GitHub yet, you’ll
 see a <strong>Publish branch</strong> button:</p>
-<p>TODO: <img src="../fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure">}</p>
-<p>Click <strong>Publish branch</strong> and GitHub Desktop will upload
+<figure><img src="../fig/07-branches/publish-branch.png" alt="Publish branch button" class="figure mx-auto d-block"></figure><p>Click <strong>Publish branch</strong> and GitHub Desktop will upload
 your new branch to GitHub.</p>
 <p>If you visit your repository on GitHub and click the branch dropdown,
 you’ll now see both <code>main</code> and <code>dev</code> listed:</p>
-<p>TODO: <img src="../fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure">}</p>
-<p>You can switch between them on GitHub to see what each branch
+<figure><img src="../fig/07-branches/github-branches.png" alt="Branch dropdown on GitHub" class="figure mx-auto d-block"></figure><p>You can switch between them on GitHub to see what each branch
 contains. GitHub will also suggest creating a <strong>Pull
 Request</strong> when it detects a recently-pushed branch:</p>
-<p>TODO: <img src="../fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure">}</p>
-</div>
+<figure><img src="../fig/07-branches/pull-request-suggestion.png" alt="Pull Request suggestion on GitHub" class="figure mx-auto d-block"></figure></div>
 <div class="section level3">
 <h3 id="merging-branches">Merging Branches<a class="anchor" aria-label="anchor" href="#merging-branches"></a></h3>
 <p>If we’re happy with the way our work on the <code>dev</code> branch
@@ -538,21 +529,18 @@ has gone, and we’ve tested it, we can merge the content back into
 <code>main</code>!</p>
 <p>First, let’s switch back to our main branch in GitHub Desktop.</p>
 <p>Then, go to the <strong>Branch</strong> menu and select
-<strong>Choose a branch to merge into main</strong>. A dialog will
-appear asking which branch you want to merge into the current one.
-Select <strong>dev</strong>:</p>
-<p>TODO: <img src="../fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure">}</p>
+<strong>Choose a branch to merge into main</strong>.</p>
+<figure><img src="../fig/07-branches/merge-menu.png" alt="Merge menu option" class="figure mx-auto d-block"></figure><p>A dialog will appear asking which branch you want to merge into the
+current one. Select <strong>dev</strong>:</p>
 <p>Click <strong>Create a Merge Commit</strong>.</p>
-<p>GitHub Desktop will merge the <code>dev</code> branch into
+<figure><img src="../fig/07-branches/merge-confirmation.png" alt="Merge menu confirmation" class="figure mx-auto d-block"></figure><p>GitHub Desktop will merge the <code>dev</code> branch into
 <code>main</code>:</p>
-<p>TODO: <img src="../fig/07-branches/merge-complete.png" alt="Merge complete" class="figure">}</p>
 <p>You’ll see the commit from your dev branch appear in the History tab
 of your main branch. The <code>rainfall_conversion.txt</code> file will
 now appear in your working directory on the <code>main</code>
 branch.</p>
-<p>Now push these changes to GitHub using the <strong>Push
+<figure><img src="../fig/07-branches/merged-files.png" alt="Showing files from dev in history on main branch after merge" class="figure mx-auto d-block"></figure><p>Now push these changes to GitHub using the <strong>Push
 origin</strong> button:</p>
-<p>TODO: <img src="../fig/07-branches/push-after-merge.png" alt="Push after merge" class="figure">}</p>
 <p>Both branches are now up-to-date on GitHub, and your new feature has
 been integrated into the main version of your code!</p>
 <div id="pull-requests" class="callout">
@@ -578,7 +566,7 @@ formal review process and create a record of discussions.</p>
 Request</strong> button that appears when you push a new branch, or by
 going to your repository on GitHub and clicking <strong>New Pull
 Request</strong>.</p>
-</div>
+<figure><img src="../fig/07-branches/new-pull-request.png" alt="Github page for creating a new pull request" class="figure mx-auto d-block"></figure></div>
 </div>
 </div>
 </div>
@@ -686,7 +674,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/07-branches.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/07-branches.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-06-23",
+  "dateModified": "2026-09-21",
   "datePublished": "2026-09-21"
 }
 
