@@ -2128,7 +2128,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-08-ignore"><p>Content from <a href="08-ignore.html">Ignoring Things</a></p>
 <hr>
-<p>Last updated on 2026-06-23 |
+<p>Last updated on 2026-09-21 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/08-ignore.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2184,8 +2184,8 @@ adding them to a <code>.gitignore</code> file.</p>
 </h3>
 <p>Click <strong>Repository</strong> then <strong>Repository
 settings</strong>.</p>
-<p>Select <strong>Ignored files</strong>.</p>
-<p>Add the following:</p>
+<figure><img src="fig/08-ignore/respository-settings.png" alt="Repository dropdown" class="figure mx-auto d-block"></figure><p>Select <strong>Ignored files</strong>.</p>
+<figure><img src="fig/08-ignore/ignored-files-dialog.png" alt="Ignored files dialog box" class="figure mx-auto d-block"></figure><p>Add the following:</p>
 <pre><code>results/</code></pre>
 <p>These patterns tell Git to <strong>ignore</strong> everything in the
 <code>results/</code> directory.</p>
@@ -2209,35 +2209,11 @@ ignoring.</p>
 <strong>checked</strong> in the Changes tab, then enter a commit
 message:</p>
 <pre><code>Add gitignore file</code></pre>
-<p>Click <strong>Commit to [branch]</strong>:</p>
-<p><img src="fig/08-ignore/commit-gitignore.png" alt="Committing .gitignore" class="figure">}</p>
+<p>Click <strong>Commit to dev</strong>:</p>
 <p>The Changes tab will now be empty showing that there are no more
 untracked or modified files to commit.</p>
 <p>The files are still there and you can view them in your file
 explorer, but they will now be ignored by Git.</p>
-</div>
-<div class="section level3">
-<h3 id="using--gitkeep-files">Using <code>.gitkeep</code> Files<a class="anchor" aria-label="anchor" href="#using--gitkeep-files"></a>
-</h3>
-<p>One interesting edge case: you can’t add empty directories to a
-repository — directories need to have files in them.</p>
-<p>But what if your code expects a <code>results/</code> directory to
-exist for writing output to? Users would run your code and it would
-error because the directory doesn’t exist.</p>
-<p>You can solve this by creating an empty <code>.gitkeep</code> file
-inside the directory. Although <code>.gitkeep</code> is a hidden file
-(starts with a dot), it will ensure the directory structure is preserved
-in your repository.</p>
-<p>To do this:</p>
-<ol style="list-style-type: decimal">
-<li>Create the <code>results/</code> directory if it doesn’t exist</li>
-<li>Create an empty file called <code>.gitkeep</code> inside it</li>
-<li>In GitHub Desktop, this file will appear — commit it with the
-message “Keep results directory”</li>
-</ol>
-<p>Now when someone clones your repository, the <code>results/</code>
-directory will exist, even though you’re ignoring the actual output
-files.</p>
 </div>
 <div class="section level3">
 <h3 id="common--gitignore-patterns">Common <code>.gitignore</code> Patterns<a class="anchor" aria-label="anchor" href="#common--gitignore-patterns"></a>
@@ -2285,6 +2261,26 @@ template and use it as your starting point.</p>
 </div>
 </div>
 </div>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Using <code>.gitkeep</code> Files</p>
+<p>One interesting edge case: you can’t add empty directories to a
+repository — directories need to have files in them.</p>
+<p>But what if your code expects a <code>results/</code> directory to
+exist for writing output to? Users would run your code and it would
+error because the directory doesn’t exist.</p>
+<p>You can solve this by creating an empty <code>.gitkeep</code> file
+inside the directory. Although <code>.gitkeep</code> is a hidden file
+(starts with a dot), it will ensure the directory structure is preserved
+in your repository.</p>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2299,8 +2295,6 @@ to ignore.</li>
 won’t show ignored files in the Changes tab.</li>
 <li>You should commit <code>.gitignore</code> to your repository so
 collaborators ignore the same files.</li>
-<li>Use <code>.gitkeep</code> files to preserve directory structure for
-empty folders that your code needs.</li>
 </ul>
 </div>
 </div>
