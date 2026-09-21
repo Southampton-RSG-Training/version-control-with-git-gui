@@ -346,7 +346,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Exploring History</h1>
-        <p>Last updated on 2026-06-23 |
+        <p>Last updated on 2026-09-21 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/05-history.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -404,8 +404,7 @@ paper last year.</p>
 <h3 id="comparing-versions">Comparing Versions<a class="anchor" aria-label="anchor" href="#comparing-versions"></a></h3>
 <p>To see what changed in a specific commit, <strong>click on
 it</strong> in the History tab:</p>
-<p>TODO: <img src="../fig/05-history/commit-details.png" alt="Commit details showing diff" class="figure"></p>
-<p>The right panel will show a <strong>diff</strong> of that commit.
+<figure><img src="../fig/05-history/commit-diff.png" alt="Commit details showing diff" class="figure mx-auto d-block"></figure><p>The right panel will show a <strong>diff</strong> of that commit.
 This shows all the changes made in that snapshot. Files are listed on
 the left, and clicking on a file shows the detailed diff on the right,
 with additions in <strong>green</strong> and deletions in
@@ -418,8 +417,7 @@ looked several commits ago? We can do this by holding <kbd>Ctrl</kbd>
 (Windows) or <kbd>Cmd</kbd> (Mac) and selecting a range of commits in
 the History tab.</p>
 <p>The right panel will then show a diff between the commits:</p>
-<p>TODO: <img src="../fig/05-history/compare-commits.png" alt="Comparing two commits selected in History tab" class="figure"></p>
-<p>This lets us see exactly what changed between any two points in time,
+<figure><img src="../fig/05-history/compare-commits.png" alt="Comparing two commits selected in History tab" class="figure mx-auto d-block"></figure><p>This lets us see exactly what changed between any two points in time,
 without needing to know commit IDs or count commits back from the
 present.</p>
 </div>
@@ -434,18 +432,32 @@ this:</p>
 <p><strong>Option 1: Revert a Commit</strong></p>
 <p>If you want to <strong>undo the changes made in a specific
 commit</strong>, right-click on that commit in the History tab and
-select <strong>Revert changes in commit</strong>:</p>
-<p>TODO: <img src="../fig/05-history/revert-commit.png" alt="Right-click menu showing Revert This Commit" class="figure"></p>
-<p>This creates a <strong>new commit</strong> that undoes the changes
+select <strong>Revert changes in commit</strong>.</p>
+<p>For example, let’s revert the changes we made our last commit to
+remove the rainfall processing placeholder.</p>
+<figure><img src="../fig/05-history/revert-commit.png" alt="Right-click menu showing Revert This Commit" class="figure mx-auto d-block"></figure><p>This creates a <strong>new commit</strong> that undoes the changes
 from the selected commit. The old commit stays in the history (you can
 always see what you did), but its changes are reversed.</p>
 <p><strong>Option 2: Discard Changes to a File</strong></p>
 <p>If you’ve made changes to files in your working directory but
-<strong>haven’t committed them yet</strong>, switch to the
-<strong>Changes</strong> tab. Right-click on a file you want to undo and
-select <strong>Discard Changes</strong>:</p>
-<p>TODO: <img src="../fig/05-history/discard-changes.png" alt="Right-click menu showing Discard Changes" class="figure"></p>
-<p>This will restore the file to its state in the last commit, throwing
+<strong>haven’t committed them yet</strong>, you can discard the change
+from the <strong>changes</strong> tab</p>
+<p>For example, open the climate_analysis.py file and make a small
+change. Add the code <code>print(data[0][0])</code> to the for loop
+which will print the first character of the line.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="cf">for</span> line <span class="kw">in</span> climate_data:</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>    data <span class="op">=</span> line.split(<span class="st">','</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="bu">print</span>(data[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a>    </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>  ...</span></code></pre>
+</div>
+<p>Save the change but don’t commit it.</p>
+<p>Open the changes tab in GitHub desktop, right-click on a file you
+want to undo and select <strong>Discard Changes</strong>:</p>
+<figure><img src="../fig/05-history/discard-changes.png" alt="Right-click menu showing Discard Changes" class="figure mx-auto d-block"></figure><p>This will restore the file to its state in the last commit, throwing
 away any edits you’ve made.</p>
 <div id="why-revert-not-delete" class="callout">
 <div class="callout-square">
@@ -457,15 +469,17 @@ away any edits you’ve made.</p>
 <div class="callout-content">
 <p>You might wonder: why does reverting a commit create a <em>new</em>
 commit, rather than just deleting the old one?</p>
-<p>The answer is that your full history is important. You can always see
-what you did, when you did it, and who did it, even if you’ve since
-undone it. This makes it easy to find bugs (“When did this function
-break?”) and to understand how your code evolved.</p>
+<p>The answer is that your full history is important for yourself or
+others in the future who are trying to understand your code. You can
+always see what you did, when you did it, and who did it, even if you’ve
+since undone those actions. This makes it easy to find bugs, figure out
+when a problem first occurred and to understand how your code
+evolved.</p>
 <p>If you deleted commits from history, you’d lose this record, making
 debugging and collaboration much harder. So Git creates a new “undo”
 commit instead, keeping the full history intact.</p>
 <p>This also means you can safely experiment: if you make a commit and
-realize it was a bad idea, you can always undo it with a revert
+realise it was a bad idea, you can always undo it with a revert
 commit.</p>
 </div>
 </div>
@@ -483,9 +497,8 @@ as <strong>deleted</strong>
 <strong>Discard Changes</strong>
 </li>
 <li>The file is restored to its last committed state</li>
-</ol><p>TODO: <img src="../fig/05-history/restore.svg" style="width:60.0%" alt="Restoring Files" class="figure"></p>
-<p>The fact that you can restore individual files tends to change the
-way people organize their work.</p>
+</ol><figure><img src="../fig/05-history/climate-analysis-deleted.png" alt="Restoring the deleted file from github desktop" class="figure mx-auto d-block"></figure><figure><img src="../fig/05-history/restore.svg" style="width:60.0%" alt="Restoring Files" class="figure mx-auto d-block"></figure><p>The fact that you can restore individual files tends to change the
+way people organise their work.</p>
 <p>Consider a situation where all your code is in one file, and you
 fixed a bug in one section but accidentally introduced one elsewhere.
 You can’t just revert that commit without un-fixing the other bug.</p>
@@ -505,14 +518,10 @@ example, the version of code you used to write a paper, or the first
 “released” version.</p>
 <p>You can do this with <strong>tags</strong>. Right-click on a commit
 in the History tab and select <strong>Create a Tag</strong>:</p>
-<p>TODO: <img src="../fig/05-history/create-tag.png" alt="Create a Tag option" class="figure"></p>
-<p>Give it a meaningful name like <code>v1.0</code> or
+<figure><img src="../fig/05-history/create-tag.png" alt="Create a Tag option" class="figure mx-auto d-block"></figure><p>Give it a meaningful name like <code>v1.0</code> or
 <code>paper-2024</code>:</p>
-<p>TODO: <img src="../fig/05-history/tag-dialog.png" alt="Tag creation dialog" class="figure"></p>
-<p>Tags appear in the History tab as labels on commits, making it easy
-to jump back to important versions. Unlike branch names, tags are
-<strong>permanent markers</strong> that never change, making them ideal
-for marking specific versions.</p>
+<figure><img src="../fig/05-history/tag-dialogue.png" alt="Tag creation dialog" class="figure mx-auto d-block"></figure><p>Tags appear in the History tab as labels on commits, making it easy
+to jump back to important versions.</p>
 </div>
 </div>
 </div>
@@ -603,8 +612,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/05-history.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/05-history.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-06-23",
-  "datePublished": "2026-09-15"
+  "dateModified": "2026-09-21",
+  "datePublished": "2026-09-21"
 }
 
   </script><script>
