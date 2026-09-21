@@ -41,7 +41,7 @@ These are important because they let you refer to specific versions of your code
 
 To see what changed in a specific commit, **click on it** in the History tab:
 
-TODO: ![](fig/05-history/commit-details.png){alt="Commit details showing diff"}
+![](fig/05-history/commit-diff.png){alt="Commit details showing diff"}
 
 The right panel will show a **diff** of that commit.  This shows all the changes made in that snapshot.
 Files are listed on the left, and clicking on a file shows the detailed diff on the right, with additions in **green** and deletions in **red**.
@@ -53,7 +53,7 @@ We can do this by holding <kbd>Ctrl</kbd> (Windows) or <kbd>Cmd</kbd> (Mac) and 
 
 The right panel will then show a diff between the commits:
 
-TODO: ![](fig/05-history/compare-commits.png){alt="Comparing two commits selected in History tab"}
+![](fig/05-history/compare-commits.png){alt="Comparing two commits selected in History tab"}
 
 This lets us see exactly what changed between any two points in time, without needing to know commit IDs or count commits back from the present.
 
@@ -67,19 +67,35 @@ GitHub Desktop provides several ways to do this:
 
 **Option 1: Revert a Commit**
 
-If you want to **undo the changes made in a specific commit**, right-click on that commit in the History tab and select **Revert changes in commit**:
+If you want to **undo the changes made in a specific commit**, right-click on that commit in the History tab and select **Revert changes in commit**.
 
-TODO: ![](fig/05-history/revert-commit.png){alt="Right-click menu showing Revert This Commit"}
+For example, let's revert the changes we made our last commit to remove the rainfall processing placeholder.
+
+![](fig/05-history/revert-commit.png){alt="Right-click menu showing Revert This Commit"}
 
 This creates a **new commit** that undoes the changes from the selected commit.
 The old commit stays in the history (you can always see what you did), but its changes are reversed.
 
 **Option 2: Discard Changes to a File**
 
-If you've made changes to files in your working directory but **haven't committed them yet**, switch to the **Changes** tab.
-Right-click on a file you want to undo and select **Discard Changes**:
+If you've made changes to files in your working directory but **haven't committed them yet**, you can discard the change from the **changes** tab
 
-TODO: ![](fig/05-history/discard-changes.png){alt="Right-click menu showing Discard Changes"}
+For example, open the climate_analysis.py file and make a small change.  Add the code `print(data[0][0])` to the for loop which will print the first character of the line.
+
+```python
+for line in climate_data:
+    data = line.split(',')
+    print(data[0][0])
+    
+  ...
+```
+
+Save the change but don't commit it.
+
+
+Open the changes tab in GitHub desktop, right-click on a file you want to undo and select **Discard Changes**:
+
+![](fig/05-history/discard-changes.png){alt="Right-click menu showing Discard Changes"}
 
 This will restore the file to its state in the last commit, throwing away any edits you've made.
 
@@ -90,14 +106,14 @@ This will restore the file to its state in the last commit, throwing away any ed
 
 You might wonder: why does reverting a commit create a *new* commit, rather than just deleting the old one?
 
-The answer is that your full history is important.
-You can always see what you did, when you did it, and who did it, even if you've since undone it.
-This makes it easy to find bugs ("When did this function break?") and to understand how your code evolved.
+The answer is that your full history is important for yourself or others in the future who are trying to understand your code.
+You can always see what you did, when you did it, and who did it, even if you've since undone those actions.
+This makes it easy to find bugs, figure out when a problem first occurred and to understand how your code evolved.
 
 If you deleted commits from history, you'd lose this record, making debugging and collaboration much harder.
 So Git creates a new "undo" commit instead, keeping the full history intact.
 
-This also means you can safely experiment: if you make a commit and realize it was a bad idea, you can always undo it with a revert commit.
+This also means you can safely experiment: if you make a commit and realise it was a bad idea, you can always undo it with a revert commit.
 
 ::::::::::::::::
 
@@ -110,10 +126,11 @@ Let's say you accidentally delete `climate_analysis.py`. Here's how to recover i
 3. In the Changes tab, right-click on the deleted file and select **Discard Changes**
 4. The file is restored to its last committed state
 
+![](fig/05-history/climate-analysis-deleted.png){alt="Restoring the deleted file from github desktop"}
 
-TODO: ![](fig/05-history/restore.svg){width="60%" alt="Restoring Files"}
+![](fig/05-history/restore.svg){width="60%" alt="Restoring Files"}
 
-The fact that you can restore individual files tends to change the way people organize their work.
+The fact that you can restore individual files tends to change the way people organise their work.
 
 Consider a situation where all your code is in one file, and you fixed a bug in one section but accidentally introduced one elsewhere.
 You can't just revert that commit without un-fixing the other bug.
@@ -129,14 +146,13 @@ Sometimes you want to mark a specific commit as important, for example, the vers
 
 You can do this with **tags**. Right-click on a commit in the History tab and select **Create a Tag**:
 
-TODO: ![](fig/05-history/create-tag.png){alt="Create a Tag option"}
+![](fig/05-history/create-tag.png){alt="Create a Tag option"}
 
 Give it a meaningful name like `v1.0` or `paper-2024`:
 
-TODO: ![](fig/05-history/tag-dialog.png){alt="Tag creation dialog"}
+![](fig/05-history/tag-dialogue.png){alt="Tag creation dialog"}
 
 Tags appear in the History tab as labels on commits, making it easy to jump back to important versions.
-Unlike branch names, tags are **permanent markers** that never change, making them ideal for marking specific versions.
 
 ::::::::::::::::
 
