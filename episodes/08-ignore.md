@@ -39,7 +39,11 @@ Let's tell Git to **ignore** them by adding them to a `.gitignore` file.
 
 Click **Repository** then **Repository settings**.
 
+![](fig/08-ignore/respository-settings.png){alt="Repository dropdown"}
+
 Select **Ignored files**.
+
+![](fig/08-ignore/ignored-files-dialog.png){alt="Ignored files dialog box"}
 
 
 Add the following:
@@ -69,31 +73,12 @@ So let's add and commit it. Make sure `.gitignore` is **checked** in the Changes
 Add gitignore file
 ```
 
-Click **Commit to [branch]**:
-
-![](fig/08-ignore/commit-gitignore.png){alt="Committing .gitignore"}}
+Click **Commit to dev**:
 
 The Changes tab will now be empty showing that there are no more untracked or modified files to commit.
 
 The files are still there and you can view them in your file explorer, but they will now be ignored by Git.
 
-### Using `.gitkeep` Files
-
-One interesting edge case: you can't add empty directories to a repository — directories need to have files in them.
-
-But what if your code expects a `results/` directory to exist for writing output to?
-Users would run your code and it would error because the directory doesn't exist.
-
-You can solve this by creating an empty `.gitkeep` file inside the directory.
-Although `.gitkeep` is a hidden file (starts with a dot), it will ensure the directory structure is preserved in your repository.
-
-To do this:
-
-1. Create the `results/` directory if it doesn't exist
-2. Create an empty file called `.gitkeep` inside it
-3. In GitHub Desktop, this file will appear — commit it with the message "Keep results directory"
-
-Now when someone clones your repository, the `results/` directory will exist, even though you're ignoring the actual output files.
 
 ### Common `.gitignore` Patterns
 
@@ -137,11 +122,23 @@ If you're starting a Python project, for example, you might copy the [Python.git
 
 ::::::::::::
 
+:::::::: callout
+Using `.gitkeep` Files
+
+One interesting edge case: you can't add empty directories to a repository — directories need to have files in them.
+
+But what if your code expects a `results/` directory to exist for writing output to?
+Users would run your code and it would error because the directory doesn't exist.
+
+You can solve this by creating an empty `.gitkeep` file inside the directory.
+Although `.gitkeep` is a hidden file (starts with a dot), it will ensure the directory structure is preserved in your repository.
+
+::::::::::::
+
 :::::::: keypoints
 
 - The `.gitignore` file tells Git which files and folders to ignore.
 - GitHub Desktop automatically respects `.gitignore` and won't show ignored files in the Changes tab.
 - You should commit `.gitignore` to your repository so collaborators ignore the same files.
-- Use `.gitkeep` files to preserve directory structure for empty folders that your code needs.
 
 ::::::::::::::::::
