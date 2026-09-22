@@ -23,13 +23,13 @@ exercises: 0
 We've got a repository now containing a few pre-existing files - so let's add one more.
 You might remember GitHub suggesting we add a `README.md` to let people know what our code is about, so let's do that now.
 
-### Creating a New File#
+### Creating a New File
 
 Navigate to the climate-analysis folder in your file explorer.
 
 Create a new text file in this folder.  (Note: this should be a plain text file, not a microsoft word document)
 
-![](fig/04-create/create-txt-file.png){alt="Creating a new text file from the file explorer"}
+![](fig/04-changes/create-txt-file.png){alt="Creating a new text file from the file explorer"}
 
 Name this new text file `README`.
 

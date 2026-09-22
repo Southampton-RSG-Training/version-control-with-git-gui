@@ -39,7 +39,7 @@ Let's tell Git to **ignore** them by adding them to a `.gitignore` file.
 
 Click **Repository** then **Repository settings**.
 
-![](fig/08-ignore/respository-settings.png){alt="Repository dropdown"}
+![](fig/08-ignore/repository-settings.png){alt="Repository dropdown"}
 
 Select **Ignored files**.
 

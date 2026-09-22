@@ -131,7 +131,7 @@ Great. Now let’s go back to GitHub Desktop and try pushing our local changes t
 
 Click the **Push origin** button:
 
-![](fig/06-remote/pull-button.png){alt="Push origin button in GitHub Desktop"}
+![](fig/06-remote/push-button.png){alt="Push origin button in GitHub Desktop"}
 
 GitHub Desktop will produce a warning message saying that you're not able to push commits to this branch because there are commits on the remote that are not present on your local branch.
 
