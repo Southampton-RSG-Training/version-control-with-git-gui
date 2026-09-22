@@ -329,8 +329,19 @@
     </nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
 
-<p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
-Workbench</a>.</p>
+<p>This course introduces researchers to version control using Git and
+GitHub through an accessible graphical interface, requiring no prior
+experience with Git or the command line. Participants will learn the
+core concepts of version control and work through the full Git workflow
+- from setting up Git and creating repositories, to tracking files,
+working with remote repositories, and managing branches. By the end of
+the course, researchers will be able to manage their project files using
+Git and collaborate with others through GitHub.</p>
+<p>This course is aimed at academic researchers at all career stages,
+across all disciplines. No prior experience with Git, GitHub, or the
+command line is required. This course is relevant to any researchers who
+want to adopt better practices for tracking and organising their
+work.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -435,55 +446,23 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><section><h2 class="section-heading" id="installing-git">Installing Git<a class="anchor" aria-label="anchor" href="#installing-git"></a></h2>
-<hr class="half-width"><p>Since several Carpentries lessons rely on Git, please see <a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">this
-section of the workshop template</a> for instructions on installing Git
-for various operating systems.</p>
-<ul><li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
-installation on Windows</a></li>
-<li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
-installation on MacOS</a></li>
-<li><a href="https://carpentries.github.io/workshop-template/install_instructions/#git" class="external-link">Git
-installation on Linux</a></li>
-</ul></section><section><h2 class="section-heading" id="creating-a-github-account">Creating a GitHub Account<a class="anchor" aria-label="anchor" href="#creating-a-github-account"></a></h2>
-<hr class="half-width"><p>You will need an account for <a href="https://github.com" class="external-link">GitHub</a>.</p>
+      </section><section id="setup"><section><h2 class="section-heading" id="install-github-desktop">Install GitHub Desktop<a class="anchor" aria-label="anchor" href="#install-github-desktop"></a></h2>
+<hr class="half-width"><p>Download GitHub Desktop from <a href="https://desktop.github.com/download/" class="external-link uri">https://desktop.github.com/download/</a>.</p>
+<p>Run the downloaded executable file to install GitHub Desktop onto
+your computer.</p>
+</section><section><h2 class="section-heading" id="create-a-github-account">Create a GitHub Account<a class="anchor" aria-label="anchor" href="#create-a-github-account"></a></h2>
+<hr class="half-width"><p>We’ll be using the website GitHub (<a href="https://github.com/" class="external-link uri">https://github.com/</a>) to host, back up, and distribute
+our code. You’ll need to create an account there. As your GitHub
+username will appear in the URLs of your projects there, it’s best to
+use a short, clear version of your name if you can.</p>
 <ol style="list-style-type: decimal"><li>Go to <a href="https://github.com" class="external-link uri">https://github.com</a> and follow the “Sign up” link at the
 top-right of the window.</li>
 <li>Follow the instructions to create an account.</li>
 <li>Verify your email address with GitHub.</li>
-<li>Configure multifactor authentication (see below).</li>
-</ol><div class="section level3">
-<h3 id="multi-factor-authentication">Multi-factor Authentication<a class="anchor" aria-label="anchor" href="#multi-factor-authentication"></a></h3>
-<p>In 2023, GitHub introduced a requirement for all accounts to have <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication" class="external-link">multi-factor
-authentication (2FA)</a> configured for extra security. Several options
-exist for setting up 2FA, which are summarised here:</p>
-<ol style="list-style-type: decimal"><li>If you already use an authenticator app, like <a href="https://support.google.com/accounts/answer/1066447?hl=en&amp;co=GENIE.Platform%3DiOS&amp;oco=0" class="external-link">Google
-Authenticator</a> or <a href="https://duo.com/product/multi-factor-authentication-mfa/duo-mobile-app" class="external-link">Duo
-Mobile</a> on your smartphone for example, <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-mobile-app" class="external-link">add
-GitHub to that app</a>.</li>
-<li>If you have access to a smartphone but do not already use an
-authenticator app, install one and <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-mobile-app" class="external-link">add
-GitHub to the app</a>.</li>
-<li>If you do not have access to a smartphone or do not want to install
-an authenticator app, you have two options:
-<ol style="list-style-type: decimal"><li>
-<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-text-messages" class="external-link">set
-up 2FA via text message</a> (<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/countries-where-sms-authentication-is-supported" class="external-link">list
-of countries where authentication by SMS is supported</a>), or</li>
-<li>
-<a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-security-key" class="external-link">use
-a hardware security key</a> like <a href="https://www.yubico.com/products/yubikey-5-overview/" class="external-link">YubiKey</a>
-or the <a href="https://store.google.com/us/product/titan_security_key?hl=en-US&amp;pli=1" class="external-link">Google
-Titan key</a>.</li>
-</ol></li>
-</ol><p>The GitHub documentation provides <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication" class="external-link">more
-details about configuring 2FA</a>.</p>
-<!--
+</ol><!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- -->
-</div>
-</section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+ --></section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="../instructor/01-background.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
@@ -534,8 +513,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-09-21",
-  "datePublished": "2026-09-21"
+  "dateModified": "2026-09-22",
+  "datePublished": "2026-09-22"
 }
 
   </script><script>
