@@ -174,6 +174,7 @@ Both branches are now up-to-date on GitHub, and your new feature has been integr
 When we push a new branch to GitHub, GitHub suggests creating a **Pull Request** — another way of merging branches that works better when you're part of a team.
 
 A **Pull Request** is a GitHub feature that lets your team:
+
 - Discuss the changes you've made
 - Request peer review of your code
 - See all your changes in detail before merging
