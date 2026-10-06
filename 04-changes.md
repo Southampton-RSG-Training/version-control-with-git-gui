@@ -21,7 +21,7 @@ exercises: 0
 ## Tracking Changes
 
 We've got a repository now containing a few pre-existing files - so let's add one more.
-You might remember GitHub suggesting we add a `README.md` to let people know what our code is about, so let's do that now.
+You might remember GitHub suggesting we add a `README` to let people know what our code is about, so let's do that now.
 
 ### Creating a New File
 
@@ -134,7 +134,7 @@ GitHub Desktop checks all changed files by default — but you can uncheck indiv
 
 To see what we've done recently, switch to the **History** tab:
 
-TODO: ![](fig/04-changes/history.png){alt="History tab showing commits"}
+![](fig/04-changes/history.png){alt="History tab showing commits"}
 
 The History tab lists all **commits** to the repository, most recent at the top.
 For each commit, you can see:
@@ -142,8 +142,7 @@ For each commit, you can see:
 - The **commit message** (summary)
 - The **author** and **timestamp**
 - The short **commit identifier** (e.g. `fa90884`)
-- Whether the commit has been **pushed to GitHub**.  Commits still only on your machine are shown as being ahead of `origin/main`
-
+- Whether the commit has been **pushed to GitHub**.  If you hover over the arrow next to the commit you'll see a message 'This commit has not been pushed to the remote repository'.
 Click any commit to see a diff of exactly what changed in that snapshot.
 
 ### Modifying a File

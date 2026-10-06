@@ -65,18 +65,7 @@ All right: we can **save changes** to files and **see what we've changed**, but 
 Suppose we accidentally modify a file and commit it, and now we want to undo that commit.
 GitHub Desktop provides several ways to do this:
 
-**Option 1: Revert a Commit**
-
-If you want to **undo the changes made in a specific commit**, right-click on that commit in the History tab and select **Revert changes in commit**.
-
-For example, let's revert the changes we made our last commit to remove the rainfall processing placeholder.
-
-![](fig/05-history/revert-commit.png){alt="Right-click menu showing Revert This Commit"}
-
-This creates a **new commit** that undoes the changes from the selected commit.
-The old commit stays in the history (you can always see what you did), but its changes are reversed.
-
-**Option 2: Discard Changes to a File**
+**Option 1: Discard Changes to a File**
 
 If you've made changes to files in your working directory but **haven't committed them yet**, you can discard the change from the **changes** tab
 
@@ -100,6 +89,18 @@ Open the changes tab in GitHub desktop, right-click on a file you want to undo a
 This will restore the file to its state in the last commit, throwing away any edits you've made.
 
 
+**Option 2: Revert a Commit**
+
+If you have already committed the change and you want to **undo the changes made in a specific commit**, right-click on that commit in the History tab and select **Revert changes in commit**.
+
+For example, let's revert the changes we made our last commit to remove the rainfall processing placeholder.
+
+![](fig/05-history/revert-commit.png){alt="Right-click menu showing Revert This Commit"}
+
+This creates a **new commit** that undoes the changes from the selected commit.
+The old commit stays in the history (you can always see what you did), but its changes are reversed.
+
+
 :::::::: callout
 
 ## Why Revert, Not Delete?
@@ -117,12 +118,12 @@ This also means you can safely experiment: if you make a commit and realise it w
 
 ::::::::::::::::
 
-### A Practical Example
+### Example: What if you accidentally delete a file?
 
 Let's say you accidentally delete `climate_analysis.py`. Here's how to recover it:
 
 1. Your file disappears from the folder, and the Changes tab shows it as **deleted**
-2. You realize this was a mistake
+2. You realise this was a mistake
 3. In the Changes tab, right-click on the deleted file and select **Discard Changes**
 4. The file is restored to its last committed state
 

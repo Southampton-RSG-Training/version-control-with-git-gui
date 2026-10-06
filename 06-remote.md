@@ -99,8 +99,8 @@ Add collaboration info
 
 ### Creating a Conflict
 
-Pretending to be an existing collaborator, we’ll go and add those installation instructions by editing our README.md file directly on GitHub.
-To do this, visit your repository on GitHub and click the **pencil icon** next to `README.md` to edit it directly:
+Pretending to be an existing collaborator, we’ll go and add those installation instructions by editing our README file directly on GitHub.
+To do this, visit your repository on GitHub and click the **pencil icon** next to `README` to edit it directly:
 
 ![](fig/06-remote/edit-button.png){alt="GitHub edit button"}
 
@@ -119,9 +119,10 @@ Click the green 'Commit changes...' button and commit the changes with a message
 ![](fig/06-remote/edit-commit.png){alt="GitHub committing edit"}
 
 Now you have a situation where:
+
 - Your **local repository** has a commit about collaboration info
 - Your **remote repository** has a different commit about installation instructions
-- Both edited the same file (`README.md`)
+- Both edited the same file (`README`)
 
 This is a realistic scenario in collaborative work!
 
@@ -151,7 +152,7 @@ Click 'Open with default program' to open the file in your text editor.
 
 
 ```
-# Climate Analysis Toolkit
+Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
@@ -167,7 +168,7 @@ To install a copy of the toolkit, open a terminal and run:
 >>>>>>> 493dd81b5d5b34211ccff4b5d0daf8efb3147755
 ```
 
-We can see the two different edits we made to the end of the README.md file, in a block defined by <<<, === and >>>. The top block is labelled HEAD (the changes in our latest local commit), whilst the bottom block is labelled with the commit ID of the commit we made on GitHub.
+We can see the two different edits we made to the end of the README file, in a block defined by <<<, === and >>>. The top block is labelled HEAD (the changes in our latest local commit), whilst the bottom block is labelled with the commit ID of the commit we made on GitHub.
 
 We can fix this by deleting all the markers and keeping the text we want:
 
