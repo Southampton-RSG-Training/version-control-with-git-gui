@@ -40,7 +40,10 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="incubator-logo" alt="Lesson Description" src="../assets/images/incubator-logo.svg"><span class="badge text-bg-warning">
+        <a href="index.html">
+        <img id="incubator-logo" alt="Lesson Description" src="../assets/images/incubator-logo.svg"></a>
+
+        <span class="badge text-bg-warning">
           <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
               <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
@@ -96,8 +99,9 @@
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Lesson Description" src="../assets/images/incubator-logo-sm.svg">
-</div>
+      <a href="index.html">
+      <img class="small-logo" alt="Lesson Description" src="../assets/images/incubator-logo-sm.svg"></a>
+    </div>
     <div class="lesson-title-md">
       Version Control with Git (GUI)
     </div>
@@ -144,7 +148,7 @@
       </fieldset>
     </form>
     -->
-    <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+    <a id="search-button-nav" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
 </nav><div class="container">
@@ -156,6 +160,9 @@
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
+          <div class="row mobile-row" id="theme-row-mobile">
+            <a id="search-button-sidebar" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+          </div>
           <div class="row mobile-row" id="theme-row-mobile">
             <menu class="col theme-selector" id="theme-selector-sidebar">
 <li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
@@ -204,6 +211,7 @@
 <!--/div.accordion-item-->
                 </div>
 <!--/div.accordion-flush-->
+
               </div>
 <!--div.sidenav-view-selector -->
             </div>
@@ -331,21 +339,37 @@
 </div>
 <!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="99-survey.html">9. Survey</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
                 </div>
               </div>
             </div>
+
+            <hr class="half-width">
+<div class="accordion accordion-flush" id="accordion-links-toggle">
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-links-toggle">
+                  <button class="accordion-button collapsed" id="links" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-links-toggle" aria-expanded="false" aria-controls="flush-collapse-links-toggle">
+                    LINKS
+                  </button>
+                </h2>
+                <div id="flush-collapse-links-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-links-toggle">
+                    <div class="accordion-body">
+                        <ul>
+<li>
+                            <a href="../instructor/key-points.html">Key Points</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/instructor-notes.html">Instructor Notes</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/images.html">Extract All Images</a>
+                            </li>
+                        </ul>
+</div>
+                </div>
+                </div>
+<!--/div.accordion-item-->
+            </div>
+<!--/div.accordion-flush-->
 
             <hr class="half-width">
 <div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
@@ -358,16 +382,7 @@
                 <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
-<li>
-                        <a href="../instructor/key-points.html">Key Points</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/instructor-notes.html">Instructor Notes</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/images.html">Extract All Images</a>
-                      </li>
-                      <hr>
+<hr>
 <li><a class="dropdown-item" href="reference.html">Reference</a></li>
 <li><a class="dropdown-item" href="discussion.html">Discussion</a></li>
                     </ul>
@@ -916,11 +931,11 @@ in your file explorer, you’ll spot a hidden folder called
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <p>In File Explorer, go to <strong>View &gt; Show &gt; Hidden
 items</strong>.</p>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <p>In Finder, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to
 toggle hidden files.</p>
 </div>
@@ -997,7 +1012,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-04-changes"><p>Content from <a href="04-changes.html">Tracking Changes</a></p>
 <hr>
-<p>Last updated on 2026-09-22 |
+<p>Last updated on 2026-10-06 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/04-changes.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -1036,8 +1051,8 @@ modify-stage-commit cycle.</li>
 <hr class="half-width">
 <p>We’ve got a repository now containing a few pre-existing files - so
 let’s add one more. You might remember GitHub suggesting we add a
-<code>README.md</code> to let people know what our code is about, so
-let’s do that now.</p>
+<code>README</code> to let people know what our code is about, so let’s
+do that now.</p>
 <div class="section level3">
 <h3 id="creating-a-new-file">Creating a New File<a class="anchor" aria-label="anchor" href="#creating-a-new-file"></a>
 </h3>
@@ -1160,8 +1175,7 @@ commit.</p>
 </h3>
 <p>To see what we’ve done recently, switch to the
 <strong>History</strong> tab:</p>
-<p>TODO: <img src="../fig/04-changes/history.png" alt="History tab showing commits" class="figure"></p>
-<p>The History tab lists all <strong>commits</strong> to the repository,
+<figure><img src="../fig/04-changes/history.png" alt="History tab showing commits" class="figure mx-auto d-block"></figure><p>The History tab lists all <strong>commits</strong> to the repository,
 most recent at the top. For each commit, you can see:</p>
 <ul>
 <li>The <strong>commit message</strong> (summary)</li>
@@ -1169,13 +1183,11 @@ most recent at the top. For each commit, you can see:</p>
 </li>
 <li>The short <strong>commit identifier</strong>
 (e.g. <code>fa90884</code>)</li>
-<li>Whether the commit has been <strong>pushed to GitHub</strong>.
-Commits still only on your machine are shown as being ahead of
-<code>origin/main</code>
-</li>
+<li>Whether the commit has been <strong>pushed to GitHub</strong>. If
+you hover over the arrow next to the commit you’ll see a message ‘This
+commit has not been pushed to the remote repository’. Click any commit
+to see a diff of exactly what changed in that snapshot.</li>
 </ul>
-<p>Click any commit to see a diff of exactly what changed in that
-snapshot.</p>
 </div>
 <div class="section level3">
 <h3 id="modifying-a-file">Modifying a File<a class="anchor" aria-label="anchor" href="#modifying-a-file"></a>
@@ -1266,7 +1278,7 @@ changes”</em>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Open <code>climate_analysis.py</code> in your text editor, add the
 TODO line at the end, and save.</p>
@@ -1370,7 +1382,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-05-history"><p>Content from <a href="05-history.html">Exploring History</a></p>
 <hr>
-<p>Last updated on 2026-09-21 |
+<p>Last updated on 2026-10-06 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/05-history.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -1457,16 +1469,7 @@ present.</p>
 <p>Suppose we accidentally modify a file and commit it, and now we want
 to undo that commit. GitHub Desktop provides several ways to do
 this:</p>
-<p><strong>Option 1: Revert a Commit</strong></p>
-<p>If you want to <strong>undo the changes made in a specific
-commit</strong>, right-click on that commit in the History tab and
-select <strong>Revert changes in commit</strong>.</p>
-<p>For example, let’s revert the changes we made our last commit to
-remove the rainfall processing placeholder.</p>
-<figure><img src="../fig/05-history/revert-commit.png" alt="Right-click menu showing Revert This Commit" class="figure mx-auto d-block"></figure><p>This creates a <strong>new commit</strong> that undoes the changes
-from the selected commit. The old commit stays in the history (you can
-always see what you did), but its changes are reversed.</p>
-<p><strong>Option 2: Discard Changes to a File</strong></p>
+<p><strong>Option 1: Discard Changes to a File</strong></p>
 <p>If you’ve made changes to files in your working directory but
 <strong>haven’t committed them yet</strong>, you can discard the change
 from the <strong>changes</strong> tab</p>
@@ -1487,6 +1490,16 @@ which will print the first character of the line.</p>
 want to undo and select <strong>Discard Changes</strong>:</p>
 <figure><img src="../fig/05-history/discard-changes.png" alt="Right-click menu showing Discard Changes" class="figure mx-auto d-block"></figure><p>This will restore the file to its state in the last commit, throwing
 away any edits you’ve made.</p>
+<p><strong>Option 2: Revert a Commit</strong></p>
+<p>If you have already committed the change and you want to <strong>undo
+the changes made in a specific commit</strong>, right-click on that
+commit in the History tab and select <strong>Revert changes in
+commit</strong>.</p>
+<p>For example, let’s revert the changes we made our last commit to
+remove the rainfall processing placeholder.</p>
+<figure><img src="../fig/05-history/revert-commit.png" alt="Right-click menu showing Revert This Commit" class="figure mx-auto d-block"></figure><p>This creates a <strong>new commit</strong> that undoes the changes
+from the selected commit. The old commit stays in the history (you can
+always see what you did), but its changes are reversed.</p>
 <div id="why-revert-not-delete" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1514,7 +1527,7 @@ commit.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="a-practical-example">A Practical Example<a class="anchor" aria-label="anchor" href="#a-practical-example"></a>
+<h3 id="example-what-if-you-accidentally-delete-a-file">Example: What if you accidentally delete a file?<a class="anchor" aria-label="anchor" href="#example-what-if-you-accidentally-delete-a-file"></a>
 </h3>
 <p>Let’s say you accidentally delete <code>climate_analysis.py</code>.
 Here’s how to recover it:</p>
@@ -1522,7 +1535,7 @@ Here’s how to recover it:</p>
 <li>Your file disappears from the folder, and the Changes tab shows it
 as <strong>deleted</strong>
 </li>
-<li>You realize this was a mistake</li>
+<li>You realise this was a mistake</li>
 <li>In the Changes tab, right-click on the deleted file and select
 <strong>Discard Changes</strong>
 </li>
@@ -1587,7 +1600,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-06-remote"><p>Content from <a href="06-remote.html">Remote Repositories</a></p>
 <hr>
-<p>Last updated on 2026-09-22 |
+<p>Last updated on 2026-10-06 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/06-remote.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -1711,10 +1724,9 @@ does GitHub know which version of the file is ‘correct’?</p>
 <h3 id="creating-a-conflict">Creating a Conflict<a class="anchor" aria-label="anchor" href="#creating-a-conflict"></a>
 </h3>
 <p>Pretending to be an existing collaborator, we’ll go and add those
-installation instructions by editing our README.md file directly on
-GitHub. To do this, visit your repository on GitHub and click the
-<strong>pencil icon</strong> next to <code>README.md</code> to edit it
-directly:</p>
+installation instructions by editing our README file directly on GitHub.
+To do this, visit your repository on GitHub and click the <strong>pencil
+icon</strong> next to <code>README</code> to edit it directly:</p>
 <figure><img src="../fig/06-remote/edit-button.png" alt="GitHub edit button" class="figure mx-auto d-block"></figure><p>Add some installation instructions and a note about the project
 status:</p>
 <pre><code>To install a copy of this toolkit, clone this repository.
@@ -1722,11 +1734,14 @@ status:</p>
 This code is currently in development and not all features will work.</code></pre>
 <figure><img src="../fig/06-remote/edit-readme.png" alt="GitHub editing Readme" class="figure mx-auto d-block"></figure><p>Click the green ‘Commit changes…’ button and commit the changes with
 a message like “Add installation instructions”:</p>
-<figure><img src="../fig/06-remote/edit-commit.png" alt="GitHub committing edit" class="figure mx-auto d-block"></figure><p>Now you have a situation where: - Your <strong>local
-repository</strong> has a commit about collaboration info - Your
-<strong>remote repository</strong> has a different commit about
-installation instructions - Both edited the same file
-(<code>README.md</code>)</p>
+<figure><img src="../fig/06-remote/edit-commit.png" alt="GitHub committing edit" class="figure mx-auto d-block"></figure><p>Now you have a situation where:</p>
+<ul>
+<li>Your <strong>local repository</strong> has a commit about
+collaboration info</li>
+<li>Your <strong>remote repository</strong> has a different commit about
+installation instructions</li>
+<li>Both edited the same file (<code>README</code>)</li>
+</ul>
 <p>This is a realistic scenario in collaborative work!</p>
 </div>
 <div class="section level3">
@@ -1751,7 +1766,7 @@ commits edit the exact same part of a file it will need you to help
 it.</p>
 <figure><img src="../fig/06-remote/conflict-notification.png" alt="Notification of merge conflict" class="figure mx-auto d-block"></figure><p>Click ‘Open with default program’ to open the file in your text
 editor.</p>
-<pre><code># Climate Analysis Toolkit
+<pre><code>Climate Analysis Toolkit
 
 This is a set of python scripts designed to analyse climate datafiles.
 
@@ -1765,11 +1780,11 @@ To install a copy of the toolkit, open a terminal and run:
 
 **This code is currently in development and not all features will work**
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 493dd81b5d5b34211ccff4b5d0daf8efb3147755</code></pre>
-<p>We can see the two different edits we made to the end of the
-README.md file, in a block defined by &lt;&lt;&lt;, === and
-&gt;&gt;&gt;. The top block is labelled HEAD (the changes in our latest
-local commit), whilst the bottom block is labelled with the commit ID of
-the commit we made on GitHub.</p>
+<p>We can see the two different edits we made to the end of the README
+file, in a block defined by &lt;&lt;&lt;, === and &gt;&gt;&gt;. The top
+block is labelled HEAD (the changes in our latest local commit), whilst
+the bottom block is labelled with the commit ID of the commit we made on
+GitHub.</p>
 <p>We can fix this by deleting all the markers and keeping the text we
 want:</p>
 <pre><code>Climate Analysis Toolkit
@@ -1854,7 +1869,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-07-branches"><p>Content from <a href="07-branches.html">Branching</a></p>
 <hr>
-<p>Last updated on 2026-09-21 |
+<p>Last updated on 2026-10-06 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/07-branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -2069,8 +2084,12 @@ been integrated into the main version of your code!</p>
 <strong>Pull Request</strong> — another way of merging branches that
 works better when you’re part of a team.</p>
 <p>A <strong>Pull Request</strong> is a GitHub feature that lets your
-team: - Discuss the changes you’ve made - Request peer review of your
-code - See all your changes in detail before merging</p>
+team:</p>
+<ul>
+<li>Discuss the changes you’ve made</li>
+<li>Request peer review of your code</li>
+<li>See all your changes in detail before merging</li>
+</ul>
 <p>Instead of merging directly, you create a Pull Request on GitHub,
 your team reviews it, and then someone approves and merges it.</p>
 <p>If you’re working as part of a team, <strong>Pull Requests</strong>
@@ -2313,26 +2332,6 @@ collaborators ignore the same files.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div></section><section id="aio-99-survey"><p>Content from <a href="99-survey.html">Survey</a></p>
-<hr>
-<p>Last updated on 2026-06-18 |
-
-        <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/99-survey.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 0 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div class="callout-inner">
-<div class="callout-content">
-<p>Please fill in the <a href="https://docs.google.com/forms/d/e/1FAIpQLScX7g5AZ6sV7TzA4VPPrvBua55lD_rnif6GiPD2_TnuNBBlpg/viewform?usp=pp_url&amp;entry.1679853141=git-novice" class="external-link">Post-Lesson
-Survey</a></p>
-</div>
-</div>
 </div></section>
 </div>
     </main>
@@ -2360,7 +2359,7 @@ Survey</a></p>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.2)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.3)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -2383,8 +2382,8 @@ Survey</a></p>
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "dateCreated": "2026-06-18",
-  "dateModified": "2026-09-29",
-  "datePublished": "2026-09-29"
+  "dateModified": "2026-10-06",
+  "datePublished": "2026-10-06"
 }
 
   </script><script>
