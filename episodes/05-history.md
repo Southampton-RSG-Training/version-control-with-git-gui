@@ -1,7 +1,7 @@
 ---
 title: "Exploring History"
 slug: git-novice-exploring-history
-teaching: 10
+teaching: 15
 exercises: 0
 ---
 

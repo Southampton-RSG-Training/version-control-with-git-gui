@@ -1,7 +1,7 @@
 ---
 title: "Creating a Repository"
 slug: git-novice-creating-a-repository
-teaching: 10
+teaching: 30
 exercises: 0
 ---
 

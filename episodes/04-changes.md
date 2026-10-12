@@ -1,7 +1,7 @@
 ---
 title: "Tracking Changes"
 slug: git-novice-tracking-changes
-teaching: 10
+teaching: 30
 exercises: 0
 ---
 
@@ -25,15 +25,23 @@ You might remember GitHub suggesting we add a `README` to let people know what o
 
 ### Creating a New File
 
-Navigate to the climate-analysis folder in your file explorer.
+On Windows:
 
-Create a new text file in this folder.  (Note: this should be a plain text file, not a microsoft word document)
+- Open the Notepad app
+- Add the text below to the file.
+- Save the file in the climate-analysis folder as`README` Note: check this is a plain text file (.txt), not a microsoft word document.
 
 ![](fig/04-changes/create-txt-file.png){alt="Creating a new text file from the file explorer"}
 
-Name this new text file `README`.
+On Mac:
 
-Open the text file using notepad or another text editor and add the following text:
+- Open the TextEdit app
+- Add the text below to the file.
+- Convert the document to plain text by clicking Format -> Make plain text.
+- Save the file in the climate-analysis folder as`README` Note: check this is a plain text file (.txt), not .rtf or any other file format.
+
+
+Text to add to README:
 
 ```
 Climate Analysis Toolkit
@@ -41,6 +49,7 @@ Climate Analysis Toolkit
 This is a set of python scripts designed to analyse climate datafiles.
 ```
 
+Save the file.
 
 ::: callout
 

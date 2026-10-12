@@ -1,7 +1,7 @@
 ---
 title: "Branching"
 slug: git-novice-control-branching
-teaching: 20
+teaching: 30
 exercises: 0
 ---
 
