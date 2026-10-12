@@ -1,7 +1,7 @@
 ---
 title: "Ignoring Things"
 slug: git-novice-ignoring-things
-teaching: 5
+teaching: 10
 exercises: 0
 ---
 

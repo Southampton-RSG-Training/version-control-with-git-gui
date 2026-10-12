@@ -1,7 +1,7 @@
 ---
 title: "Setting Up Git"
 slug: git-novice-setting-up-git
-teaching: 5
+teaching: 15
 exercises: 0
 ---
 
